@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+extensions/vscode-evelentscript/node_modules/
+
+# Lockfiles (optional local installs)
+package-lock.json
+extensions/vscode-evelentscript/package-lock.json
+yarn.lock
+
+# Generated docs site (source: documentation/)
+docs/
+
+# VS Code extension build artifacts
+extensions/vscode-evelentscript/bundled/
+extensions/vscode-evelentscript/*.vsix
+
+# Parser / build temp
+parser.output
+
+# Test scratch files
+test.es
+test*.es
+test.lites
+test*.lites
+test/
+
+# Local / legacy
+raw/
+presentation/
+npm-debug.log*
+.DS_Store
+
+# TypeScript compiler reference (local only)
+typescript_source/

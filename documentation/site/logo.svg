@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 32" role="img" aria-label="EvelentScript">
+  <title>EvelentScript</title>
+  <rect x="0" y="4" width="24" height="24" rx="5" fill="#66bb6a"/>
+  <text x="12" y="20.5" text-anchor="middle" font-family="Segoe UI, system-ui, sans-serif" font-size="11" font-weight="700" fill="#1b5e20">ES</text>
+  <text x="32" y="21.5" font-family="Segoe UI, system-ui, sans-serif" font-size="17" font-weight="600" fill="currentColor">EvelentScript</text>
+</svg>

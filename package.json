@@ -1,0 +1,61 @@
+{
+  "name": "evelentscript",
+  "description": "A little language that compiles into JavaScript",
+  "keywords": [
+    "javascript",
+    "language",
+    "evelentscript",
+    "compiler"
+  ],
+  "version": "2.7.0",
+  "license": "MIT",
+  "engines": {
+    "node": ">=6"
+  },
+  "directories": {
+    "lib": "./lib/evelentscript"
+  },
+  "main": "./lib/evelentscript/index",
+  "module": "./lib/evelentscript-browser-compiler-modern/evelentscript.js",
+  "browser": "./lib/evelentscript-browser-compiler-legacy/evelentscript.js",
+  "bin": {
+    "es": "./bin/es",
+    "cake": "./bin/cake"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "register.js",
+    "repl.js"
+  ],
+  "scripts": {
+    "build": "node scripts/build.js",
+    "build:full": "node scripts/build.js --full",
+    "build:browser": "node scripts/build.js --browser",
+    "build:all": "node scripts/build.js --all",
+    "build:release": "node scripts/build.js --release",
+    "build:watch": "node scripts/build.js --watch",
+    "typecheck": "node scripts/typecheck.js",
+    "test": "node ./bin/cake test",
+    "test-harmony": "node --harmony ./bin/cake test",
+    "docs": "node ./bin/cake build:browser doc:site"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/evelent-core/evelentscript.git"
+  },
+  "devDependencies": {
+    "@babel/core": "~7.17.9",
+    "@babel/preset-env": "~7.16.11",
+    "babel-preset-minify": "~0.5.1",
+    "codemirror": "~5.65.3",
+    "docco": "~0.9.1",
+    "highlight.js": "~11.5.1",
+    "jison": "~0.4.18",
+    "markdown-it": "~13.0.0",
+    "puppeteer": "~13.6.0",
+    "underscore": "~1.13.3",
+    "webpack": "~5.72.0",
+    "typescript": "~5.4.5"
+  }
+}

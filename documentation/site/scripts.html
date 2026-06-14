@@ -1,0 +1,16 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/codemirror@5.37.0/lib/codemirror.js"></script>
+<script src="codemirror-evelentscript.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/javascript/javascript.js"></script>
+
+<script nomodule src="./browser-compiler-legacy/evelentscript.js"></script>
+<script nomodule>
+<%= includeScript('docs.es') %>
+</script>
+<script type="module">
+import EvelentScript from './browser-compiler-modern/evelentscript.js';
+<%= includeScript('docs.es') %>
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-106156830-1"></script>

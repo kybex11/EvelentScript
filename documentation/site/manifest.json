@@ -1,0 +1,15 @@
+{
+  "name": "EvelentScript",
+  "short_name": "EvelentScript",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#66bb6a",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}

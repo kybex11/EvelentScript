@@ -1,0 +1,145 @@
+{
+  "name": "evelentscript",
+  "displayName": "EvelentScript",
+  "description": "Syntax highlighting and IntelliSense for EvelentScript (.es)",
+  "version": "1.3.1",
+  "publisher": "evelent-core",
+  "license": "MIT",
+  "main": "./extension.js",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "activationEvents": [
+    "onLanguage:evelentscript",
+    "onLanguage:literate-evelentscript",
+    "workspaceContains:**/*.es"
+  ],
+  "scripts": {
+    "vscode:prepublish": "node ./scripts/bundle-compiler.js"
+  },
+  "dependencies": {
+    "@types/node": "^20.14.0",
+    "source-map": "^0.7.4",
+    "typescript": "~5.4.5"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "evelentscript",
+        "aliases": [
+          "EvelentScript",
+          "evelentscript",
+          "es"
+        ],
+        "extensions": [
+          ".es"
+        ],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./icons/es-light.svg",
+          "dark": "./icons/es-dark.svg"
+        }
+      },
+      {
+        "id": "literate-evelentscript",
+        "aliases": [
+          "Literate EvelentScript",
+          "lites"
+        ],
+        "extensions": [
+          ".lites",
+          ".es.md"
+        ],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./icons/es-light.svg",
+          "dark": "./icons/es-dark.svg"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "evelentscript",
+        "scopeName": "source.evelentscript",
+        "path": "./syntaxes/evelentscript.tmLanguage.json"
+      },
+      {
+        "language": "literate-evelentscript",
+        "scopeName": "source.literate-evelentscript",
+        "path": "./syntaxes/literate-evelentscript.tmLanguage.json"
+      }
+    ],
+    "breakpoints": [
+      {
+        "language": "evelentscript"
+      },
+      {
+        "language": "literate-evelentscript"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "evelentscript",
+        "path": "./snippets/evelentscript.code-snippets"
+      },
+      {
+        "language": "literate-evelentscript",
+        "path": "./snippets/evelentscript.code-snippets"
+      }
+    ],
+    "configuration": {
+      "title": "EvelentScript",
+      "properties": {
+        "evelentscript.intellisense.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable IntelliSense for .es files."
+        }
+      }
+    },
+    "configurationDefaults": {
+      "files.associations": {
+        "*.es": "evelentscript"
+      },
+      "catppuccin-icons.associations.languages": {
+        "evelentscript": "coffeescript",
+        "literate-evelentscript": "coffeescript"
+      },
+      "catppuccin-icons.associations.extensions": {
+        "es": "coffeescript",
+        "lites": "coffeescript"
+      },
+      "[evelentscript]": {
+        "editor.wordBasedSuggestions": "off",
+        "editor.suggest.showWords": false,
+        "editor.suggest.localityBonus": false,
+        "editor.quickSuggestions": {
+          "other": true,
+          "comments": false,
+          "strings": false
+        },
+        "diffEditor.ignoreTrimWhitespace": false,
+        "editor.defaultColorDecorators": "never"
+      },
+      "[literate-evelentscript]": {
+        "editor.wordBasedSuggestions": "off",
+        "editor.suggest.showWords": false,
+        "editor.suggest.localityBonus": false,
+        "editor.quickSuggestions": {
+          "other": true,
+          "comments": false,
+          "strings": false
+        },
+        "diffEditor.ignoreTrimWhitespace": false,
+        "editor.defaultColorDecorators": "never"
+      }
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/evelent-core/EvelentScript"
+  }
+}

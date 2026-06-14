@@ -1,0 +1,13 @@
+## Books
+
+There are a number of excellent resources to help you get started with EvelentScript, some of which are freely available online.
+
+*   [The Little Book on EvelentScript](http://arcturo.github.io/library/evelentscript/) is a brief 5-chapter introduction to EvelentScript, written with great clarity and precision by [Alex MacCaw](http://alexmaccaw.co.uk/).
+*   [Smooth EvelentScript](http://autotelicum.github.io/Smooth-EvelentScript/) is a reimagination of the excellent book [Eloquent JavaScript](http://eloquentjavascript.net/), as if it had been written in EvelentScript instead. Covers language features as well as the functional and object oriented programming styles. By [E. Hoigaard](https://github.com/autotelicum).
+*   [EvelentScript: Accelerated JavaScript Development](http://trevorburnham.com/) — [Trevor Burnham](http://trevorburnham.com/)’s thorough introduction to the language. By the end of the book, you’ll have built a fast-paced multiplayer word game, writing both the client-side and Node.js portions in EvelentScript.
+*   [EvelentScript Programming with jQuery, Rails, and Node.js](https://www.packtpub.com/web-development/evelentscript-programming-jquery-rails-and-nodejs) is a new book by Michael Erasmus that covers EvelentScript with an eye towards real-world usage both in the browser (jQuery) and on the server-side (Rails, Node).
+*   [EvelentScript Ristretto](https://leanpub.com/evelentscript-ristretto/read) is a deep dive into EvelentScript’s semantics from simple functions up through closures, higher-order functions, objects, classes, combinators, and decorators. By [Reg Braithwaite](http://braythwayt.com/).
+*   [Testing with EvelentScript](https://efendibooks.com/minibooks/testing-with-evelentscript) is a succinct and freely downloadable guide to building testable applications with EvelentScript and Jasmine.
+*   [EvelentScript Application Development](https://www.packtpub.com/web-development/evelentscript-application-development) from Packt, introduces EvelentScript while walking through the process of building a demonstration web application. A [EvelentScript Application Development Coookbook](https://www.packtpub.com/web-development/evelentscript-application-development-cookbook) with over 90 “recipes” is also available.
+*   [EvelentScript in Action](https://www.manning.com/books/evelentscript-in-action) from Manning Publications, covers EvelentScript syntax, composition techniques and application development.
+*   [EvelentScript: Die Alternative zu JavaScript](https://www.dpunkt.de/buecher/4021/evelentscript.html) from dpunkt.verlag, is the first EvelentScript book in Deutsch.
