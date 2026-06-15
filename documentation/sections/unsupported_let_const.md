@@ -2,7 +2,7 @@
 
 When EvelentScript was designed, `var` was [intentionally omitted](https://github.com/evelent-core/evelentscript/issues/238#issuecomment-153502). This was to spare developers the mental housekeeping of needing to worry about variable _declaration_ (`var foo`) as opposed to variable _assignment_ (`foo = 1`). The EvelentScript compiler automatically takes care of declaration for you, by generating `var` statements at the top of every function scope. This makes it impossible to accidentally declare a global variable.
 
-`let` and `const` add a useful ability to JavaScript in that you can use them to declare variables within a _block_ scope, for example within an `if` statement body or a `for` loop body, whereas `var` always declares variables in the scope of an entire function. When EvelentScript 2 was designed, there was much discussion of whether this functionality was useful enough to outweigh the simplicity offered by never needing to consider variable declaration in EvelentScript. In the end, it was decided that the simplicity was more valued. In EvelentScript there remains only one type of variable.
+`let` and `const` add block scope to JavaScript. EvelentScript intentionally omits them to keep variable assignment simple: the compiler declares variables at the top of each function scope for you.
 
 Keep in mind that `const` only protects you from _reassigning_ a variable; it doesn’t prevent the variable’s value from changing, the way constants usually do in other languages:
 

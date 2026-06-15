@@ -10,4 +10,4 @@ codeFor('fat_arrow')
 
 If we had used `->` in the callback above, `@customer` would have referred to the undefined “customer” property of the DOM element, and trying to call `purchase()` on it would have raised an exception.
 
-The fat arrow was one of the most popular features of EvelentScript, and ES2015 [adopted it](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions); so EvelentScript 2 compiles `=>` to ES `=>`.
+The fat arrow compiles to ES2015 [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions).

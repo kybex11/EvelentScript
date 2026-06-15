@@ -1,13 +1,13 @@
 html,
 body {
-  /* Prevent scroll on narrow devices */
   overflow-x: hidden;
 }
+
 body {
-  /* Required for Scrollspy */
   position: relative;
-  /* Push below header bar */
   margin-top: 3.5rem;
+  background-color: #121218;
+  color: #e4e4e7;
 }
 
 svg {
@@ -16,42 +16,36 @@ svg {
 }
 
 a {
-  color: #1b5e20;
+  color: #81c784;
   transition: 0.1s ease-in-out;
 }
 a:focus, a:hover, a:active {
-  color: #388e3c;
+  color: #a5d6a7;
   cursor: pointer;
   text-decoration: none;
 }
 
 button:focus, .navbar-dark .navbar-toggler:focus {
   outline: none;
-  border: thin solid rgba(248, 243, 240, 0.3);
+  border: thin solid rgba(129, 199, 132, 0.35);
 }
 
 .bg-dark {
-  background-color: #3e2723 !important;
+  background-color: #0c0c10 !important;
 }
 
-.bg-ribbed-light {
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 3"><path opacity=".03" fill="#000" d="M0 0h1v1H0z"/><path opacity=".005" fill="#000" d="M0 1h1v2H0z"/></svg>');
-  background-size: 1px 3px;
-}
+.bg-ribbed-light,
 .bg-ribbed-dark {
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 3"><path opacity=".2" fill="#000" d="M0 0h1v1H0z"/><path opacity=".15" fill="#000" d="M0 1h1v2H0z"/></svg>');
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 3"><path opacity=".08" fill="%23fff" d="M0 0h1v1H0z"/><path opacity=".04" fill="%23fff" d="M0 1h1v2H0z"/></svg>');
   background-size: 1px 3px;
 }
 
-
-/*
- * Header
- */
 .site-navbar {
   height: 3.5rem;
-  font-family: 'Lato';
+  font-family: 'Lato', sans-serif;
   font-weight: 400;
   font-size: 1.1em;
+  border-bottom: 1px solid #2a2a32;
 }
 
 .navbar-brand {
@@ -74,35 +68,26 @@ button:focus, .navbar-dark .navbar-toggler:focus {
 .navbar-nav .nav-item:hover,
 .navbar-nav .nav-item:active,
 .navbar-nav .nav-item.show {
-  background-color: #4e342e;
+  background-color: #1e1e26;
 }
 
 .navbar-toggler {
   transition: all 0.1s ease-in-out;
 }
 
-
-/*
- * Layout; based on https://codepen.io/Sphinxxxx/pen/WjwbEO
- */
 .main-row {
   height: calc(100vh - 3.5rem);
 }
 
-/*
- * Sidebar
- */
-
 .sidebar {
-  /* Scrollable contents if viewport is shorter than content */
   overflow-y: auto;
   overflow-x: hidden;
   left: 0;
   bottom: 0;
   z-index: 1000;
   padding: 0;
-  background-color: #efebe9;
-  border-right: 1px solid #efebe9;
+  background-color: #16161c;
+  border-right: 1px solid #2a2a32;
 }
 .sidebar::-webkit-scrollbar {
   display: none;
@@ -127,7 +112,7 @@ button:focus, .navbar-dark .navbar-toggler:focus {
 
 .contents {
   padding: 0.5em 0 0.5em 0.5em;
-  font-family: 'Alegreya Sans';
+  font-family: 'Alegreya Sans', sans-serif;
   font-weight: 400;
   font-size: 1.2em;
   align-items: normal;
@@ -140,22 +125,25 @@ button:focus, .navbar-dark .navbar-toggler:focus {
 
 .contents .nav-link {
   padding: 0.2em 0.7em;
+  color: #b4b4bc;
+}
+
+.contents .nav-link:hover,
+.contents .nav-link:focus {
+  color: #e4e4e7;
 }
 
 .contents .nav-link.active,
 .contents .nav-link.active a:hover,
 .contents .nav-link.active a:focus {
   font-weight: 800;
+  color: #81c784;
 }
-
-
-/*
- * Main content
- */
 
 .main {
   max-width: 100%;
   padding: 1.3em;
+  background-color: #121218;
 }
 @media (min-width: 992px) {
   .main {
@@ -169,17 +157,20 @@ button:focus, .navbar-dark .navbar-toggler:focus {
 .title-logo {
   width: 30rem;
   margin: 3rem auto;
-  color: #2f2625;
+  color: #e4e4e7;
 }
 
 .main p, .main li, .main td, .main th {
-  font-family: Lato;
+  font-family: Lato, sans-serif;
   font-weight: 300;
   font-size: 1.1em;
   line-height: 1.7;
+  color: #d4d4dc;
 }
 .main blockquote {
   font-size: 1.1em;
+  border-left: 3px solid #2a2a32;
+  color: #c8c8d0;
 }
 .main li p, .main li li, .main li blockquote {
   font-size: 1em;
@@ -192,22 +183,25 @@ button:focus, .navbar-dark .navbar-toggler:focus {
 .main td {
   vertical-align: top;
   padding: 0.3em 0;
+  border-color: #2a2a32;
 }
 .main strong, .main th {
   font-weight: 700;
+  color: #ececf0;
 }
 .main a {
   border-bottom: 2px solid transparent;
   font-weight: 400;
 }
 .main a:focus, .main a:hover, .main a:active {
-  border-bottom: 2px solid rgba(56, 142, 60, 0.2);
+  border-bottom: 2px solid rgba(129, 199, 132, 0.35);
 }
 .main blockquote pre {
-  background-color: #f8f3f0;
-  color: #2f2625;
+  background-color: #1a1a22;
+  color: #e4e4e7;
   border-radius: .3em;
   padding: 0.4em 0.6em;
+  border: 1px solid #2a2a32;
 }
 
 p, blockquote, table, .code-example {
@@ -222,13 +216,14 @@ code, td code {
   padding: 2px 8px;
 }
 pre code {
-  white-space: pre; /* We want newlines to be newlines in code blocks */
+  white-space: pre;
 }
 
 h2, h3, h4 {
   margin-top: 1.3em;
   margin-bottom: 0.6em;
-  font-family: 'Alegreya Sans';
+  font-family: 'Alegreya Sans', sans-serif;
+  color: #f0f0f4;
 }
 h2 {
   font-weight: 800;
@@ -244,46 +239,43 @@ h3, h4, h2 time {
 }
 
 code, button {
-  font-family: 'Roboto Mono';
+  font-family: 'Roboto Mono', monospace;
   font-weight: 400;
 }
 code, a > code {
-  background-color: #f8f3f0;
+  background-color: #1e1e26;
+  border: 1px solid #2a2a32;
 }
 code {
-  color: #2f2625;
+  color: #c8e6c9;
 }
-
-
-/*
- * Chrome around code examples; see code.css for the styling of the code blocks themselves
- */
 
 textarea {
   position: absolute;
-  left: -99999px; /* Hide off canvas, while still remaining visible */
+  left: -99999px;
 }
 
 .code-example {
-  background-color: #2f2625;
+  background-color: #0e0e12;
   padding: 1em;
   border-radius: 0.3em;
   margin-bottom: 1em;
+  border: 1px solid #2a2a32;
 }
 
 .javascript-output-column {
-  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .btn-primary {
-  background-color: #69f0ae;
+  background-color: #66bb6a;
   color: #0b140f;
   border-color: #53d88f;
   transition: 0.2s ease-in-out;
   min-width: 3.125rem;
 }
 .btn-primary:active, .btn-primary:focus, .btn-primary:hover, .btn-primary:active:hover, .btn-primary:active:focus {
-  background-color: #61fea8;
+  background-color: #81c784;
   color: #060a08;
   border-color: #4de486;
   outline: 0;
@@ -295,13 +287,9 @@ textarea {
 }
 
 .javascript-output-column .CodeMirror-cursor {
-  /* https://github.com/codemirror/CodeMirror/issues/2568 */
   display: none;
 }
 
-/*
- * Try EvelentScript
- */
 .try-evelentscript {
   position: fixed;
   height: calc(100% - 3.5rem);
@@ -311,7 +299,7 @@ textarea {
   opacity: 0;
   transition: opacity 0.15s ease-in-out;
   z-index: -1001;
-  background-color: #2f2625;
+  background-color: #0e0e12;
 }
 .try-evelentscript.show {
   opacity: 1;
@@ -325,8 +313,8 @@ textarea {
 
 .try-evelentscript .code-column {
   overflow: hidden;
-  background-color: #2f2625;
-  color: #2f2625;
+  background-color: #0e0e12;
+  color: #f8f8f8;
 }
 
 @media screen and (max-width: 767px) {
@@ -353,4 +341,24 @@ textarea {
     bottom: 1em;
     z-index: 1002;
   }
+}
+
+.uneditable-code-block {
+  background-color: #1a1a22;
+  border: 1px solid #2a2a32;
+  border-radius: 0.3em;
+  padding: 0.2em 0.6em;
+}
+
+.uneditable-code-block pre {
+  margin: 0;
+  color: #e4e4e7;
+}
+
+.main table {
+  border-color: #2a2a32;
+}
+
+.main hr {
+  border-color: #2a2a32;
 }

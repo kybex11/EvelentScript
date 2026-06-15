@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+      "rootDir": "./src",
+      "outDir": "./dist",
+      "entry": "index.es",
+      "bundle": true,
+      "outFile": "index.js",
+      "bare": true,
+      "sourceMap": false,
+      "include": ["*.es", "**/*.es"],
+      "exclude": ["node_modules", "**/node_modules/**"]
+    }
+  }
+  

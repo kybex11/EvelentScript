@@ -1,6 +1,6 @@
 ## Classes
 
-EvelentScript 1 provided the `class` and `extends` keywords as syntactic sugar for working with prototypal functions. With ES2015, JavaScript has adopted those keywords; so EvelentScript 2 compiles its `class` and `extends` keywords to ES2015 classes.
+EvelentScript provides the `class` and `extends` keywords, compiling them to native ES2015 classes.
 
 ```
 codeFor('classes', true)

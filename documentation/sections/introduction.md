@@ -2,7 +2,7 @@
 
 The golden rule of EvelentScript is: _“It’s just JavaScript.”_ The code compiles one-to-one into the equivalent JS, and there is no interpretation at runtime. You can use any existing JavaScript library seamlessly from EvelentScript (and vice-versa). The compiled output is readable, pretty-printed, and tends to run as fast or faster than the equivalent handwritten JavaScript.
 
-**Latest Version:** [<%= fullVersion %>](https://github.com/evelent-core/evelentscript/tarball/<%= fullVersion %>)
+**Version:** <%= fullVersion %>
 
 ```bash
 # Install locally for a project:

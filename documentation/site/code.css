@@ -126,41 +126,36 @@ span.cm-type {
   border-bottom: 1px solid rgba(142, 22, 22, 0.67);
 }
 
-/* Uneditable code blocks are inverted, so use darker versions of the above */
+/* Static code samples in prose (dark theme) */
 
 .uneditable-code-block code {
   padding: 0;
+  background: transparent;
+  border: none;
+  color: #e4e4e7;
 }
 
 .uneditable-code-block .comment {
   font-style: italic;
-  color: #837B85;
+  color: #7a7a88;
 }
+.uneditable-code-block .keyword,
 .uneditable-code-block .class,
 .uneditable-code-block .function,
-.uneditable-code-block .keyword,
 .uneditable-code-block .reserved,
 .uneditable-code-block .title {
-  color: #534328;
+  color: #cda869;
 }
-.uneditable-code-block .string
-.uneditable-code-block .value
-.uneditable-code-block .inheritance
-.uneditable-code-block .header {
-  color: #3A4029;
+.uneditable-code-block .string,
+.uneditable-code-block .value {
+  color: #8f9d6a;
 }
 .uneditable-code-block .variable,
 .uneditable-code-block .literal,
 .uneditable-code-block .tag,
-.uneditable-code-block .regexp,
-.uneditable-code-block .subst,
-.uneditable-code-block .property {
-  color: #474429;
-}
 .uneditable-code-block .number,
-.uneditable-code-block .preprocessor,
 .uneditable-code-block .built_in,
 .uneditable-code-block .params,
 .uneditable-code-block .constant {
-  color: #474429;
+  color: #dad085;
 }

@@ -25,6 +25,10 @@ header = """
 # Used in folder names like `docs/v1`.
 majorVersion = parseInt EvelentScript.VERSION.split('.')[0], 10
 
+# Documentation site version (independent of compiler semver).
+docsMajorVersion = 1
+docsFullVersion = '1.0.0'
+
 
 # Log a message with a color.
 log = (message, color, explanation) ->
@@ -169,8 +173,8 @@ task 'build:browser', 'merge the built scripts into a single file for use in a b
     export { VERSION, compile, evaluate as eval, load, run, runScripts };
   """, {sourceType: 'module'}
   outputFolders = [
-    "docs/v#{majorVersion}/browser-compiler-legacy"
-    "docs/v#{majorVersion}/browser-compiler-modern"
+    "docs/v#{docsMajorVersion}/browser-compiler-legacy"
+    "docs/v#{docsMajorVersion}/browser-compiler-modern"
     "lib/evelentscript-browser-compiler-legacy"
     "lib/evelentscript-browser-compiler-modern"
   ]
@@ -200,7 +204,7 @@ buildDocs = (watch = no) ->
   sectionsSourceFolder  = 'documentation/sections'
   changelogSourceFolder = 'documentation/sections/changelog'
   examplesSourceFolder  = 'documentation/examples'
-  outputFolder          = "docs/v#{majorVersion}"
+  outputFolder          = "docs/v#{docsMajorVersion}"
 
   # Helpers
   releaseHeader = (date, version, prevVersion) ->
@@ -220,7 +224,7 @@ buildDocs = (watch = no) ->
       typographer: yes
       highlight: (str, language) ->
         # From https://github.com/markdown-it/markdown-it#syntax-highlighting
-        hlLanguage = if language is 'es' then 'evelentscript' else language
+        hlLanguage = if language is 'es' then 'coffeescript' else language
         if hlLanguage and hljs.getLanguage(hlLanguage)
           try
             return hljs.highlight(str, { language: hlLanguage }).value
@@ -241,8 +245,8 @@ buildDocs = (watch = no) ->
     (file, bookmark) ->
       md = fs.readFileSync "#{sectionsSourceFolder}/#{file.replace /\//g, path.sep}.md", 'utf-8'
       md = md.replace /<%= releaseHeader %>/g, releaseHeader
-      md = md.replace /<%= majorVersion %>/g, majorVersion
-      md = md.replace /<%= fullVersion %>/g, EvelentScript.VERSION
+      md = md.replace /<%= majorVersion %>/g, docsMajorVersion
+      md = md.replace /<%= fullVersion %>/g, docsFullVersion
       html = markdownRenderer.render md
       html = _.template(html)
         codeFor: codeFor()
@@ -264,8 +268,8 @@ buildDocs = (watch = no) ->
         render = _.template output
         output = render
           releaseHeader: releaseHeader
-          majorVersion: majorVersion
-          fullVersion: EvelentScript.VERSION
+          majorVersion: docsMajorVersion
+          fullVersion: docsFullVersion
           htmlFor: htmlFor()
           codeFor: codeFor()
           include: include()
@@ -290,7 +294,7 @@ buildDocs = (watch = no) ->
     copySiteAssets()
     log 'compiled', green, "#{indexFile} → #{outputFolder}/index.html"
   try
-    fs.symlinkSync "v#{majorVersion}/index.html", 'docs/index.html'
+    fs.symlinkSync "v#{docsMajorVersion}/index.html", 'docs/index.html'
   catch exception
 
   if watch
@@ -309,7 +313,7 @@ buildDocTests = (watch = no) ->
   # Constants
   testFile          = 'documentation/site/test.html'
   testsSourceFolder = 'test'
-  outputFolder      = "docs/v#{majorVersion}"
+  outputFolder      = "docs/v#{docsMajorVersion}"
 
   # Included in test.html
   testHelpers = fs.readFileSync('test/support/helpers.es', 'utf-8').replace /exports\./g, '@'
@@ -357,8 +361,8 @@ task 'doc:test:watch', 'watch and continually rebuild the browser-based tests', 
 
 buildAnnotatedSource = (watch = no) ->
   do generateAnnotatedSource = ->
-    exec "cd src && ../node_modules/docco/bin/docco *.*es --output ../docs/v#{majorVersion}/annotated-source", (err) -> throw err if err
-    log 'generated', green, "annotated source in docs/v#{majorVersion}/annotated-source/"
+    exec "cd src && ../node_modules/docco/bin/docco *.*es --output ../docs/v#{docsMajorVersion}/annotated-source", (err) -> throw err if err
+    log 'generated', green, "annotated source in docs/v#{docsMajorVersion}/annotated-source/"
 
   if watch
     fs.watch 'src/', interval: 200, generateAnnotatedSource
@@ -515,11 +519,11 @@ task 'test:browser', 'run the test suite against the modern browser compiler in 
     fs.createReadStream(fileToServe).pipe res
   server = http.createServer (req, res) ->
     if req.url is '/'
-      serveFile res, path.join(__dirname, 'docs', "v#{majorVersion}", 'test.html'), 'text/html'
+      serveFile res, path.join(__dirname, 'docs', "v#{docsMajorVersion}", 'test.html'), 'text/html'
     else if req.url is '/browser-compiler-modern/evelentscript.js'
       # The `text/javascript` MIME type is required for an ES module file to be
       # loaded in a browser.
-      serveFile res, path.join(__dirname, 'docs', "v#{majorVersion}", 'browser-compiler-modern', 'evelentscript.js'), 'text/javascript'
+      serveFile res, path.join(__dirname, 'docs', "v#{docsMajorVersion}", 'browser-compiler-modern', 'evelentscript.js'), 'text/javascript'
     else
       res.statusCode = 404
       res.end()

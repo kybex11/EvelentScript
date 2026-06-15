@@ -45,6 +45,47 @@ es -c /path/to/script.es
 
 EvelentScript supports indentation-based `interface`, `type`, generics, unions, and function annotations. Types are stripped from JS output; use `npm run typecheck` for static checking. See [documentation/sections/native_types.md](documentation/sections/native_types.md).
 
+## Project build (`esconfig.json`)
+
+Configure a project like TypeScript's `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "entry": "index.es",
+    "bundle": true,
+    "outFile": "index.js",
+    "bare": true
+  }
+}
+```
+
+| Option | Description |
+|--------|-------------|
+| `rootDir` | Source root (default: `.`) |
+| `outDir` | Output folder (default: `dist`) |
+| `entry` | Entry file relative to `rootDir` (default: `index.es`) |
+| `bundle` | `true` = one JS file; `false` = mirror tree into `outDir` |
+| `outFile` | Bundle filename when `bundle` is true |
+| `bare` | Compile without top-level function wrapper |
+| `sourceMap` | Write `.js.map` files (project mode) |
+| `include` / `exclude` | Glob patterns for source files |
+
+```shell
+# From this repo (es is not on PATH until npm install -g):
+node ./bin/es build
+npm run build:project
+
+# After npm install -g evelentscript (or npm link in this repo):
+es build
+es build --watch
+es build --config path/to/esconfig.json
+```
+
+See `esconfig.example.json` in the repository root.
+
 ## Documentation site
 
 The HTML in `documentation/site/` is a template — build it first, then open the output:
@@ -54,10 +95,10 @@ npm run build
 npm run docs
 ```
 
-Open `docs/v2/index.html` in a browser, or serve locally:
+Open `docs/v1/index.html` in a browser, or serve locally:
 
 ```shell
-npx --yes serve docs/v2
+npx --yes serve docs/v1
 ```
 
 Do not open `documentation/site/index.html` directly; it is not the compiled site.

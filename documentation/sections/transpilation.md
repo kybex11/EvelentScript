@@ -1,6 +1,6 @@
 ﻿### Transpilation
 
-EvelentScript 2 generates JavaScript that uses the latest, modern syntax. The runtime or browsers where you want your code to run [might not support all of that syntax](#compatibility). In that case, we want to convert modern JavaScript into older JavaScript that will run in older versions of Node or older browsers; for example, `{ a } = obj` into `a = obj.a`. This is done via transpilers like [Babel](http://babeljs.io/), [Bublé](https://buble.surge.sh/) or [Traceur Compiler](https://github.com/google/traceur-compiler). See [Build Tools](#build-tools).
+EvelentScript generates modern JavaScript syntax. The runtime or browsers where you want your code to run might not support all of that syntax. In that case, convert modern JavaScript into older JavaScript via transpilers like [Babel](http://babeljs.io/), [Bublé](https://buble.surge.sh/) or [Traceur Compiler](https://github.com/google/traceur-compiler). See [Build Tools](#build-tools).
 
 #### Quickstart
 

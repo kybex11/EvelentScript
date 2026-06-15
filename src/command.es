@@ -70,6 +70,9 @@ exports.buildESOptionParser = buildESOptionParser = ->
 # Many flags cause us to divert before compiling anything. Flags passed after
 # `--` will be passed verbatim to your script as arguments in `process.argv`
 exports.run = ->
+  if process.argv[2] is 'build'
+    return require('./build').run process.argv[3..]
+
   optionParser = buildESOptionParser()
   try parseOptions()
   catch err

@@ -30,6 +30,7 @@
   ],
   "scripts": {
     "build": "node scripts/build.js",
+    "build:project": "node ./bin/es build",
     "build:full": "node scripts/build.js --full",
     "build:browser": "node scripts/build.js --browser",
     "build:all": "node scripts/build.js --all",
