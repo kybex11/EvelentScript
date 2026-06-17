@@ -1457,7 +1457,7 @@ exports.Value = class Value extends Base
       # Example:
       # `a(x = 5).b(-> x = 6)` should compile in the same order as
       # `a(x = 5); b(-> x = 6)`
-      # (see issue #4437, https://github.com/evelent-core/evelentscript/issues/4437)
+      # (see issue #4437, https://github.com/kybex11/evelentscript/issues/4437)
       fragments = @base.cached
     else
       fragments = @base.compileToFragments o, (if props.length then LEVEL_ACCESS else null)
@@ -2067,7 +2067,7 @@ exports.Call = class Call extends Base
     # Example:
     # `a(x = 5).b(-> x = 6)` should compile in the same order as
     # `a(x = 5); b(-> x = 6)`
-    # (see issue #4437, https://github.com/evelent-core/evelentscript/issues/4437)
+    # (see issue #4437, https://github.com/kybex11/evelentscript/issues/4437)
     varAccess = @variable?.properties?[0] instanceof Access
     argCode = (arg for arg in (@args || []) when arg instanceof Code)
     if argCode.length > 0 and varAccess and not @variable.base.cached

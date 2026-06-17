@@ -209,7 +209,7 @@ buildDocs = (watch = no) ->
   # Helpers
   releaseHeader = (date, version, prevVersion) ->
     """
-      <h3>#{prevVersion and "<a href=\"https://github.com/evelent-core/evelentscript/compare/#{prevVersion}...#{version}\">#{version}</a>" or version}
+      <h3>#{prevVersion and "<a href=\"https://github.com/kybex11/evelentscript/compare/#{prevVersion}...#{version}\">#{version}</a>" or version}
         <span class="timestamp"> &mdash; <time datetime="#{date}">#{date}</time></span>
       </h3>
     """

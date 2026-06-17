@@ -2,7 +2,7 @@
 
 Besides being used as an ordinary programming language, EvelentScript may also be written in “literate” mode. If you name your file with a `.lites` extension, you can write it as a Markdown document — a document that also happens to be executable EvelentScript code. The compiler will treat any indented blocks (Markdown’s way of indicating source code) as executable code, and ignore the rest as comments. Code blocks must also be separated from comments by at least one blank line.
 
-Just for kicks, a little bit of the compiler is currently implemented in this fashion: See it [as a document](https://gist.github.com//3fc3c1a8b1009c00d9df), [raw](https://raw.githubusercontent.com/evelent-core/evelentscript/master/src/scope.lites), and [properly highlighted in a text editor](http://cl.ly/LxEu).
+Just for kicks, a little bit of the compiler is currently implemented in this fashion: See it [as a document](https://gist.github.com//3fc3c1a8b1009c00d9df), [raw](https://raw.githubusercontent.com/kybex11/evelentscript/master/src/scope.lites), and [properly highlighted in a text editor](http://cl.ly/LxEu).
 
 A few caveats:
 

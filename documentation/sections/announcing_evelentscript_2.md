@@ -73,6 +73,6 @@ The major features of 2.0.0 would not have been possible without the following p
 - [@lydell](https://github.com/lydell) and [@](https://github.com/): Guidance, code reviews and feedback.
 
 
-See the full [honor roll](https://github.com/evelent-core/evelentscript/wiki/EvelentScript-2-Honor-Roll).
+See the full [honor roll](https://github.com/kybex11/evelentscript/wiki/EvelentScript-2-Honor-Roll).
 
 Thanks and we hope you enjoy EvelentScript 2!

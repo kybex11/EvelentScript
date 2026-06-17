@@ -122,27 +122,62 @@ function compileToVirtualTypeScript(source, filename, workspaceRoot) {
   });
   const declarations = collectTypeDeclarations(root.body || root);
   const header = emitTypeScriptDeclarations(declarations);
-  const body = String(js).replace(/^\/\/[^\n]*\n/, '');
 
-  const content = [
+  // The compiler may emit a leading `//` comment line; strip it and remember
+  // how many lines were removed so positions can be mapped accurately.
+  const rawJs = String(js);
+  const strippedLines = /^\/\/[^\n]*\n/.test(rawJs) ? 1 : 0;
+  const body = rawJs.replace(/^\/\/[^\n]*\n/, '');
+
+  const prefixParts = [
     '/// <reference lib="es2020" />',
     '/// <reference types="node" />',
-    '',
     header || null,
-    body,
-  ]
-    .filter((line) => line != null && line !== '')
-    .join('\n');
+  ].filter((line) => line != null && line !== '');
 
-  return { content, v3SourceMap };
+  // 1-based line in `content` where the compiled body begins.
+  const bodyStartLine = prefixParts.length
+    ? prefixParts.join('\n').split('\n').length + 1
+    : 1;
+
+  const content = prefixParts.length ? `${prefixParts.join('\n')}\n${body}` : body;
+
+  return { content, v3SourceMap, bodyStartLine, strippedLines };
 }
 
 function virtualTsPath(esPath) {
   return `${esPath}.evelent.ts`;
 }
 
+/**
+ * Compile the raw (unpadded) source purely to detect genuine syntax errors.
+ * Returns the thrown SyntaxError, or null when the source parses cleanly.
+ */
+function getSyntaxError(source, filename, workspaceRoot) {
+  let EvelentScript;
+  try {
+    EvelentScript = resolveEvelentScript(workspaceRoot);
+  } catch (_) {
+    return null;
+  }
+  const literate = EvelentScript.helpers?.isLiterate?.(filename) ?? false;
+  try {
+    EvelentScript.compile(source, {
+      filename,
+      bare: true,
+      header: false,
+      sourceMap: false,
+      literate,
+    });
+    return null;
+  } catch (error) {
+    return error;
+  }
+}
+
 module.exports = {
   compileToVirtualTypeScript,
   resolveEvelentScript,
+  getSyntaxError,
   virtualTsPath,
 };

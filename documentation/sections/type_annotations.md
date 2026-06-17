@@ -14,4 +14,4 @@ es --bare --no-header --compile app.es && npm run flow
 
 `--bare` and `--no-header` are important because Flow requires the first line of the file to be the comment `// @flow`. If you configure your build chain to compile EvelentScript and pass the result to Flow in-memory, you can get better performance than this example; and a proper build tool should be able to watch your EvelentScript files and recompile and type-check them for you on save.
 
-If you know of another way to achieve static type checking with EvelentScript, please [create an issue](https://github.com/evelent-core/evelentscript/issues/new) and let us know.
+If you know of another way to achieve static type checking with EvelentScript, please [create an issue](https://github.com/kybex11/evelentscript/issues/new) and let us know.

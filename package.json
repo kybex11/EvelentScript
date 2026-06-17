@@ -43,7 +43,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/evelent-core/evelentscript.git"
+    "url": "git://github.com/kybex11/evelentscript.git"
   },
   "devDependencies": {
     "@babel/core": "~7.17.9",

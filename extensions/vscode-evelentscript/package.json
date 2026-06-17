@@ -2,8 +2,8 @@
   "name": "evelentscript",
   "displayName": "EvelentScript",
   "description": "Syntax highlighting and IntelliSense for EvelentScript (.es)",
-  "version": "1.3.1",
-  "publisher": "evelent-core",
+  "version": "1.4.0",
+  "publisher": "kybex11",
   "license": "MIT",
   "main": "./extension.js",
   "engines": {
@@ -97,6 +97,16 @@
           "type": "boolean",
           "default": true,
           "description": "Enable IntelliSense for .es files."
+        },
+        "evelentscript.diagnostics.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show syntax and error diagnostics (red squiggles) for .es files."
+        },
+        "evelentscript.diagnostics.semantic": {
+          "type": "boolean",
+          "default": true,
+          "description": "Include semantic checks (e.g. undefined variables, type errors). Disable to show only syntax errors."
         }
       }
     },
@@ -140,6 +150,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/evelent-core/EvelentScript"
+    "url": "https://github.com/kybex11/EvelentScript"
   }
 }

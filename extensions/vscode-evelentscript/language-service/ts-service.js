@@ -3,8 +3,8 @@
 const fs = require('fs');
 const path = require('path');
 const ts = require('typescript');
-const { compileToVirtualTypeScript, virtualTsPath } = require('./compile-virtual');
-const { mapToGenerated } = require('./mapping');
+const { compileToVirtualTypeScript, virtualTsPath, getSyntaxError } = require('./compile-virtual');
+const { mapToGenerated, mapManyToOriginal } = require('./mapping');
 const { getFallbackCompletions, isMemberAccessContext, isKeywordEntry } = require('./global-completions');
 const { getKeywordCompletions } = require('./keywords');
 
@@ -28,7 +28,7 @@ class EvelentLanguageService {
       ...ts.getDefaultCompilerOptions(),
       target: ts.ScriptTarget.ES2020,
       module: ts.ModuleKind.CommonJS,
-      lib: ['ES2020'],
+      lib: ['lib.es2020.d.ts', 'lib.dom.d.ts'],
       allowJs: true,
       checkJs: true,
       skipLibCheck: true,
@@ -51,7 +51,18 @@ class EvelentLanguageService {
       getScriptSnapshot: (fileName) => {
         const key = self.toPath(fileName);
         const text = self.documents.get(key)?.content;
-        return text != null ? ts.ScriptSnapshot.fromString(text) : undefined;
+        if (text != null) {
+          return ts.ScriptSnapshot.fromString(text);
+        }
+        // Fall back to disk so the default lib, @types and node_modules
+        // declaration files can be loaded by the language service.
+        if (ts.sys.fileExists(fileName)) {
+          const fileText = ts.sys.readFile(fileName);
+          if (fileText != null) {
+            return ts.ScriptSnapshot.fromString(fileText);
+          }
+        }
+        return undefined;
       },
       getProjectVersion: () => String(self.projectVersion),
       getScriptKind: () => ts.ScriptKind.TS,
@@ -77,14 +88,35 @@ class EvelentLanguageService {
   updateDocument(esPath, source) {
     let content;
     let v3SourceMap = null;
+    let bodyStartLine = 1;
+    let strippedLines = 0;
+    let compileError = null;
     try {
-      ({ content, v3SourceMap } = compileToVirtualTypeScript(source, esPath, this.workspaceRoot));
-    } catch (_) {
+      ({ content, v3SourceMap, bodyStartLine, strippedLines } = compileToVirtualTypeScript(
+        source,
+        esPath,
+        this.workspaceRoot
+      ));
+    } catch (error) {
+      compileError = this.normalizeCompileError(error, source);
       content = [
         '/// <reference lib="es2020" />',
         '/// <reference types="node" />',
         '',
       ].join('\n');
+    }
+    // Detect genuine syntax errors on the raw source. Padding lets the virtual
+    // TS compile for completions, but it can hide real bracket/indent mistakes.
+    if (!compileError) {
+      let syntaxError = null;
+      try {
+        syntaxError = getSyntaxError(source, esPath, this.workspaceRoot);
+      } catch (_) {
+        syntaxError = null;
+      }
+      if (syntaxError) {
+        compileError = this.normalizeCompileError(syntaxError, source);
+      }
     }
     const tsPath = this.toPath(virtualTsPath(esPath));
     const existing = this.documents.get(tsPath);
@@ -94,9 +126,43 @@ class EvelentLanguageService {
       version,
       sourceMap: v3SourceMap,
       esPath,
+      bodyStartLine,
+      strippedLines,
+      compileError,
     });
     this.projectVersion += 1;
     return tsPath;
+  }
+
+  /**
+   * Normalize a compiler SyntaxError into a diagnostic-friendly object with a
+   * zero-based range in the original .es source.
+   */
+  normalizeCompileError(error, source) {
+    const loc = error && error.location;
+    let startLine = 0;
+    let startColumn = 0;
+    let endLine = 0;
+    let endColumn = 1;
+    if (loc) {
+      startLine = loc.first_line ?? 0;
+      startColumn = loc.first_column ?? 0;
+      endLine = loc.last_line ?? startLine;
+      endColumn = (loc.last_column ?? startColumn) + 1;
+    } else {
+      // No location info: highlight the first non-empty line.
+      const lines = String(source).split('\n');
+      const idx = lines.findIndex((line) => line.trim().length > 0);
+      startLine = endLine = idx < 0 ? 0 : idx;
+      endColumn = (lines[startLine] || '').length || 1;
+    }
+    return {
+      message: error?.message || 'Syntax error',
+      startLine,
+      startColumn,
+      endLine,
+      endColumn,
+    };
   }
 
   removeDocument(esPath) {
@@ -121,7 +187,16 @@ class EvelentLanguageService {
     if (!doc) {
       return { line, column };
     }
-    return mapToGenerated(doc.sourceMap, esPath, line, column);
+    const generated = await mapToGenerated(doc.sourceMap, esPath, line, column);
+    if (!doc.sourceMap) {
+      return generated;
+    }
+    // Convert generated JS line into the virtual TS content line by accounting
+    // for the prepended reference/type header and any stripped leading comment.
+    return {
+      line: generated.line + (doc.bodyStartLine ?? 1) - 1 - (doc.strippedLines ?? 0),
+      column: generated.column,
+    };
   }
 
   async getCompletions(esPath, line, column, sourceLine = '') {
@@ -234,6 +309,124 @@ class EvelentLanguageService {
       this.offsetAt(tsPath, generated.line, generated.column),
       undefined
     );
+  }
+
+  /**
+   * Produce diagnostics for an .es file in zero-based original coordinates.
+   * Returns compiler syntax errors directly, otherwise TypeScript syntactic and
+   * semantic diagnostics mapped back from the virtual TS file.
+   *
+   * @param {string} esPath
+   * @param {{ semantic?: boolean }} [options]
+   * @returns {Promise<Array<{ startLine: number, startColumn: number, endLine: number, endColumn: number, message: string, severity: 'error'|'warning' }>>}
+   */
+  async getDiagnostics(esPath, options = {}) {
+    const tsPath = this.tsPathForEs(esPath);
+    const doc = this.documents.get(tsPath);
+    if (!doc) {
+      return [];
+    }
+
+    // A compiler error means we have no usable virtual TS; report it alone so
+    // typos and syntax mistakes surface immediately at the right spot.
+    if (doc.compileError) {
+      const e = doc.compileError;
+      return [
+        {
+          startLine: e.startLine,
+          startColumn: e.startColumn,
+          endLine: e.endLine,
+          endColumn: e.endColumn,
+          message: e.message,
+          severity: 'error',
+        },
+      ];
+    }
+
+    const tsDiagnostics = [
+      ...this.service.getSyntacticDiagnostics(tsPath),
+      ...(options.semantic === false ? [] : this.service.getSemanticDiagnostics(tsPath)),
+    ];
+    if (!tsDiagnostics.length) {
+      return [];
+    }
+
+    // Collect the start/end positions (in generated JS coordinates) to map in a
+    // single batch through the source map.
+    const bodyStartLine = doc.bodyStartLine ?? 1;
+    const strippedLines = doc.strippedLines ?? 0;
+    const positions = [];
+    const meta = [];
+
+    for (const diag of tsDiagnostics) {
+      if (typeof diag.start !== 'number') {
+        continue;
+      }
+      const startPos = this.lineColFromOffset(doc.content, diag.start);
+      const endPos = this.lineColFromOffset(doc.content, diag.start + (diag.length || 0));
+      // Skip diagnostics that point into the generated-only header.
+      if (startPos.line < bodyStartLine) {
+        continue;
+      }
+      const toJs = (p) => ({
+        line: p.line - bodyStartLine + 1 + strippedLines,
+        column: p.column,
+      });
+      positions.push(toJs(startPos), toJs(endPos));
+      meta.push({ diag });
+    }
+
+    if (!meta.length) {
+      return [];
+    }
+
+    const mapped = await mapManyToOriginal(doc.sourceMap, positions);
+    const diagnostics = [];
+
+    for (let i = 0; i < meta.length; i++) {
+      const start = mapped[i * 2];
+      const end = mapped[i * 2 + 1];
+      if (!start) {
+        continue;
+      }
+      const startLine = start.line - 1;
+      const startColumn = start.column;
+      let endLine = end ? end.line - 1 : startLine;
+      let endColumn = end ? end.column : startColumn + 1;
+      if (endLine < startLine || (endLine === startLine && endColumn <= startColumn)) {
+        endLine = startLine;
+        endColumn = startColumn + 1;
+      }
+      const diag = meta[i].diag;
+      diagnostics.push({
+        startLine,
+        startColumn,
+        endLine,
+        endColumn,
+        message: ts.flattenDiagnosticMessageText(diag.messageText, '\n'),
+        severity: diag.category === ts.DiagnosticCategory.Warning ? 'warning' : 'error',
+      });
+    }
+
+    return diagnostics;
+  }
+
+  /**
+   * Convert a zero-based offset in content into a 1-based line and 0-based column.
+   */
+  lineColFromOffset(content, offset) {
+    let line = 1;
+    let column = 0;
+    const max = Math.min(offset, content.length);
+    for (let i = 0; i < max; i++) {
+      if (content[i] === '\n') {
+        line++;
+        column = 0;
+      } else {
+        column++;
+      }
+    }
+    return { line, column };
   }
 
   offsetAt(fileName, line, column) {

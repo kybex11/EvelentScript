@@ -11,6 +11,8 @@ const DEBOUNCE_MS = 250;
 
 /** @type {vscode.OutputChannel | undefined} */
 let outputChannel;
+/** @type {vscode.DiagnosticCollection | undefined} */
+let diagnostics;
 /** @type {Map<string, EvelentLanguageService>} */
 const services = new Map();
 /** @type {Map<string, NodeJS.Timeout>} */
@@ -40,6 +42,48 @@ function isEnabled() {
   return vscode.workspace.getConfiguration('evelentscript').get('intellisense.enable', true);
 }
 
+function isDiagnosticsEnabled() {
+  return vscode.workspace.getConfiguration('evelentscript').get('diagnostics.enable', true);
+}
+
+function isSemanticDiagnosticsEnabled() {
+  return vscode.workspace.getConfiguration('evelentscript').get('diagnostics.semantic', true);
+}
+
+async function publishDiagnostics(document) {
+  if (!diagnostics) {
+    return;
+  }
+  if (!isEnabled() || !isDiagnosticsEnabled()) {
+    diagnostics.delete(document.uri);
+    return;
+  }
+  try {
+    const service = getService(document);
+    const results = await service.getDiagnostics(document.uri.fsPath, {
+      semantic: isSemanticDiagnosticsEnabled(),
+    });
+    const items = results.map((d) => {
+      const range = new vscode.Range(
+        new vscode.Position(Math.max(0, d.startLine), Math.max(0, d.startColumn)),
+        new vscode.Position(Math.max(0, d.endLine), Math.max(0, d.endColumn))
+      );
+      const diagnostic = new vscode.Diagnostic(
+        range,
+        d.message,
+        d.severity === 'warning'
+          ? vscode.DiagnosticSeverity.Warning
+          : vscode.DiagnosticSeverity.Error
+      );
+      diagnostic.source = 'evelentscript';
+      return diagnostic;
+    });
+    diagnostics.set(document.uri, items);
+  } catch (error) {
+    log(`diagnostics failed: ${error.message}`);
+  }
+}
+
 function scheduleUpdate(document) {
   const key = document.uri.toString();
   if (pendingUpdates.has(key)) {
@@ -54,6 +98,7 @@ function scheduleUpdate(document) {
       } catch (error) {
         log(`IntelliSense update failed: ${error.message}`);
       }
+      void publishDiagnostics(document);
     }, DEBOUNCE_MS)
   );
 }
@@ -145,6 +190,8 @@ function displayPartsToMarkdown(parts) {
 function activate(context) {
   outputChannel = vscode.window.createOutputChannel('EvelentScript');
   context.subscriptions.push(outputChannel);
+  diagnostics = vscode.languages.createDiagnosticCollection('evelentscript');
+  context.subscriptions.push(diagnostics);
   log('Extension activated');
 
   try {
@@ -198,6 +245,7 @@ function activate(context) {
         } catch (_) {
           // ignore
         }
+        diagnostics?.delete(doc.uri);
       })
     );
   }
@@ -354,6 +402,19 @@ function activate(context) {
       scheduleUpdate(document);
     }
   }
+
+  context.subscriptions.push(
+    vscode.workspace.onDidChangeConfiguration((event) => {
+      if (!event.affectsConfiguration('evelentscript')) {
+        return;
+      }
+      for (const document of vscode.workspace.textDocuments) {
+        if (LANGUAGE_IDS.includes(document.languageId)) {
+          void publishDiagnostics(document);
+        }
+      }
+    })
+  );
 }
 
 function positionFromOffset(document, offset, useDocument) {
@@ -380,6 +441,7 @@ function deactivate() {
   }
   pendingUpdates.clear();
   services.clear();
+  diagnostics?.clear();
 }
 
 module.exports = {
