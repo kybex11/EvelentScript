@@ -15,16 +15,22 @@ class EvelentLanguageService {
     /** @type {Map<string, { content: string, version: number, sourceMap: object|null }>} */
     this.documents = new Map();
     this.projectVersion = 0;
-    this.service = this.createService();
+    // Shared registry lets multiple project services reuse parsed files.
+    this.registry = ts.createDocumentRegistry();
+    this.defaultOptions = this.buildDefaultOptions();
+    /** @type {Map<string, { service: import('typescript').LanguageService, options: object, mtime: number }>} */
+    this.projects = new Map();
+    /** @type {Map<string, { options: object, mtime: number }>} */
+    this.configCache = new Map();
   }
 
-  createService() {
+  buildDefaultOptions() {
     const typeRoots = [
       path.join(this.workspaceRoot, 'node_modules/@types'),
       path.join(this.extensionRoot, 'node_modules/@types'),
     ].filter((dir) => fs.existsSync(dir));
 
-    this.compilerOptions = {
+    return {
       ...ts.getDefaultCompilerOptions(),
       target: ts.ScriptTarget.ES2020,
       module: ts.ModuleKind.CommonJS,
@@ -38,11 +44,14 @@ class EvelentLanguageService {
       types: ['node'],
       noEmit: true,
     };
+  }
 
+  createService(options, currentDir) {
     const self = this;
+    const cwd = currentDir || this.workspaceRoot;
 
     const host = {
-      getCompilationSettings: () => this.compilerOptions,
+      getCompilationSettings: () => options,
       getScriptFileNames: () => [...this.documents.keys()],
       getScriptVersion: (fileName) => {
         const key = self.toPath(fileName);
@@ -66,8 +75,8 @@ class EvelentLanguageService {
       },
       getProjectVersion: () => String(self.projectVersion),
       getScriptKind: () => ts.ScriptKind.TS,
-      getCurrentDirectory: () => this.workspaceRoot,
-      getDefaultLibFileName: (options) => ts.getDefaultLibFilePath(options),
+      getCurrentDirectory: () => cwd,
+      getDefaultLibFileName: (opts) => ts.getDefaultLibFilePath(opts),
       fileExists: ts.sys.fileExists,
       readFile: ts.sys.readFile,
       readDirectory: ts.sys.readDirectory,
@@ -77,12 +86,190 @@ class EvelentLanguageService {
       getNewLine: () => ts.sys.newLine,
       resolveModuleNames: (moduleNames, containingFile) =>
         moduleNames.map((name) => {
-          const resolved = ts.resolveModuleName(name, containingFile, this.compilerOptions, ts.sys);
-          return resolved.resolvedModule;
+          const resolved = ts.resolveModuleName(name, containingFile, options, ts.sys);
+          if (resolved.resolvedModule) {
+            return resolved.resolvedModule;
+          }
+          // Fall back to resolving sibling EvelentScript files so relative
+          // imports between .es modules get types and completions.
+          return self.resolveEsModule(name, containingFile);
         }),
     };
 
-    return ts.createLanguageService(host, ts.createDocumentRegistry());
+    return ts.createLanguageService(host, this.registry);
+  }
+
+  /**
+   * Find the nearest tsconfig.json / jsconfig.json by walking up from the file
+   * directory toward the filesystem root. Returns an absolute path or null.
+   */
+  findConfig(esPath) {
+    let dir = path.dirname(path.resolve(esPath));
+    for (let depth = 0; depth < 64; depth++) {
+      for (const name of ['tsconfig.json', 'jsconfig.json']) {
+        const candidate = path.join(dir, name);
+        if (ts.sys.fileExists(candidate)) {
+          return candidate;
+        }
+      }
+      const parent = path.dirname(dir);
+      if (parent === dir) {
+        break;
+      }
+      dir = parent;
+    }
+    return null;
+  }
+
+  safeMtime(filePath) {
+    try {
+      return fs.statSync(filePath).mtimeMs;
+    } catch (_) {
+      return 0;
+    }
+  }
+
+  /**
+   * Parse a tsconfig/jsconfig and merge it over the default options, while
+   * forcing the flags the virtual TS service relies on.
+   */
+  loadConfigOptions(configPath, mtime) {
+    const cached = this.configCache.get(configPath);
+    if (cached && cached.mtime === mtime) {
+      return cached.options;
+    }
+    let merged = this.defaultOptions;
+    try {
+      const read = ts.readConfigFile(configPath, ts.sys.readFile);
+      const parsed = ts.parseJsonConfigFileContent(
+        read.config || {},
+        ts.sys,
+        path.dirname(configPath),
+        undefined,
+        configPath
+      );
+      merged = {
+        ...this.defaultOptions,
+        ...parsed.options,
+        allowJs: true,
+        checkJs: true,
+        noEmit: true,
+        skipLibCheck: true,
+      };
+      // Only keep typeRoots the config explicitly declares. Inheriting the
+      // default @types-only roots would stop scoped type packages such as
+      // @altv/types-server (which live in node_modules) from resolving.
+      merged.typeRoots = parsed.options.typeRoots;
+    } catch (_) {
+      merged = this.defaultOptions;
+    }
+    this.configCache.set(configPath, { options: merged, mtime });
+    return merged;
+  }
+
+  /**
+   * Return the TypeScript language service whose compiler options apply to the
+   * given .es file (based on the nearest tsconfig/jsconfig).
+   */
+  serviceFor(esPath) {
+    const configPath = this.findConfig(esPath);
+    const key = configPath ? this.getCanonicalFileName(configPath) : '__default__';
+    const mtime = configPath ? this.safeMtime(configPath) : 0;
+    let project = this.projects.get(key);
+    if (!project || project.mtime !== mtime) {
+      const options = configPath ? this.loadConfigOptions(configPath, mtime) : this.defaultOptions;
+      const currentDir = configPath ? path.dirname(configPath) : this.workspaceRoot;
+      project = { service: this.createService(options, currentDir), options, mtime };
+      this.projects.set(key, project);
+    }
+    return project.service;
+  }
+
+  /**
+   * Resolve a relative import to a sibling EvelentScript file's virtual TS.
+   * Returns a TypeScript ResolvedModule or undefined when no .es file matches.
+   */
+  resolveEsModule(name, containingFile) {
+    if (!containingFile.endsWith('.evelent.ts') || !name.startsWith('.')) {
+      return undefined;
+    }
+    const esContaining = containingFile.slice(0, -'.evelent.ts'.length);
+    const baseDir = path.dirname(esContaining);
+    const target = path.resolve(baseDir, name);
+    const candidates = [
+      `${target}.es`,
+      `${target}.lites`,
+      `${target}.es.md`,
+      path.join(target, 'index.es'),
+    ];
+    for (const esPath of candidates) {
+      if (ts.sys.fileExists(esPath) && this.ensureExternalDocument(esPath)) {
+        return {
+          resolvedFileName: virtualTsPath(esPath),
+          extension: ts.Extension.Ts,
+          isExternalLibraryImport: false,
+        };
+      }
+    }
+    return undefined;
+  }
+
+  /**
+   * Lazily compile an .es file that isn't open in the editor so cross-file
+   * imports resolve. Reads from disk and refreshes when the file changes.
+   */
+  ensureExternalDocument(esPath) {
+    const tsPath = this.toPath(virtualTsPath(esPath));
+    let mtime = 0;
+    try {
+      mtime = fs.statSync(esPath).mtimeMs;
+    } catch (_) {
+      // ignore; handled below
+    }
+    const existing = this.documents.get(tsPath);
+    if (existing && existing.external && existing.mtime === mtime) {
+      return tsPath;
+    }
+    // Don't clobber a document that is open and managed by the editor.
+    if (existing && !existing.external) {
+      return tsPath;
+    }
+    let source;
+    try {
+      source = fs.readFileSync(esPath, 'utf8');
+    } catch (_) {
+      return null;
+    }
+    let content;
+    let v3SourceMap = null;
+    let bodyStartLine = 1;
+    let strippedLines = 0;
+    try {
+      ({ content, v3SourceMap, bodyStartLine, strippedLines } = compileToVirtualTypeScript(
+        source,
+        esPath,
+        this.workspaceRoot
+      ));
+    } catch (_) {
+      content = [
+        '/// <reference lib="es2020" />',
+        '/// <reference types="node" />',
+        '',
+      ].join('\n');
+    }
+    this.documents.set(tsPath, {
+      content,
+      version: existing ? existing.version + 1 : 1,
+      sourceMap: v3SourceMap,
+      esPath,
+      bodyStartLine,
+      strippedLines,
+      compileError: null,
+      external: true,
+      mtime,
+    });
+    this.projectVersion += 1;
+    return tsPath;
   }
 
   updateDocument(esPath, source) {
@@ -227,11 +414,12 @@ class EvelentLanguageService {
       const offset = this.offsetAt(tsPath, generated.line, generated.column);
       const options = memberAccess ? { triggerCharacter: '.' } : undefined;
 
-      let result = this.service.getCompletionsAtPosition(tsPath, offset, options);
+      const service = this.serviceFor(esPath);
+      let result = service.getCompletionsAtPosition(tsPath, offset, options);
 
       if (memberAccess && (!result?.entries?.length || result.entries.every((e) => isKeywordEntry(e.name)))) {
         const dotOffset = Math.max(0, offset - 1);
-        result = this.service.getCompletionsAtPosition(tsPath, dotOffset, { triggerCharacter: '.' }) || result;
+        result = service.getCompletionsAtPosition(tsPath, dotOffset, { triggerCharacter: '.' }) || result;
       }
 
       for (const entry of result?.entries || []) {
@@ -263,7 +451,7 @@ class EvelentLanguageService {
   async getCompletionDetails(esPath, line, column, name, source) {
     const tsPath = this.tsPathForEs(esPath);
     const generated = await this.getGeneratedPosition(esPath, line, column);
-    return this.service.getCompletionEntryDetails(
+    return this.serviceFor(esPath).getCompletionEntryDetails(
       tsPath,
       this.offsetAt(tsPath, generated.line, generated.column),
       name,
@@ -280,7 +468,7 @@ class EvelentLanguageService {
       return undefined;
     }
     const generated = await this.getGeneratedPosition(esPath, line, column);
-    return this.service.getQuickInfoAtPosition(
+    return this.serviceFor(esPath).getQuickInfoAtPosition(
       tsPath,
       this.offsetAt(tsPath, generated.line, generated.column)
     );
@@ -292,7 +480,7 @@ class EvelentLanguageService {
       return undefined;
     }
     const generated = await this.getGeneratedPosition(esPath, line, column);
-    return this.service.getDefinitionAndBoundSpan(
+    return this.serviceFor(esPath).getDefinitionAndBoundSpan(
       tsPath,
       this.offsetAt(tsPath, generated.line, generated.column)
     );
@@ -304,7 +492,7 @@ class EvelentLanguageService {
       return undefined;
     }
     const generated = await this.getGeneratedPosition(esPath, line, column);
-    return this.service.getSignatureHelpItems(
+    return this.serviceFor(esPath).getSignatureHelpItems(
       tsPath,
       this.offsetAt(tsPath, generated.line, generated.column),
       undefined
@@ -344,8 +532,8 @@ class EvelentLanguageService {
     }
 
     const tsDiagnostics = [
-      ...this.service.getSyntacticDiagnostics(tsPath),
-      ...(options.semantic === false ? [] : this.service.getSemanticDiagnostics(tsPath)),
+      ...this.serviceFor(esPath).getSyntacticDiagnostics(tsPath),
+      ...(options.semantic === false ? [] : this.serviceFor(esPath).getSemanticDiagnostics(tsPath)),
     ];
     if (!tsDiagnostics.length) {
       return [];
@@ -403,7 +591,7 @@ class EvelentLanguageService {
         startColumn,
         endLine,
         endColumn,
-        message: ts.flattenDiagnosticMessageText(diag.messageText, '\n'),
+        message: ts.flattenDiagnosticMessageText(diag.messageText, '\n').replace(/\.es\.evelent\b/g, '.es'),
         severity: diag.category === ts.DiagnosticCategory.Warning ? 'warning' : 'error',
       });
     }

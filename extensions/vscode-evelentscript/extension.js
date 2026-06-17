@@ -415,6 +415,25 @@ function activate(context) {
       }
     })
   );
+
+  // When a tsconfig/jsconfig changes, language service options may change, so
+  // drop cached project services and refresh diagnostics for open .es files.
+  const configWatcher = vscode.workspace.createFileSystemWatcher('**/{tsconfig,jsconfig}.json');
+  const onConfigChange = () => {
+    for (const service of services.values()) {
+      service.projects?.clear?.();
+      service.configCache?.clear?.();
+    }
+    for (const document of vscode.workspace.textDocuments) {
+      if (LANGUAGE_IDS.includes(document.languageId)) {
+        void publishDiagnostics(document);
+      }
+    }
+  };
+  configWatcher.onDidChange(onConfigChange);
+  configWatcher.onDidCreate(onConfigChange);
+  configWatcher.onDidDelete(onConfigChange);
+  context.subscriptions.push(configWatcher);
 }
 
 function positionFromOffset(document, offset, useDocument) {

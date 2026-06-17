@@ -2,7 +2,7 @@
   "name": "evelentscript",
   "displayName": "EvelentScript",
   "description": "Syntax highlighting and IntelliSense for EvelentScript (.es)",
-  "version": "1.4.0",
+  "version": "1.4.2",
   "publisher": "kybex11",
   "license": "MIT",
   "main": "./extension.js",
