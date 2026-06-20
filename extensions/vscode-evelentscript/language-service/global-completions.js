@@ -40,6 +40,38 @@ function isMemberAccessContext(lineText, character) {
   return /(?:^|[^\w$])([\w$]+)\.\w*$/.test(prefix);
 }
 
+/**
+ * Determine whether the cursor sits inside a string literal on this line.
+ * Handles ', " and ` with backslash escapes. Single-line heuristic.
+ */
+function isInString(lineText, character) {
+  let quote = null;
+  for (let i = 0; i < character && i < lineText.length; i++) {
+    const ch = lineText[i];
+    if (ch === '\\') {
+      i++; // skip escaped character
+      continue;
+    }
+    if (quote) {
+      if (ch === quote) {
+        quote = null;
+      }
+    } else if (ch === "'" || ch === '"' || ch === '`') {
+      quote = ch;
+    }
+  }
+  return quote !== null;
+}
+
+/**
+ * Detect an import/require module specifier the cursor is currently editing,
+ * e.g. `import x from '|'`, `import '|'`, `from '|'`, `require '|'`.
+ */
+function isModuleSpecifierContext(lineText, character) {
+  const prefix = lineText.slice(0, character);
+  return /\b(?:from|import|require)\b\s*\(?\s*['"][^'"]*$/.test(prefix);
+}
+
 function getMemberTarget(lineText, character) {
   const prefix = lineText.slice(0, character);
   const match = prefix.match(/(?:^|[^\w$])([\w$]+)\.\w*$/);
@@ -74,6 +106,8 @@ function isKeywordEntry(name) {
 module.exports = {
   getFallbackCompletions,
   isMemberAccessContext,
+  isInString,
+  isModuleSpecifierContext,
   isKeywordEntry,
   GLOBAL_MEMBERS,
 };

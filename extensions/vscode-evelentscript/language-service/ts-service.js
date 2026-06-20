@@ -5,8 +5,41 @@ const path = require('path');
 const ts = require('typescript');
 const { compileToVirtualTypeScript, virtualTsPath, getSyntaxError } = require('./compile-virtual');
 const { mapToGenerated, mapManyToOriginal } = require('./mapping');
-const { getFallbackCompletions, isMemberAccessContext, isKeywordEntry } = require('./global-completions');
+const { getFallbackCompletions, isMemberAccessContext, isKeywordEntry, isInString, isModuleSpecifierContext } = require('./global-completions');
 const { getKeywordCompletions } = require('./keywords');
+
+// Type-compatibility diagnostics that are noise in a dynamically typed language
+// (they require type annotations to satisfy). Suppressed unless strict typing
+// is explicitly enabled. High-value resolution/typo diagnostics (cannot find
+// name/module, property does not exist, "did you mean", argument count) are
+// intentionally kept.
+const RELAXED_SUPPRESSED_CODES = new Set([
+  2322, // Type X is not assignable to type Y
+  2339, // Property does not exist on type (false positive for @prop pattern)
+  2345, // Argument of type X is not assignable to parameter of type Y
+  2551, // Property does not exist on type. Did you mean ...? (same as 2339 with suggestion)
+  2769, // No overload matches this call
+  2571, // Object is of type 'unknown'
+  18046, // 'x' is of type 'unknown'
+  18047, // 'x' is possibly 'null'
+  18048, // 'x' is possibly 'undefined'
+  2531, // Object is possibly 'null'
+  2532, // Object is possibly 'undefined'
+  2533, // Object is possibly 'null' or 'undefined'
+  2356, // An arithmetic operand must be of type ...
+  2362, // The left-hand side of an arithmetic operation must be ...
+  2363, // The right-hand side of an arithmetic operation must be ...
+  2365, // Operator cannot be applied to types
+  2349, // This expression is not callable
+  2351, // This expression is not constructable
+  2488, // Type must have a '[Symbol.iterator]()' method
+  2495, // Type is not an array type or a string type
+  2538, // Type cannot be used as an index type
+  2683, // 'this' implicitly has type 'any'
+  2721, // Cannot invoke an object which is possibly 'null'
+  2722, // Cannot invoke an object which is possibly 'undefined'
+  7053, // Element implicitly has an 'any' type because expression of type ... can't index
+]);
 
 class EvelentLanguageService {
   constructor(workspaceRoot, extensionRoot) {
@@ -39,6 +72,9 @@ class EvelentLanguageService {
       checkJs: true,
       skipLibCheck: true,
       esModuleInterop: true,
+      // EvelentScript has no parameter/return type syntax in everyday code, so
+      // "implicit any" would fire on nearly every function. Keep it off.
+      noImplicitAny: false,
       moduleResolution: ts.ModuleResolutionKind.NodeJs,
       typeRoots: typeRoots.length ? typeRoots : undefined,
       types: ['node'],
@@ -155,6 +191,9 @@ class EvelentLanguageService {
         checkJs: true,
         noEmit: true,
         skipLibCheck: true,
+        // Force implicit-any off even if the config enables `strict`, since
+        // EvelentScript code rarely carries type annotations.
+        noImplicitAny: false,
       };
       // Only keep typeRoots the config explicitly declares. Inheriting the
       // default @types-only roots would stop scoped type packages such as
@@ -388,6 +427,23 @@ class EvelentLanguageService {
 
   async getCompletions(esPath, line, column, sourceLine = '') {
     const memberAccess = isMemberAccessContext(sourceLine, column);
+    const inString = isInString(sourceLine, column);
+    const tsPath = this.tsPathForEs(esPath);
+
+    // Inside an import/require module specifier: list available modules. We
+    // locate the string offset directly in the generated TS because source
+    // maps don't reliably place positions inside string literals.
+    if (inString && isModuleSpecifierContext(sourceLine, column) && this.documents.has(tsPath)) {
+      const moduleEntries = this.getModuleSpecifierCompletions(esPath, tsPath, sourceLine, column);
+      return moduleEntries?.length ? { entries: moduleEntries } : undefined;
+    }
+
+    // Inside any other string literal (e.g. a function argument), language
+    // keywords and global identifiers are noise — offer nothing.
+    if (inString) {
+      return undefined;
+    }
+
     const entries = [];
     const names = new Set();
 
@@ -408,7 +464,6 @@ class EvelentLanguageService {
       }
     }
 
-    const tsPath = this.tsPathForEs(esPath);
     if (this.documents.has(tsPath)) {
       const generated = await this.getGeneratedPosition(esPath, line, column);
       const offset = this.offsetAt(tsPath, generated.line, generated.column);
@@ -446,6 +501,50 @@ class EvelentLanguageService {
     }
 
     return { entries };
+  }
+
+  /**
+   * Completions for an import/require module specifier. Finds the string offset
+   * directly in the generated TS (source maps are unreliable inside strings).
+   */
+  getModuleSpecifierCompletions(esPath, tsPath, sourceLine, column) {
+    const content = this.documents.get(tsPath)?.content;
+    if (!content) {
+      return undefined;
+    }
+    const before = sourceLine.slice(0, column);
+    const match = before.match(/(['"])([^'"]*)$/);
+    if (!match) {
+      return undefined;
+    }
+    const quote = match[1];
+    const partial = match[2];
+    // Locate the same opening-quote + partial inside the generated module
+    // specifier. Any matching import yields the same module list, so the first
+    // occurrence is fine.
+    const needle = `from ${quote}${partial}`;
+    let idx = content.indexOf(needle);
+    let offset;
+    if (idx >= 0) {
+      offset = idx + needle.length;
+    } else {
+      const alt = `${quote}${partial}`;
+      idx = content.indexOf(`import ${alt}`);
+      if (idx >= 0) {
+        offset = idx + `import ${quote}`.length + partial.length;
+      } else {
+        return undefined;
+      }
+    }
+    const result = this.serviceFor(esPath).getCompletionsAtPosition(tsPath, offset, {});
+    if (!result?.entries?.length) {
+      return undefined;
+    }
+    return result.entries.map((entry) => ({
+      name: entry.name,
+      kind: entry.kind,
+      sortText: entry.sortText || `!0${entry.name}`,
+    }));
   }
 
   async getCompletionDetails(esPath, line, column, name, source) {
@@ -534,7 +633,7 @@ class EvelentLanguageService {
     const tsDiagnostics = [
       ...this.serviceFor(esPath).getSyntacticDiagnostics(tsPath),
       ...(options.semantic === false ? [] : this.serviceFor(esPath).getSemanticDiagnostics(tsPath)),
-    ];
+    ].filter((diag) => options.strictTypes || !RELAXED_SUPPRESSED_CODES.has(diag.code));
     if (!tsDiagnostics.length) {
       return [];
     }

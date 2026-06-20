@@ -5,6 +5,7 @@ const path = require('path');
 const ts = require('typescript');
 const { EvelentLanguageService } = require('./language-service/ts-service');
 const { getKeywordCompletions, getWordPrefix } = require('./language-service/keywords');
+const { isInString } = require('./language-service/global-completions');
 
 const LANGUAGE_IDS = ['evelentscript', 'literate-evelentscript'];
 const DEBOUNCE_MS = 250;
@@ -50,6 +51,10 @@ function isSemanticDiagnosticsEnabled() {
   return vscode.workspace.getConfiguration('evelentscript').get('diagnostics.semantic', true);
 }
 
+function isStrictTypesEnabled() {
+  return vscode.workspace.getConfiguration('evelentscript').get('diagnostics.strictTypes', false);
+}
+
 async function publishDiagnostics(document) {
   if (!diagnostics) {
     return;
@@ -62,6 +67,7 @@ async function publishDiagnostics(document) {
     const service = getService(document);
     const results = await service.getDiagnostics(document.uri.fsPath, {
       semantic: isSemanticDiagnosticsEnabled(),
+      strictTypes: isStrictTypesEnabled(),
     });
     const items = results.map((d) => {
       const range = new vscode.Range(
@@ -109,6 +115,7 @@ function getReplaceRange(document, position) {
   if (!prefix) {
     return undefined;
   }
+
   const start = new vscode.Position(position.line, position.character - prefix.length);
   return new vscode.Range(start, position);
 }
@@ -173,6 +180,10 @@ function entriesToCompletionList(document, position, entries) {
 
 function keywordFallback(document, position) {
   const lineText = document.lineAt(position.line).text;
+  // Don't offer language keywords while typing inside a string literal.
+  if (isInString(lineText, position.character)) {
+    return undefined;
+  }
   const entries = getKeywordCompletions(lineText, position.character);
   if (!entries.length) {
     return undefined;
@@ -204,20 +215,7 @@ function activate(context) {
     );
   }
 
-  const iconTheme = vscode.workspace.getConfiguration('workbench').get('iconTheme');
-  if (iconTheme === 'evelent-icons') {
-    void vscode.workspace
-      .getConfiguration('workbench')
-      .update('iconTheme', undefined, vscode.ConfigurationTarget.Workspace);
-    void vscode.window.showInformationMessage(
-      'EvelentScript больше не меняет icon theme. Выбери снова Catppuccin: File Icon Theme.',
-      'Выбрать тему'
-    ).then((choice) => {
-      if (choice) {
-        void vscode.commands.executeCommand('workbench.action.selectIconTheme');
-      }
-    });
-  }
+  void suggestIconTheme(context);
 
   for (const languageId of LANGUAGE_IDS) {
     context.subscriptions.push(
@@ -452,6 +450,33 @@ function positionFromOffset(document, offset, useDocument) {
     }
   }
   return new vscode.Position(line, column);
+}
+
+const ICON_THEME_ID = 'evelentscript-icons';
+
+/**
+ * Offer to switch to the bundled EvelentScript file icon theme once, so .es
+ * files show the real ES logo instead of an unrelated icon from another theme.
+ */
+async function suggestIconTheme(context) {
+  const current = vscode.workspace.getConfiguration('workbench').get('iconTheme');
+  if (current === ICON_THEME_ID) {
+    return;
+  }
+  if (context.globalState.get('evelentscript.iconThemeSuggested')) {
+    return;
+  }
+  await context.globalState.update('evelentscript.iconThemeSuggested', true);
+  const choice = await vscode.window.showInformationMessage(
+    'Использовать иконки EvelentScript для .es файлов?',
+    'Включить',
+    'Не сейчас'
+  );
+  if (choice === 'Включить') {
+    await vscode.workspace
+      .getConfiguration('workbench')
+      .update('iconTheme', ICON_THEME_ID, vscode.ConfigurationTarget.Global);
+  }
 }
 
 function deactivate() {

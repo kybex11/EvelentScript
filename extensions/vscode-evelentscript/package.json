@@ -2,7 +2,7 @@
   "name": "evelentscript",
   "displayName": "EvelentScript",
   "description": "Syntax highlighting and IntelliSense for EvelentScript (.es)",
-  "version": "1.4.2",
+  "version": "1.6.0",
   "publisher": "kybex11",
   "license": "MIT",
   "main": "./extension.js",
@@ -72,6 +72,13 @@
         "path": "./syntaxes/literate-evelentscript.tmLanguage.json"
       }
     ],
+    "iconThemes": [
+      {
+        "id": "evelentscript-icons",
+        "label": "EvelentScript Icons",
+        "path": "./icons/evelentscript-icon-theme.json"
+      }
+    ],
     "breakpoints": [
       {
         "language": "evelentscript"
@@ -107,6 +114,11 @@
           "type": "boolean",
           "default": true,
           "description": "Include semantic checks (e.g. undefined variables, type errors). Disable to show only syntax errors."
+        },
+        "evelentscript.diagnostics.strictTypes": {
+          "type": "boolean",
+          "default": false,
+          "description": "Report strict type-compatibility errors (assignability, possibly null/undefined, operand types). Off by default since EvelentScript is dynamically typed; useful name/module/property and syntax checks are always shown."
         }
       }
     },
