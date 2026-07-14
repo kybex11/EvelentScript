@@ -1,0 +1,10 @@
+[package]
+name = "heap"
+version = "0.1.0"
+entry = "src/lib.es"
+description = "Binary heap (port of qiao/heap.js for EvelentScript)"
+
+[lib]
+path = "src/lib.es"
+
+[dependencies]

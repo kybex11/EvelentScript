@@ -1,0 +1,10 @@
+[package]
+name = "normat"
+version = "0.1.0"
+entry = "src/lib.es"
+description = "Number/string formatting helpers (port of rferro/normat)"
+
+[lib]
+path = "src/lib.es"
+
+[dependencies]

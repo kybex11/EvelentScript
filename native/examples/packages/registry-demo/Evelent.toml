@@ -1,0 +1,12 @@
+[package]
+name = "registry-demo"
+version = "0.1.0"
+entry = "src/main.es"
+description = "Demo of bundled awesome-coffeescript ports"
+
+[dependencies]
+heap = "*"
+easie = "*"
+shellwords = "*"
+sentimood = "*"
+normat = "*"

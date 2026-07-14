@@ -1,0 +1,10 @@
+[package]
+name = "sentimood"
+version = "0.1.0"
+entry = "src/lib.es"
+description = "Minimal sentiment analyzer (inspired by soops/sentimood)"
+
+[lib]
+path = "src/lib.es"
+
+[dependencies]

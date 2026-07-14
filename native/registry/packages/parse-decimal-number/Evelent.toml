@@ -1,0 +1,10 @@
+[package]
+name = "parse-decimal-number"
+version = "0.1.0"
+entry = "src/lib.es"
+description = "Parse localized decimal numbers (port of AndreasPizsa/parse-decimal-number)"
+
+[lib]
+path = "src/lib.es"
+
+[dependencies]

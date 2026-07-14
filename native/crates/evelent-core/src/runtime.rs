@@ -108,6 +108,49 @@ impl Vm {
                 ))
             }),
         );
+        let _ = math.set_prop(
+            "pow",
+            native("pow", 2, |_, args| {
+                let base = args.first().map(|v| v.as_number()).unwrap_or(f64::NAN);
+                let exp = args.get(1).map(|v| v.as_number()).unwrap_or(f64::NAN);
+                Ok(Value::Number(base.powf(exp)))
+            }),
+        );
+        let _ = math.set_prop(
+            "min",
+            native("min", 0, |_, args| {
+                Ok(Value::Number(
+                    args.iter().map(|v| v.as_number()).fold(f64::INFINITY, f64::min),
+                ))
+            }),
+        );
+        let _ = math.set_prop(
+            "max",
+            native("max", 0, |_, args| {
+                Ok(Value::Number(
+                    args.iter()
+                        .map(|v| v.as_number())
+                        .fold(f64::NEG_INFINITY, f64::max),
+                ))
+            }),
+        );
+        let _ = math.set_prop(
+            "cos",
+            native("cos", 1, |_, args| {
+                Ok(Value::Number(
+                    args.first().map(|v| v.as_number().cos()).unwrap_or(f64::NAN),
+                ))
+            }),
+        );
+        let _ = math.set_prop(
+            "sin",
+            native("sin", 1, |_, args| {
+                Ok(Value::Number(
+                    args.first().map(|v| v.as_number().sin()).unwrap_or(f64::NAN),
+                ))
+            }),
+        );
+        let _ = math.set_prop("PI", Value::Number(std::f64::consts::PI));
         self.set_global("Math", math);
 
         // global alias
@@ -134,6 +177,25 @@ impl Vm {
                 Ok(Value::Number(s.trim().parse().unwrap_or(f64::NAN)))
             }),
         );
+
+        self.set_global(
+            "Number",
+            native("Number", 1, |_, args| {
+                Ok(Value::Number(
+                    args.first().map(|v| v.as_number()).unwrap_or(0.0),
+                ))
+            }),
+        );
+        self.set_global(
+            "String",
+            native("String", 1, |_, args| {
+                Ok(Value::String(
+                    args.first().map(|v| v.as_string()).unwrap_or_default(),
+                ))
+            }),
+        );
+        self.set_global("NaN", Value::Number(f64::NAN));
+        self.set_global("Infinity", Value::Number(f64::INFINITY));
 
         // require
         self.set_global(
@@ -604,23 +666,23 @@ impl Vm {
                     BinaryOp::NotEq => Value::Bool(!l.equals(&r)),
                     BinaryOp::StrictEq => Value::Bool(l.strict_equals(&r)),
                     BinaryOp::StrictNotEq => Value::Bool(!l.strict_equals(&r)),
-                    BinaryOp::Lt => Value::Bool(l.as_number() < r.as_number()),
-                    BinaryOp::Gt => Value::Bool(l.as_number() > r.as_number()),
-                    BinaryOp::LtEq => Value::Bool(l.as_number() <= r.as_number()),
-                    BinaryOp::GtEq => Value::Bool(l.as_number() >= r.as_number()),
+                    BinaryOp::Lt => Value::Bool(cmp_ord(&l, &r) < 0),
+                    BinaryOp::Gt => Value::Bool(cmp_ord(&l, &r) > 0),
+                    BinaryOp::LtEq => Value::Bool(cmp_ord(&l, &r) <= 0),
+                    BinaryOp::GtEq => Value::Bool(cmp_ord(&l, &r) >= 0),
                     BinaryOp::And | BinaryOp::Or => unreachable!(),
                 })
             }
             Expr::Call { callee, args } => {
-                let f = self.eval_expr(callee)?;
+                let (f, this) = self.eval_callee(callee)?;
                 let mut argv = Vec::new();
                 for a in args {
                     argv.push(self.eval_expr(a)?);
                 }
-                self.call_value(f, argv, None)
+                self.call_value(f, argv, this)
             }
             Expr::SoakedCall { callee, args } => {
-                let f = self.eval_expr(callee)?;
+                let (f, this) = self.eval_callee(callee)?;
                 if !f.exists() {
                     return Ok(Value::Undefined);
                 }
@@ -628,7 +690,7 @@ impl Vm {
                 for a in args {
                     argv.push(self.eval_expr(a)?);
                 }
-                self.call_value(f, argv, None)
+                self.call_value(f, argv, this)
             }
             Expr::Member {
                 object,
@@ -841,6 +903,31 @@ impl Vm {
         self.call_value(callee, args, this)
     }
 
+    /// Evaluate a call target. Member access binds `this` to the object.
+    fn eval_callee(&mut self, callee: &Expr) -> Result<(Value, Option<Value>)> {
+        if let Expr::Member {
+            object,
+            property,
+            computed,
+            optional,
+        } = callee
+        {
+            let obj = self.eval_expr(object)?;
+            if *optional && !obj.exists() {
+                return Ok((Value::Undefined, None));
+            }
+            let key = if *computed {
+                self.eval_expr(property)?.as_string()
+            } else if let Expr::String(s) = &**property {
+                s.clone()
+            } else {
+                self.eval_expr(property)?.as_string()
+            };
+            return Ok((obj.get_prop(&key), Some(obj)));
+        }
+        Ok((self.eval_expr(callee)?, None))
+    }
+
     fn call_value(&mut self, callee: Value, args: Vec<Value>, this: Option<Value>) -> Result<Value> {
         match callee {
             Value::Native(n) => (n.func)(self, &args),
@@ -889,7 +976,15 @@ impl Vm {
                 let mut result = Value::Undefined;
                 for stmt in &f.body {
                     match self.exec_stmt(stmt)? {
-                        Flow::None(_) => {}
+                        Flow::None(v) => {
+                            // CoffeeScript / EvelentScript: last statement is the return value
+                            // (especially the last expression statement).
+                            if let Stmt::Expr(_) = stmt {
+                                result = v;
+                            } else if !matches!(v, Value::Undefined) {
+                                result = v;
+                            }
+                        }
                         Flow::Return(v) => {
                             result = v;
                             break;
@@ -1059,6 +1154,27 @@ pub(crate) fn native(
         arity,
         func: Rc::new(f),
     })
+}
+
+fn cmp_ord(l: &Value, r: &Value) -> i32 {
+    match (l, r) {
+        (Value::String(a), Value::String(b)) => match a.cmp(b) {
+            std::cmp::Ordering::Less => -1,
+            std::cmp::Ordering::Equal => 0,
+            std::cmp::Ordering::Greater => 1,
+        },
+        _ => {
+            let a = l.as_number();
+            let b = r.as_number();
+            if a < b {
+                -1
+            } else if a > b {
+                1
+            } else {
+                0
+            }
+        }
+    }
 }
 
 fn apply_op(left: Value, right: Value, op: AssignOp) -> Result<Value> {

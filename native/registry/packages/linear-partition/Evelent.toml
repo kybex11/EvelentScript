@@ -1,0 +1,10 @@
+[package]
+name = "linear-partition"
+version = "0.1.0"
+entry = "src/lib.es"
+description = "Linear partition algorithm (port of crispymtn/linear-partition)"
+
+[lib]
+path = "src/lib.es"
+
+[dependencies]

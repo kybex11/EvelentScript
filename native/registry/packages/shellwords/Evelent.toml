@@ -1,0 +1,10 @@
+[package]
+name = "shellwords"
+version = "0.1.0"
+entry = "src/lib.es"
+description = "UNIX Bourne-style shell word splitting (port of jimmycuadra/shellwords)"
+
+[lib]
+path = "src/lib.es"
+
+[dependencies]

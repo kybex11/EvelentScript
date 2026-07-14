@@ -1,0 +1,2479 @@
+{
+  "source": "https://github.com/uhub/awesome-coffeescript",
+  "note": "Most listed projects are Atom packages, frameworks, or depend on browser/Node APIs. Only packages with status=available are vendored as native EvelentScript (.es). Others can be linked via git and may require porting.",
+  "packages": [
+    {
+      "name": "accept-bitcoin",
+      "repo": "sagivo/accept-bitcoin",
+      "git": "https://github.com/sagivo/accept-bitcoin.git",
+      "description": "Accept bitcoin payments using Node.js",
+      "status": "catalog"
+    },
+    {
+      "name": "active-markdown",
+      "repo": "alecperkins/active-markdown",
+      "git": "https://github.com/alecperkins/active-markdown.git",
+      "description": "A tool for creating Markdown-sourced reactive documents. Literate CoffeeScript meets Tangle.",
+      "status": "catalog"
+    },
+    {
+      "name": "ademfox-stack-up",
+      "repo": "ademfox/stack-up.js",
+      "git": "https://github.com/ademfox/stack-up.js.git",
+      "description": "Create fixed width, variable height grid layouts.",
+      "status": "catalog"
+    },
+    {
+      "name": "adobe-illustrator-layer-renamer",
+      "repo": "seblavoie/adobe-illustrator-layer-renamer",
+      "git": "https://github.com/seblavoie/adobe-illustrator-layer-renamer.git",
+      "description": "Adobe Illustrator script to batch rename layers.",
+      "status": "catalog"
+    },
+    {
+      "name": "akismet",
+      "repo": "cedx/akismet.js",
+      "git": "https://github.com/cedx/akismet.js.git",
+      "description": "Prevent comment spam using Akismet service, in JavaScript.",
+      "status": "catalog"
+    },
+    {
+      "name": "akismet-js",
+      "repo": "oozcitak/akismet-js",
+      "git": "https://github.com/oozcitak/akismet-js.git",
+      "description": "Akismet API client for node.js",
+      "status": "catalog"
+    },
+    {
+      "name": "alac",
+      "repo": "audiocogs/alac.js",
+      "git": "https://github.com/audiocogs/alac.js.git",
+      "description": "ALAC decoder, but in Coffeescript",
+      "status": "catalog"
+    },
+    {
+      "name": "alfamegle",
+      "repo": "mkilling/alfamegle",
+      "git": "https://github.com/mkilling/alfamegle.git",
+      "description": "cheap omegle clone in CoffeeScript using Socket.IO",
+      "status": "catalog"
+    },
+    {
+      "name": "alfred-finder-new-item",
+      "repo": "danielbayley/alfred-finder-new-item",
+      "git": "https://github.com/danielbayley/alfred-finder-new-item.git",
+      "description": "Swiftly create new items in Finder with support for templates.",
+      "status": "catalog"
+    },
+    {
+      "name": "alfredstorm-node-express",
+      "repo": "alfredstorm/node-express-coffeescript",
+      "git": "https://github.com/alfredstorm/node-express-coffeescript.git",
+      "description": "Node.js template /w Express, Connect & Jade written in CoffeeScript.",
+      "status": "catalog"
+    },
+    {
+      "name": "algebrite",
+      "repo": "davidedc/Algebrite",
+      "git": "https://github.com/davidedc/Algebrite.git",
+      "description": "Computer Algebra System in Javascript (Coffeescript)",
+      "status": "catalog"
+    },
+    {
+      "name": "algorithms",
+      "repo": "BrunoRB/algorithms.coffee",
+      "git": "https://github.com/BrunoRB/algorithms.coffee.git",
+      "description": "Classic algorithms and data structures in coffeescript. Making the World a better place, with coffee.",
+      "status": "catalog"
+    },
+    {
+      "name": "amcoffee",
+      "repo": "auiWorks/amCoffee",
+      "git": "https://github.com/auiWorks/amCoffee.git",
+      "description": "A CoffeeScript version of the Chrome Console.",
+      "status": "catalog"
+    },
+    {
+      "name": "andculturecode-hubot-jenkins-enhanced",
+      "repo": "AndcultureCode/hubot-jenkins-enhanced",
+      "git": "https://github.com/AndcultureCode/hubot-jenkins-enhanced.git",
+      "description": "Jenkins integration for Hubot with multiple server support",
+      "status": "catalog"
+    },
+    {
+      "name": "andreaspizsa-parse-decimal-number",
+      "repo": "AndreasPizsa/parse-decimal-number",
+      "git": "https://github.com/AndreasPizsa/parse-decimal-number.git",
+      "description": "🏧 Parse a decimal number with i18n format support (localized decimal points and comma separators)",
+      "status": "catalog"
+    },
+    {
+      "name": "angular-coffee-amd-seed",
+      "repo": "ichord/angular-coffee-AMD-seed",
+      "git": "https://github.com/ichord/angular-coffee-AMD-seed.git",
+      "description": "angular coffeescript requirejs",
+      "status": "catalog"
+    },
+    {
+      "name": "angular-espresso",
+      "repo": "wmora/angular-espresso",
+      "git": "https://github.com/wmora/angular-espresso.git",
+      "description": "Based on angular-seed, a starting point for writing an AngularJS app running on an Express backend, written in CoffeeScript",
+      "status": "catalog"
+    },
+    {
+      "name": "angular-grunt",
+      "repo": "roytruelove/angular-grunt-coffeescript",
+      "git": "https://github.com/roytruelove/angular-grunt-coffeescript.git",
+      "description": "Seed project for large CoffeeScript AngularJS projects",
+      "status": "catalog"
+    },
+    {
+      "name": "angular-kickoff",
+      "repo": "marcelinhov2/angular-kickoff",
+      "git": "https://github.com/marcelinhov2/angular-kickoff.git",
+      "description": "AngularJS + CoffeeScript + Ng-Classify = s2",
+      "status": "catalog"
+    },
+    {
+      "name": "angular-starter-kit",
+      "repo": "adamalbrecht/angular-starter-kit",
+      "git": "https://github.com/adamalbrecht/angular-starter-kit.git",
+      "description": "An opinionated starter template for crafting single-page web applications using Angular.js, Coffeescript, SCSS, Jade, Bootstrap, UI-Router, Font-Awesome and a few other carefully picked tools.",
+      "status": "catalog"
+    },
+    {
+      "name": "angular-validator",
+      "repo": "kelp404/angular-validator",
+      "git": "https://github.com/kelp404/angular-validator.git",
+      "description": "AngularJS form validation.",
+      "status": "catalog"
+    },
+    {
+      "name": "angularjs-for-hipsters",
+      "repo": "tbeseda/angularjs-for-hipsters",
+      "git": "https://github.com/tbeseda/angularjs-for-hipsters.git",
+      "description": "The AngularJS Todo app ported to CoffeeScript, Jade, and Stylus -- served with Express",
+      "status": "catalog"
+    },
+    {
+      "name": "atom",
+      "repo": "atom/atom",
+      "git": "https://github.com/atom/atom.git",
+      "description": ":atom: The hackable text editor",
+      "status": "catalog"
+    },
+    {
+      "name": "atom-autocompletion",
+      "repo": "php-integrator/atom-autocompletion",
+      "git": "https://github.com/php-integrator/atom-autocompletion.git",
+      "description": "Atom package that provides autocompletion for your PHP source code.",
+      "status": "catalog"
+    },
+    {
+      "name": "atom-base",
+      "repo": "php-integrator/atom-base",
+      "git": "https://github.com/php-integrator/atom-base.git",
+      "description": "Atom package that indexes PHP code and exposes services to query it.",
+      "status": "catalog"
+    },
+    {
+      "name": "atom-beautify",
+      "repo": "Glavin001/atom-beautify",
+      "git": "https://github.com/Glavin001/atom-beautify.git",
+      "description": ":mega: Help Wanted - Looking for Maintainer: https://github.com/Glavin001/atom-beautify/issues/2572 | :lipstick: Universal beautification package for Atom editor (:warning: Currently migrating to https://github.com/Unibeautify/ and have ver",
+      "status": "catalog"
+    },
+    {
+      "name": "atom-change-case",
+      "repo": "robhurring/atom-change-case",
+      "git": "https://github.com/robhurring/atom-change-case.git",
+      "description": "atom plugin for node-change-case",
+      "status": "catalog"
+    },
+    {
+      "name": "atom-extension",
+      "repo": "cdnjs/atom-extension",
+      "git": "https://github.com/cdnjs/atom-extension.git",
+      "description": "⚛   Atom extension for easily inserting scripts",
+      "status": "catalog"
+    },
+    {
+      "name": "atom-file-types",
+      "repo": "execjosh/atom-file-types",
+      "git": "https://github.com/execjosh/atom-file-types.git",
+      "description": "Specify additional file types for languages.",
+      "status": "catalog"
+    },
+    {
+      "name": "atom-linter",
+      "repo": "php-integrator/atom-linter",
+      "git": "https://github.com/php-integrator/atom-linter.git",
+      "description": "Atom package that lints your PHP source code to indicate various problems such as missing methods.",
+      "status": "catalog"
+    },
+    {
+      "name": "atom-navigation",
+      "repo": "php-integrator/atom-navigation",
+      "git": "https://github.com/php-integrator/atom-navigation.git",
+      "description": "Atom package that provides code navigation and go to functionality for your PHP source code.",
+      "status": "catalog"
+    },
+    {
+      "name": "atom-php-cs-fixer",
+      "repo": "pfefferle/atom-php-cs-fixer",
+      "git": "https://github.com/pfefferle/atom-php-cs-fixer.git",
+      "description": "Run the 'PHP Coding Standards Fixer' within Atom",
+      "status": "catalog"
+    },
+    {
+      "name": "atom-python-isort",
+      "repo": "bh/atom-python-isort",
+      "git": "https://github.com/bh/atom-python-isort.git",
+      "description": "Atom.io plugin to sort Python imports",
+      "status": "catalog"
+    },
+    {
+      "name": "atom-runner",
+      "repo": "lsegal/atom-runner",
+      "git": "https://github.com/lsegal/atom-runner.git",
+      "description": "This package will run various script files inside of Atom. It currently supports JavaScript, CoffeeScript, Ruby, and Python. You can add more.",
+      "status": "catalog"
+    },
+    {
+      "name": "atom-terminal-panel",
+      "repo": "styczynski/atom-terminal-panel",
+      "git": "https://github.com/styczynski/atom-terminal-panel.git",
+      "description": "Advanced terminal interface for Atom editor",
+      "status": "catalog"
+    },
+    {
+      "name": "atomdoc",
+      "repo": "atom/atomdoc",
+      "git": "https://github.com/atom/atomdoc.git",
+      "description": "Atom's documentation parser for JavaScript / CoffeeScript",
+      "status": "catalog"
+    },
+    {
+      "name": "autocomplete-elixir",
+      "repo": "wende/autocomplete-elixir",
+      "git": "https://github.com/wende/autocomplete-elixir.git",
+      "description": "Intelligent Elixir autocompletion provider for Atom autocomplete-plus",
+      "status": "catalog"
+    },
+    {
+      "name": "autocomplete-ruby",
+      "repo": "ianhattendorf/autocomplete-ruby",
+      "git": "https://github.com/ianhattendorf/autocomplete-ruby.git",
+      "description": "Provides intelligent code completion for Ruby in the Atom editor. Requires RSense.",
+      "status": "catalog"
+    },
+    {
+      "name": "awkward",
+      "repo": "iostreamer-X/Awkward",
+      "git": "https://github.com/iostreamer-X/Awkward.git",
+      "description": "A NodeJS based shell. Everything is an Object!",
+      "status": "catalog"
+    },
+    {
+      "name": "backbone-marionette-gulp-seed",
+      "repo": "iampeter/backbone-marionette-gulp-seed",
+      "git": "https://github.com/iampeter/backbone-marionette-gulp-seed.git",
+      "description": "A seed project using Backbone.js, Marionette.js, Twitter Bootstrap 3, Stylus, Jade and Coffeescript all bundled with Gulp.js",
+      "status": "catalog"
+    },
+    {
+      "name": "background",
+      "repo": "kmalakoff/background",
+      "git": "https://github.com/kmalakoff/background.git",
+      "description": "CoffeeScript / JavaScript background job / task / worker library. Provides implementations for jobs, a job queue, a job list, and single and multiple array iterators.",
+      "status": "catalog"
+    },
+    {
+      "name": "bang",
+      "repo": "jimmycuadra/bang",
+      "git": "https://github.com/jimmycuadra/bang.git",
+      "description": "Text snippets on the command line.",
+      "status": "catalog"
+    },
+    {
+      "name": "bible-passage-reference-parser",
+      "repo": "openbibleinfo/Bible-Passage-Reference-Parser",
+      "git": "https://github.com/openbibleinfo/Bible-Passage-Reference-Parser.git",
+      "description": "Coffeescript to identify and understand Bible references like \"John 3:16.\"",
+      "status": "catalog"
+    },
+    {
+      "name": "biscotto",
+      "repo": "gjtorikian/biscotto",
+      "git": "https://github.com/gjtorikian/biscotto.git",
+      "description": "UNMAINTAINED. CoffeeScript API documentation tool that uses TomDoc notation.",
+      "status": "catalog"
+    },
+    {
+      "name": "bobtail",
+      "repo": "bobtail-dev/bobtail",
+      "git": "https://github.com/bobtail-dev/bobtail.git",
+      "description": "A lightweight CoffeeScript library/DSL for reactive programming and declaratively building scalable web UIs",
+      "status": "catalog"
+    },
+    {
+      "name": "botframework-hubot",
+      "repo": "microsoft/BotFramework-Hubot",
+      "git": "https://github.com/microsoft/BotFramework-Hubot.git",
+      "description": "Hubot adapter for botframework",
+      "status": "catalog"
+    },
+    {
+      "name": "brewer",
+      "repo": "rbrcurtis/Brewer",
+      "git": "https://github.com/rbrcurtis/Brewer.git",
+      "description": "a split-pane coffeescript editor that shows the compiled js using the ace editor",
+      "status": "catalog"
+    },
+    {
+      "name": "brownie",
+      "repo": "mconintet/brownie",
+      "git": "https://github.com/mconintet/brownie.git",
+      "description": "A canvas toolkit in coffeescript",
+      "status": "catalog"
+    },
+    {
+      "name": "caboose",
+      "repo": "mattinsler/caboose",
+      "git": "https://github.com/mattinsler/caboose.git",
+      "description": "Coffeescript-happy express-based server-side MVC framework loosely based on rails",
+      "status": "catalog"
+    },
+    {
+      "name": "cafeaulife",
+      "repo": "raganwald/cafeaulife",
+      "git": "https://github.com/raganwald/cafeaulife.git",
+      "description": "Gosper’s HashLife in CoffeeScript",
+      "status": "catalog"
+    },
+    {
+      "name": "cakefile-template",
+      "repo": "twilson63/cakefile-template",
+      "git": "https://github.com/twilson63/cakefile-template.git",
+      "description": "This is a cakefile template for coffeescript, docco and mocha",
+      "status": "catalog"
+    },
+    {
+      "name": "canvas-library",
+      "repo": "dkln/canvas_library",
+      "git": "https://github.com/dkln/canvas_library.git",
+      "description": "HTML 5 Canvas library (a flash alternative) written in Coffeescript",
+      "status": "catalog"
+    },
+    {
+      "name": "casing",
+      "repo": "nataliemarleny/Casing",
+      "git": "https://github.com/nataliemarleny/Casing.git",
+      "description": "The UI Framework for Framer Classic. Manages data, components and views",
+      "status": "catalog"
+    },
+    {
+      "name": "cassowary",
+      "repo": "lynaghk/cassowary-coffee",
+      "git": "https://github.com/lynaghk/cassowary-coffee.git",
+      "description": "CoffeeScript port of the Cassowary linear constraint solver",
+      "status": "catalog"
+    },
+    {
+      "name": "chroma",
+      "repo": "gka/chroma.js",
+      "git": "https://github.com/gka/chroma.js.git",
+      "description": "JavaScript library for all kinds of color manipulations",
+      "status": "catalog"
+    },
+    {
+      "name": "cichorium",
+      "repo": "jysperm/Cichorium",
+      "git": "https://github.com/jysperm/Cichorium.git",
+      "description": "Routing framework based on Promise using CoffeeScript",
+      "status": "catalog"
+    },
+    {
+      "name": "cloud9-livecoffee-ext",
+      "repo": "tanepiper/cloud9-livecoffee-ext",
+      "git": "https://github.com/tanepiper/cloud9-livecoffee-ext.git",
+      "description": "A extension for Cloud9ide for CoffeeScript functionality",
+      "status": "catalog"
+    },
+    {
+      "name": "cloudtunes",
+      "repo": "jkbrzt/cloudtunes",
+      "git": "https://github.com/jkbrzt/cloudtunes.git",
+      "description": "Web-based music player for the cloud :cloud: :notes: Play music from YouTube, Dropbox, etc.",
+      "status": "catalog"
+    },
+    {
+      "name": "cocalc",
+      "repo": "sagemathinc/cocalc",
+      "git": "https://github.com/sagemathinc/cocalc.git",
+      "description": "CoCalc: Collaborative Calculation in the Cloud",
+      "status": "catalog"
+    },
+    {
+      "name": "codeandfury-hubot-jenkins-enhanced",
+      "repo": "codeandfury/hubot-jenkins-enhanced",
+      "git": "https://github.com/codeandfury/hubot-jenkins-enhanced.git",
+      "description": "Jenkins integration for Hubot with multiple server support",
+      "status": "catalog"
+    },
+    {
+      "name": "codecombat",
+      "repo": "codecombat/codecombat",
+      "git": "https://github.com/codecombat/codecombat.git",
+      "description": "Game for learning how to code.",
+      "status": "catalog"
+    },
+    {
+      "name": "codo",
+      "repo": "coffeedoc/codo",
+      "git": "https://github.com/coffeedoc/codo.git",
+      "description": "CoffeeScript API documentation generator. It's like YARD but for CoffeeScript!",
+      "status": "catalog"
+    },
+    {
+      "name": "coffee-coverage",
+      "repo": "benbria/coffee-coverage",
+      "git": "https://github.com/benbria/coffee-coverage.git",
+      "description": "Istanbul and JSCoverage-style instrumentation for CoffeeScript files.",
+      "status": "catalog"
+    },
+    {
+      "name": "coffee-filter",
+      "repo": "mgeraci/Coffee-Filter",
+      "git": "https://github.com/mgeraci/Coffee-Filter.git",
+      "description": "A collection of coffeescript helpers that I've used across projects",
+      "status": "catalog"
+    },
+    {
+      "name": "coffee-guard-caat-jessie",
+      "repo": "nbartlomiej/coffee-guard-caat-jessie",
+      "git": "https://github.com/nbartlomiej/coffee-guard-caat-jessie.git",
+      "description": "CAAT & CoffeeScript & Jessie & Guard application template",
+      "status": "catalog"
+    },
+    {
+      "name": "coffee-jshint",
+      "repo": "marviq/coffee-jshint",
+      "git": "https://github.com/marviq/coffee-jshint.git",
+      "description": "Runs your CoffeeScript source through JSHint to check for errors.",
+      "status": "catalog"
+    },
+    {
+      "name": "coffee-machine",
+      "repo": "stephenb/coffee-machine",
+      "git": "https://github.com/stephenb/coffee-machine.git",
+      "description": "A state machine written in CoffeeScript.",
+      "status": "catalog"
+    },
+    {
+      "name": "coffee-mongo",
+      "repo": "naturalethic/coffee-mongo",
+      "git": "https://github.com/naturalethic/coffee-mongo.git",
+      "description": "Model framework for Node.js + CoffeeScript + MongoDB",
+      "status": "catalog"
+    },
+    {
+      "name": "coffee-now",
+      "repo": "huytd/coffee-now",
+      "git": "https://github.com/huytd/coffee-now.git",
+      "description": "☕ CoffeeScript Playground",
+      "status": "catalog"
+    },
+    {
+      "name": "coffee-percolator",
+      "repo": "soulwire/Coffee-Percolator",
+      "git": "https://github.com/soulwire/Coffee-Percolator.git",
+      "description": "Use import directives in CoffeeScript to manage dependancies with this tasty CakeFile",
+      "status": "catalog"
+    },
+    {
+      "name": "coffee-physics",
+      "repo": "soulwire/Coffee-Physics",
+      "git": "https://github.com/soulwire/Coffee-Physics.git",
+      "description": "A simple, lightweight physics engine written in CoffeeScript",
+      "status": "catalog"
+    },
+    {
+      "name": "coffee-pot",
+      "repo": "swlkr/coffee-pot",
+      "git": "https://github.com/swlkr/coffee-pot.git",
+      "description": "A boilerplate for node.js apps written in coffeescript",
+      "status": "catalog"
+    },
+    {
+      "name": "coffee-react-quickstart",
+      "repo": "KyleAMathews/coffee-react-quickstart",
+      "git": "https://github.com/KyleAMathews/coffee-react-quickstart.git",
+      "description": "Quickstart for building React single page apps using Coffeescript, Gulp, Webpack, and React-Router",
+      "status": "catalog"
+    },
+    {
+      "name": "coffee-react-transform",
+      "repo": "jsdf/coffee-react-transform",
+      "git": "https://github.com/jsdf/coffee-react-transform.git",
+      "description": "DEPRECATED – Provides React JSX support for Coffeescript",
+      "status": "catalog"
+    },
+    {
+      "name": "coffee-stylesheets",
+      "repo": "mikesmullin/coffee-stylesheets",
+      "git": "https://github.com/mikesmullin/coffee-stylesheets.git",
+      "description": "Transpiler similar to SASS/SCSS/LESS/Stylus, except its 100% CoffeeScript!",
+      "status": "catalog"
+    },
+    {
+      "name": "coffee-templates",
+      "repo": "mikesmullin/coffee-templates",
+      "git": "https://github.com/mikesmullin/coffee-templates.git",
+      "description": "Fastest Minimalist CoffeeScript/JavaScript CoffeeCup/Handlebars/Mustache template engine.",
+      "status": "catalog"
+    },
+    {
+      "name": "coffee2d",
+      "repo": "LanJian/coffee2d",
+      "git": "https://github.com/LanJian/coffee2d.git",
+      "description": "A HTML5 2D game engine written in CoffeeScript",
+      "status": "catalog"
+    },
+    {
+      "name": "coffeeapp",
+      "repo": "andrzejsliwa/coffeeapp",
+      "git": "https://github.com/andrzejsliwa/coffeeapp.git",
+      "description": "not needed any more, couchdb is handling of coffeescript natively https://github.com/bdionne/couchdb/commit/972da5ab71af3eaeb939314a973398b6fe3235a9",
+      "status": "catalog"
+    },
+    {
+      "name": "coffeedoc",
+      "repo": "omarkhan/coffeedoc",
+      "git": "https://github.com/omarkhan/coffeedoc.git",
+      "description": "An API documentation generator for CoffeeScript",
+      "status": "catalog"
+    },
+    {
+      "name": "coffeedrop",
+      "repo": "meltingice/CoffeeDrop",
+      "git": "https://github.com/meltingice/CoffeeDrop.git",
+      "description": "CoffeeDrop is an open-source, roll your own, Dropbox-like clone written in CoffeeScript. Currently not working and under heavy development.",
+      "status": "catalog"
+    },
+    {
+      "name": "coffeekit",
+      "repo": "toshok/coffeekit",
+      "git": "https://github.com/toshok/coffeekit.git",
+      "description": "CoffeeScript bindings for OSX and IOS apis",
+      "status": "catalog"
+    },
+    {
+      "name": "coffeekup",
+      "repo": "mauricemach/coffeekup",
+      "git": "https://github.com/mauricemach/coffeekup.git",
+      "description": "Markup as CoffeeScript.",
+      "status": "catalog"
+    },
+    {
+      "name": "coffeelint",
+      "repo": "clutchski/coffeelint",
+      "git": "https://github.com/clutchski/coffeelint.git",
+      "description": "Lint your CoffeeScript.",
+      "status": "catalog"
+    },
+    {
+      "name": "coffeelint-coffeelint",
+      "repo": "coffeelint/coffeelint",
+      "git": "https://github.com/coffeelint/coffeelint.git",
+      "description": "Lint your CoffeeScript.",
+      "status": "catalog"
+    },
+    {
+      "name": "coffeemugg",
+      "repo": "jaekwon/CoffeeMugg",
+      "git": "https://github.com/jaekwon/CoffeeMugg.git",
+      "description": "HTML templates in pure CoffeeScript",
+      "status": "catalog"
+    },
+    {
+      "name": "coffeepack",
+      "repo": "devongovett/coffeepack",
+      "git": "https://github.com/devongovett/coffeepack.git",
+      "description": "An implementation of the MessagePack serialization format in CoffeeScript for Node.js and the browser.",
+      "status": "catalog"
+    },
+    {
+      "name": "coffeescope",
+      "repo": "za-creature/coffeescope",
+      "git": "https://github.com/za-creature/coffeescope.git",
+      "description": "Scope linter for coffeescript",
+      "status": "catalog"
+    },
+    {
+      "name": "coffeescript",
+      "repo": "jashkenas/coffeescript",
+      "git": "https://github.com/jashkenas/coffeescript.git",
+      "description": "Unfancy JavaScript",
+      "status": "catalog"
+    },
+    {
+      "name": "coffeescript-concat",
+      "repo": "fairfieldt/coffeescript-concat",
+      "git": "https://github.com/fairfieldt/coffeescript-concat.git",
+      "description": "A utility that preprocesses and concatenates CoffeeScript source files",
+      "status": "catalog"
+    },
+    {
+      "name": "coffeescript-for-python",
+      "repo": "edemaine/coffeescript-for-python",
+      "git": "https://github.com/edemaine/coffeescript-for-python.git",
+      "description": "CoffeeScript for Python programmers (a guide)",
+      "status": "catalog"
+    },
+    {
+      "name": "coffeescript-growl",
+      "repo": "wesbos/coffeescript-growl",
+      "git": "https://github.com/wesbos/coffeescript-growl.git",
+      "description": "Growl notifications for the Node.js CoffeeScript Compiler",
+      "status": "catalog"
+    },
+    {
+      "name": "coffeescript-idea",
+      "repo": "yeungda/coffeescript-idea",
+      "git": "https://github.com/yeungda/coffeescript-idea.git",
+      "description": "ABANDONED CoffeeScript Plugin for IntelliJ IDEA",
+      "status": "catalog"
+    },
+    {
+      "name": "coffeescript-in-action",
+      "repo": "boundvariable/coffeescript-in-action",
+      "git": "https://github.com/boundvariable/coffeescript-in-action.git",
+      "description": "Source code for the Manning book CoffeeScript in Action",
+      "status": "catalog"
+    },
+    {
+      "name": "coffeescript-koans",
+      "repo": "sleepyfox/coffeescript-koans",
+      "git": "https://github.com/sleepyfox/coffeescript-koans.git",
+      "description": "Koans: learn CoffeeScript by doing it",
+      "status": "catalog"
+    },
+    {
+      "name": "coffeescript-meet-backbonejs",
+      "repo": "adamjspooner/coffeescript-meet-backbonejs",
+      "git": "https://github.com/adamjspooner/coffeescript-meet-backbonejs.git",
+      "description": "An introduction to Backbone.js using CoffeeScript.",
+      "status": "catalog"
+    },
+    {
+      "name": "coffeescript-rrd",
+      "repo": "plainlystated/coffeescript-rrd",
+      "git": "https://github.com/plainlystated/coffeescript-rrd.git",
+      "description": "coffeescript library for using manipulating RRD files (depends on rrdtool)",
+      "status": "catalog"
+    },
+    {
+      "name": "coffeescript-windows",
+      "repo": "duncansmart/coffeescript-windows",
+      "git": "https://github.com/duncansmart/coffeescript-windows.git",
+      "description": "A shim that allows CoffeeScript to be compiled using Windows Script Host",
+      "status": "catalog"
+    },
+    {
+      "name": "coffeescript.mode",
+      "repo": "nfiniteset/CoffeeScript.mode",
+      "git": "https://github.com/nfiniteset/CoffeeScript.mode.git",
+      "description": "A CoffeeScript syntax coloring mode for Coda and SubEthaEdit",
+      "status": "catalog"
+    },
+    {
+      "name": "coffeescript1",
+      "repo": "spbooks/COFFEESCRIPT1",
+      "git": "https://github.com/spbooks/COFFEESCRIPT1.git",
+      "description": "Jump Start CoffeeScript, code archive",
+      "status": "catalog"
+    },
+    {
+      "name": "coffeescriptlinematcher",
+      "repo": "showell/CoffeeScriptLineMatcher",
+      "git": "https://github.com/showell/CoffeeScriptLineMatcher.git",
+      "description": "provides debugging support for CoffeeScript by matching JS lines to CS lines",
+      "status": "catalog"
+    },
+    {
+      "name": "coffeescriptredux",
+      "repo": "michaelficarra/CoffeeScriptRedux",
+      "git": "https://github.com/michaelficarra/CoffeeScriptRedux.git",
+      "description": ":sweat: rewrite of the CoffeeScript compiler with proper compiler design principles and a focus on robustness and extensibility",
+      "status": "catalog"
+    },
+    {
+      "name": "coffeestream",
+      "repo": "MichaelBlume/coffeestream",
+      "git": "https://github.com/MichaelBlume/coffeestream.git",
+      "description": "streams in coffeescript",
+      "status": "catalog"
+    },
+    {
+      "name": "coffeetable",
+      "repo": "alecperkins/coffeetable",
+      "git": "https://github.com/alecperkins/coffeetable.git",
+      "description": "A drop-in workbench for experimentation, CoffeeTable is a CoffeeScript-fluent browser console.",
+      "status": "catalog"
+    },
+    {
+      "name": "cofmon",
+      "repo": "rbrcurtis/cofmon",
+      "git": "https://github.com/rbrcurtis/cofmon.git",
+      "description": "A coffeescript shell for mongodb.",
+      "status": "catalog"
+    },
+    {
+      "name": "core-lib",
+      "repo": "hasclass/core-lib",
+      "git": "https://github.com/hasclass/core-lib.git",
+      "description": "A port of the Ruby 1.9.3 corelib to coffeescript/javascript/node that conforms to rubyspec.org.",
+      "status": "catalog"
+    },
+    {
+      "name": "crojsdoc",
+      "repo": "croquiscom/crojsdoc",
+      "git": "https://github.com/croquiscom/crojsdoc.git",
+      "description": "A documentation generator for JavaScript and CoffeeScript",
+      "status": "catalog"
+    },
+    {
+      "name": "cryptocoffeebot",
+      "repo": "wildownes/CryptoCoffeeBot",
+      "git": "https://github.com/wildownes/CryptoCoffeeBot.git",
+      "description": "Coffeescript base skeleton code that can be used to fork into useful bots for cryptotrader.org",
+      "status": "catalog"
+    },
+    {
+      "name": "cscodegen",
+      "repo": "michaelficarra/cscodegen",
+      "git": "https://github.com/michaelficarra/cscodegen.git",
+      "description": ":recycle: CoffeeScript code generator",
+      "status": "catalog"
+    },
+    {
+      "name": "csmazes",
+      "repo": "jamis/csmazes",
+      "git": "https://github.com/jamis/csmazes.git",
+      "description": "Maze algorithms implemented in CoffeeScript, with an eye toward demonstrating how the algorithms work by animating them.",
+      "status": "catalog"
+    },
+    {
+      "name": "cson",
+      "repo": "bevry/cson",
+      "git": "https://github.com/bevry/cson.git",
+      "description": "CoffeeScript-Object-Notation. Same as JSON but for CoffeeScript objects.",
+      "status": "catalog"
+    },
+    {
+      "name": "currency-arbitrage-graph",
+      "repo": "neelabhg/currency-arbitrage-graph",
+      "git": "https://github.com/neelabhg/currency-arbitrage-graph.git",
+      "description": "Visualize arbitrage opportunities in foreign currency exchange.",
+      "status": "catalog"
+    },
+    {
+      "name": "d3panels",
+      "repo": "kbroman/d3panels",
+      "git": "https://github.com/kbroman/d3panels.git",
+      "description": "A library of d3-based graphic panels, written in CoffeeScript",
+      "status": "catalog"
+    },
+    {
+      "name": "deeplearning",
+      "repo": "yusugomori/deeplearning.coffee",
+      "git": "https://github.com/yusugomori/deeplearning.coffee.git",
+      "description": "Simple JavaScript (CoffeeScript) codes implementing deep learning",
+      "status": "catalog"
+    },
+    {
+      "name": "docpad",
+      "repo": "docpad/docpad",
+      "git": "https://github.com/docpad/docpad.git",
+      "description": "Empower your website frontends with layouts, meta-data, pre-processors (markdown, jade, coffeescript, etc.), partials, skeletons, file watching, querying, and an amazing plugin system. DocPad will streamline your web development process all",
+      "status": "catalog"
+    },
+    {
+      "name": "docpad-plugin-ghpages",
+      "repo": "docpad/docpad-plugin-ghpages",
+      "git": "https://github.com/docpad/docpad-plugin-ghpages.git",
+      "description": "Deploy your DocPad Website to GitHub Pages",
+      "status": "catalog"
+    },
+    {
+      "name": "dreamcoat",
+      "repo": "dcollien/Dreamcoat",
+      "git": "https://github.com/dcollien/Dreamcoat.git",
+      "description": "Formerly \"AutoScheme\". Automatically generates a website colour scheme from a given logo image. Written in literate coffeescript.",
+      "status": "catalog"
+    },
+    {
+      "name": "dropzone",
+      "repo": "enyo/dropzone",
+      "git": "https://github.com/enyo/dropzone.git",
+      "description": "Dropzone is an easy to use drag'n'drop library. It supports image previews and shows nice progress bars.",
+      "status": "catalog"
+    },
+    {
+      "name": "dynasty",
+      "repo": "victorquinn/dynasty",
+      "git": "https://github.com/victorquinn/dynasty.git",
+      "description": "Dynasty - Promise-based, clean DynamoDB API",
+      "status": "catalog"
+    },
+    {
+      "name": "easie",
+      "repo": "jimjeffers/Easie",
+      "git": "https://github.com/jimjeffers/Easie.git",
+      "description": "Robert Penner's easing equations converted to coffeescript.",
+      "status": "available",
+      "version": "0.1.0",
+      "path": "packages/easie"
+    },
+    {
+      "name": "easy-bake",
+      "repo": "kmalakoff/easy-bake",
+      "git": "https://github.com/kmalakoff/easy-bake.git",
+      "description": "EasyBake enables CoffeeScript/JavaScript file-based configuration for your CoffeeScript library management needs (coffee compiling, compression, joining CoffeeScript + JavaScript files, headless testing for QUnit/Jasmine/NodeUnit, client/se",
+      "status": "catalog"
+    },
+    {
+      "name": "eco",
+      "repo": "sstephenson/eco",
+      "git": "https://github.com/sstephenson/eco.git",
+      "description": "Embedded CoffeeScript templates",
+      "status": "catalog"
+    },
+    {
+      "name": "egghead-downloader",
+      "repo": "markbrown4/egghead-downloader",
+      "git": "https://github.com/markbrown4/egghead-downloader.git",
+      "description": "downloads egghead",
+      "status": "catalog"
+    },
+    {
+      "name": "ember-cli-coffees6",
+      "repo": "alexspeller/ember-cli-coffees6",
+      "git": "https://github.com/alexspeller/ember-cli-coffees6.git",
+      "description": "Makes using coffeescript nicer in ember-cli by supporting es6 syntax natively",
+      "status": "catalog"
+    },
+    {
+      "name": "enml2md",
+      "repo": "zerobase/enml2md",
+      "git": "https://github.com/zerobase/enml2md.git",
+      "description": "Evernote to Markdown Converter",
+      "status": "catalog"
+    },
+    {
+      "name": "eslint-plugin",
+      "repo": "helixbass/eslint-plugin-coffee",
+      "git": "https://github.com/helixbass/eslint-plugin-coffee.git",
+      "description": "ESLint rules for linting Coffeescript source files",
+      "status": "catalog"
+    },
+    {
+      "name": "express",
+      "repo": "twilson63/express-coffee",
+      "git": "https://github.com/twilson63/express-coffee.git",
+      "description": "A Template for NodeJs Application using Express, CoffeeScript, Jade, Stylus, Nib",
+      "status": "catalog"
+    },
+    {
+      "name": "express-error",
+      "repo": "barc/express-error",
+      "git": "https://github.com/barc/express-error.git",
+      "description": "Error handler which displays source code in error stack for JavaScript and CoffeeScript.",
+      "status": "catalog"
+    },
+    {
+      "name": "expressjs-template",
+      "repo": "maxatwork/expressjs_template",
+      "git": "https://github.com/maxatwork/expressjs_template.git",
+      "description": "Node + ExpressJS + Coffeescript + Stylus + Twitter bootstrap + Jade + assets pipeline + Mocha + Should + Supertest project template.",
+      "status": "catalog"
+    },
+    {
+      "name": "expressonsteroids",
+      "repo": "the-trash/ExpressOnSteroids",
+      "git": "https://github.com/the-trash/ExpressOnSteroids.git",
+      "description": "Node.js/Express App + CoffeeScript + SASS + JADE (HAML)",
+      "status": "catalog"
+    },
+    {
+      "name": "f-context",
+      "repo": "nogizhopaboroda/f_context",
+      "git": "https://github.com/nogizhopaboroda/f_context.git",
+      "description": "Pattern matching and easy recursion library for CoffeeScript",
+      "status": "catalog"
+    },
+    {
+      "name": "fbscrape",
+      "repo": "conancat/fbscrape",
+      "git": "https://github.com/conancat/fbscrape.git",
+      "description": "Facebook Page Photo Scraper in CoffeeScript and NodeJS",
+      "status": "catalog"
+    },
+    {
+      "name": "fine.sh-cli",
+      "repo": "unix/fine.sh-cli",
+      "git": "https://github.com/unix/fine.sh-cli.git",
+      "description": "generate your static website in 3 seconds",
+      "status": "catalog"
+    },
+    {
+      "name": "fizzygum",
+      "repo": "davidedc/Fizzygum",
+      "git": "https://github.com/davidedc/Fizzygum.git",
+      "description": "a new web framework, an entire platform really, designed from the ground up to handle complex things easily. Put the power of an entire Operating System at your fingertips.",
+      "status": "catalog"
+    },
+    {
+      "name": "flipium",
+      "repo": "wongpeiyi/flipium",
+      "git": "https://github.com/wongpeiyi/flipium.git",
+      "description": "Flipboard-style UI element for Titanium Appcelerator, written in Coffeescript",
+      "status": "catalog"
+    },
+    {
+      "name": "floweret",
+      "repo": "laurentpayot/floweret",
+      "git": "https://github.com/laurentpayot/floweret.git",
+      "description": "Runtime type annotations for CoffeeScript (and JavaScript too!)",
+      "status": "catalog"
+    },
+    {
+      "name": "flux",
+      "repo": "jsdf/flux-coffee",
+      "git": "https://github.com/jsdf/flux-coffee.git",
+      "description": "Implements Facebook's Flux pattern in CoffeeScript",
+      "status": "catalog"
+    },
+    {
+      "name": "force",
+      "repo": "artsy/force",
+      "git": "https://github.com/artsy/force.git",
+      "description": "The Artsy.net website",
+      "status": "catalog"
+    },
+    {
+      "name": "form5-node-express-mongoose",
+      "repo": "olafurnielsen-zz/form5-node-express-mongoose-coffeescript",
+      "git": "https://github.com/olafurnielsen-zz/form5-node-express-mongoose-coffeescript.git",
+      "description": "A Node.js skeleton using Express, Mongoose and Coffeescript.",
+      "status": "catalog"
+    },
+    {
+      "name": "framer-physics",
+      "repo": "perrysmotors/framer-physics",
+      "git": "https://github.com/perrysmotors/framer-physics.git",
+      "description": "A module for adding 2D physics simulations to your Framer prototypes.",
+      "status": "catalog"
+    },
+    {
+      "name": "framework",
+      "repo": "gothamjs/framework",
+      "git": "https://github.com/gothamjs/framework.git",
+      "description": "Coffeescript Framework for front-end development",
+      "status": "catalog"
+    },
+    {
+      "name": "frappe",
+      "repo": "dweldon/frappe",
+      "git": "https://github.com/dweldon/frappe.git",
+      "description": "template for creating express applications with coffeescript",
+      "status": "catalog"
+    },
+    {
+      "name": "fred-barclay-termination",
+      "repo": "Fred-Barclay/Termination",
+      "git": "https://github.com/Fred-Barclay/Termination.git",
+      "description": "Integrated terminal for Atom. Looks like terminal-plus, acts like your native terminal (except every other Friday). Looking for collaborators! :-)",
+      "status": "catalog"
+    },
+    {
+      "name": "gearsketch",
+      "repo": "frankleenaars/gearsketch",
+      "git": "https://github.com/frankleenaars/gearsketch.git",
+      "description": "GearSketch sandbox in CoffeeScript",
+      "status": "catalog"
+    },
+    {
+      "name": "gedit",
+      "repo": "wavded/gedit-coffeescript",
+      "git": "https://github.com/wavded/gedit-coffeescript.git",
+      "description": "gedit Syntax Highlighting for CoffeeScript files",
+      "status": "catalog"
+    },
+    {
+      "name": "generator-lean-mean",
+      "repo": "phenome/generator-lean-mean",
+      "git": "https://github.com/phenome/generator-lean-mean.git",
+      "description": "Yeoman generator. MEAN stack. Coffeescript, Stylus, Jade, Gulp",
+      "status": "catalog"
+    },
+    {
+      "name": "generator-phaser-coffeescript-gulp",
+      "repo": "ozankasikci/generator-phaser-coffeescript-gulp",
+      "git": "https://github.com/ozankasikci/generator-phaser-coffeescript-gulp.git",
+      "description": "A yeoman generator for developing games with Phaser framework using coffeescript and gulp. Browserifies, coffeeifies and live reloads using browser-sync.",
+      "status": "catalog"
+    },
+    {
+      "name": "genshin-impact-script",
+      "repo": "phonowell/genshin-impact-script",
+      "git": "https://github.com/phonowell/genshin-impact-script.git",
+      "description": "好耶！是人畜无害的原神脚本！Sweet! What a cute Genshin Impact script!",
+      "status": "catalog"
+    },
+    {
+      "name": "gepoch-linter-write-good",
+      "repo": "gepoch/linter-write-good",
+      "git": "https://github.com/gepoch/linter-write-good.git",
+      "description": "An Atom linter interface for write-good.",
+      "status": "catalog"
+    },
+    {
+      "name": "gibdo",
+      "repo": "john-griffin/gibdo",
+      "git": "https://github.com/john-griffin/gibdo.git",
+      "description": "HTML5 Canvas 2D Engine in CoffeeScript",
+      "status": "catalog"
+    },
+    {
+      "name": "gmailui",
+      "repo": "joscha/gmailui",
+      "git": "https://github.com/joscha/gmailui.git",
+      "description": "A GMail user interface library",
+      "status": "catalog"
+    },
+    {
+      "name": "grillode",
+      "repo": "stephenmcd/grillode",
+      "git": "https://github.com/stephenmcd/grillode.git",
+      "description": "A web-based chat application written in CoffeeScript for Node.js",
+      "status": "catalog"
+    },
+    {
+      "name": "gulp-ng-classify",
+      "repo": "CaryLandholt/gulp-ng-classify",
+      "git": "https://github.com/CaryLandholt/gulp-ng-classify.git",
+      "description": "Convert CoffeeScript classes to AngularJS modules with ng-classify",
+      "status": "catalog"
+    },
+    {
+      "name": "hackernews-api",
+      "repo": "Boxyco/hackernews-api",
+      "git": "https://github.com/Boxyco/hackernews-api.git",
+      "description": "A RESTful API for news.ycombinator.com written in Coffeescript for node.js",
+      "status": "catalog"
+    },
+    {
+      "name": "haml",
+      "repo": "netzpirat/haml-coffee",
+      "git": "https://github.com/netzpirat/haml-coffee.git",
+      "description": "Haml templates where you can write inline CoffeeScript.",
+      "status": "catalog"
+    },
+    {
+      "name": "hbase-rpc-client",
+      "repo": "falsecz/hbase-rpc-client",
+      "git": "https://github.com/falsecz/hbase-rpc-client.git",
+      "description": "CoffeeScript HBase client implementation with protobuf support",
+      "status": "catalog"
+    },
+    {
+      "name": "heap",
+      "repo": "qiao/heap.js",
+      "git": "https://github.com/qiao/heap.js.git",
+      "description": "A binary heap implementation in CoffeeScript/JavaScript.",
+      "status": "available",
+      "version": "0.1.0",
+      "path": "packages/heap"
+    },
+    {
+      "name": "hellofamousgulped",
+      "repo": "PEM--/hellofamousgulped",
+      "git": "https://github.com/PEM--/hellofamousgulped.git",
+      "description": "HelloWord in Famo.us using Gulp.js, Browserify and CoffeeScript. Act as my template for Famo.us.",
+      "status": "catalog"
+    },
+    {
+      "name": "hexaflip",
+      "repo": "dmotz/hexaflip",
+      "git": "https://github.com/dmotz/hexaflip.git",
+      "description": "🧊 Visualizes arrays as cube interfaces",
+      "status": "catalog"
+    },
+    {
+      "name": "heyadem-stack-up",
+      "repo": "heyadem/stack-up.js",
+      "git": "https://github.com/heyadem/stack-up.js.git",
+      "description": "Create fixed width, variable height grid layouts.",
+      "status": "catalog"
+    },
+    {
+      "name": "heyadem-stack-up",
+      "repo": "heyadem/stack-up",
+      "git": "https://github.com/heyadem/stack-up.git",
+      "description": "Create fixed width, variable height grid layouts",
+      "status": "catalog"
+    },
+    {
+      "name": "hologram",
+      "repo": "etiennepinchon/hologram",
+      "git": "https://github.com/etiennepinchon/hologram.git",
+      "description": "Hologram Framework | All-in-one WebVR creation.",
+      "status": "catalog"
+    },
+    {
+      "name": "html5-template-engine",
+      "repo": "appleboy/html5-template-engine",
+      "git": "https://github.com/appleboy/html5-template-engine.git",
+      "description": "html5 template engine with CoffeeScript, Compass, RequireJS.",
+      "status": "catalog"
+    },
+    {
+      "name": "hubot-aws",
+      "repo": "yoheimuta/hubot-aws",
+      "git": "https://github.com/yoheimuta/hubot-aws.git",
+      "description": "Hubot masters aws commands",
+      "status": "catalog"
+    },
+    {
+      "name": "hubot-darksky",
+      "repo": "hubot-archive/hubot-darksky",
+      "git": "https://github.com/hubot-archive/hubot-darksky.git",
+      "description": "A script to grab the forecast information from Dark Sky for Hubot",
+      "status": "catalog"
+    },
+    {
+      "name": "hubot-github-repo-event-notifier",
+      "repo": "hubot-archive/hubot-github-repo-event-notifier",
+      "git": "https://github.com/hubot-archive/hubot-github-repo-event-notifier.git",
+      "description": "Notifies about any GitHub repo event available via webhook.",
+      "status": "catalog"
+    },
+    {
+      "name": "hubot-grafana",
+      "repo": "stephenyeargin/hubot-grafana",
+      "git": "https://github.com/stephenyeargin/hubot-grafana.git",
+      "description": "📈🤖 Query Grafana dashboards",
+      "status": "catalog"
+    },
+    {
+      "name": "hubot-jenkins-enhanced",
+      "repo": "rsm-hcd/hubot-jenkins-enhanced",
+      "git": "https://github.com/rsm-hcd/hubot-jenkins-enhanced.git",
+      "description": "Jenkins integration for Hubot with multiple server support",
+      "status": "catalog"
+    },
+    {
+      "name": "hubot-markov",
+      "repo": "smashwilson/hubot-markov",
+      "git": "https://github.com/smashwilson/hubot-markov.git",
+      "description": "Hubot watches all, and builds a markov model from everything you say.",
+      "status": "catalog"
+    },
+    {
+      "name": "hubot-natural",
+      "repo": "RocketChat/hubot-natural",
+      "git": "https://github.com/RocketChat/hubot-natural.git",
+      "description": "Natural Language Processing Chatbot for RocketChat",
+      "status": "catalog"
+    },
+    {
+      "name": "hubot-schedule",
+      "repo": "matsukaz/hubot-schedule",
+      "git": "https://github.com/matsukaz/hubot-schedule.git",
+      "description": "A hubot script to schedule a message in both cron-style and datetime-based format pattern",
+      "status": "catalog"
+    },
+    {
+      "name": "hubot-scripts",
+      "repo": "github/hubot-scripts",
+      "git": "https://github.com/github/hubot-scripts.git",
+      "description": "DEPRECATED, see https://github.com/github/hubot-scripts/issues/1113 for details - optional scripts for hubot, opt in via hubot-scripts.json",
+      "status": "catalog"
+    },
+    {
+      "name": "hubot-scripts-hubot-darksky",
+      "repo": "hubot-scripts/hubot-darksky",
+      "git": "https://github.com/hubot-scripts/hubot-darksky.git",
+      "description": "A script to grab the forecast information from Dark Sky for Hubot",
+      "status": "catalog"
+    },
+    {
+      "name": "hubot-scripts-hubot-github-repo-event-notifier",
+      "repo": "hubot-scripts/hubot-github-repo-event-notifier",
+      "git": "https://github.com/hubot-scripts/hubot-github-repo-event-notifier.git",
+      "description": "Notifies about any GitHub repo event available via webhook.",
+      "status": "catalog"
+    },
+    {
+      "name": "hubot-scripts-hubot-seen",
+      "repo": "hubot-scripts/hubot-seen",
+      "git": "https://github.com/hubot-scripts/hubot-seen.git",
+      "description": "A hubot script that tracks when/where users were last seen.",
+      "status": "catalog"
+    },
+    {
+      "name": "hubot-seen",
+      "repo": "hubot-archive/hubot-seen",
+      "git": "https://github.com/hubot-archive/hubot-seen.git",
+      "description": "A hubot script that tracks when/where users were last seen.",
+      "status": "catalog"
+    },
+    {
+      "name": "hubot-slack",
+      "repo": "slackapi/hubot-slack",
+      "git": "https://github.com/slackapi/hubot-slack.git",
+      "description": "Slack Developer Kit for Hubot",
+      "status": "catalog"
+    },
+    {
+      "name": "hubot-suggest",
+      "repo": "hassaku/hubot-suggest",
+      "git": "https://github.com/hassaku/hubot-suggest.git",
+      "description": "Suggest hubot commands when not found",
+      "status": "catalog"
+    },
+    {
+      "name": "hubot-test-helper",
+      "repo": "mtsmfm/hubot-test-helper",
+      "git": "https://github.com/mtsmfm/hubot-test-helper.git",
+      "description": "Helper for testing hubot script",
+      "status": "catalog"
+    },
+    {
+      "name": "hubot-xmpp",
+      "repo": "markstory/hubot-xmpp",
+      "git": "https://github.com/markstory/hubot-xmpp.git",
+      "description": "XMPP adapter for Hubot",
+      "status": "catalog"
+    },
+    {
+      "name": "ifvisible",
+      "repo": "serkanyersen/ifvisible.js",
+      "git": "https://github.com/serkanyersen/ifvisible.js.git",
+      "description": "[TypeScript port available in beta] Crossbrowser & lightweight way to check if user is looking at the page or interacting with it.",
+      "status": "catalog"
+    },
+    {
+      "name": "imgapp",
+      "repo": "tanaikech/ImgApp",
+      "git": "https://github.com/tanaikech/ImgApp.git",
+      "description": "This is a library of image tools for Google Apps Script.",
+      "status": "catalog"
+    },
+    {
+      "name": "importer",
+      "repo": "devongovett/importer",
+      "git": "https://github.com/devongovett/importer.git",
+      "description": "Deprecated: File importing for CoffeeScript and JavaScript",
+      "status": "catalog"
+    },
+    {
+      "name": "index.coffee-js.org",
+      "repo": "coffee-js/index.coffee-js.org",
+      "git": "https://github.com/coffee-js/index.coffee-js.org.git",
+      "description": "CoffeeScript 中文资源",
+      "status": "catalog"
+    },
+    {
+      "name": "inferinc-bobtail",
+      "repo": "inferinc/bobtail",
+      "git": "https://github.com/inferinc/bobtail.git",
+      "description": "A lightweight CoffeeScript library/DSL for reactive programming and declaratively building scalable web UIs",
+      "status": "catalog"
+    },
+    {
+      "name": "input-framer",
+      "repo": "ajimix/Input-Framer",
+      "git": "https://github.com/ajimix/Input-Framer.git",
+      "description": "Framer module to add inputs to your prototypes and easily turn your designs inputs into real inputs",
+      "status": "catalog"
+    },
+    {
+      "name": "instafeed",
+      "repo": "stevenschobert/instafeed.js",
+      "git": "https://github.com/stevenschobert/instafeed.js.git",
+      "description": "A simple Instagram javascript plugin",
+      "status": "catalog"
+    },
+    {
+      "name": "intersect",
+      "repo": "noonat/intersect",
+      "git": "https://github.com/noonat/intersect.git",
+      "description": "An explanation of 2D collision tests in CoffeeScript",
+      "status": "catalog"
+    },
+    {
+      "name": "interval-tree2",
+      "repo": "shinout/interval-tree2",
+      "git": "https://github.com/shinout/interval-tree2.git",
+      "description": "interval tree in CoffeeScript, available in any JS runtime",
+      "status": "catalog"
+    },
+    {
+      "name": "ionic-nodeclub",
+      "repo": "ouzhenkun/ionic-nodeclub",
+      "git": "https://github.com/ouzhenkun/ionic-nodeclub.git",
+      "description": "a simple ionic starter project, use coffeescript and sass",
+      "status": "catalog"
+    },
+    {
+      "name": "ipaddr",
+      "repo": "whitequark/ipaddr.js",
+      "git": "https://github.com/whitequark/ipaddr.js.git",
+      "description": "IP address manipulation library in JavaScript (CoffeeScript, actually)",
+      "status": "catalog"
+    },
+    {
+      "name": "isis97-atom-terminal-panel",
+      "repo": "isis97/atom-terminal-panel",
+      "git": "https://github.com/isis97/atom-terminal-panel.git",
+      "description": "Advanced terminal interface for Atom editor",
+      "status": "catalog"
+    },
+    {
+      "name": "isolate",
+      "repo": "tnwinc/Isolate",
+      "git": "https://github.com/tnwinc/Isolate.git",
+      "description": "Isolate is a tool to allow injection of module dependencies when doing Test Driven Javascript/Coffeescript development.",
+      "status": "catalog"
+    },
+    {
+      "name": "jadelet",
+      "repo": "STRd6/jadelet",
+      "git": "https://github.com/STRd6/jadelet.git",
+      "description": "Pure and simple clientside templates",
+      "status": "catalog"
+    },
+    {
+      "name": "jakubroztocil-cloudtunes",
+      "repo": "jakubroztocil/cloudtunes",
+      "git": "https://github.com/jakubroztocil/cloudtunes.git",
+      "description": "Web-based music player for the cloud :cloud: :notes: Play music from YouTube, Dropbox, etc.",
+      "status": "catalog"
+    },
+    {
+      "name": "javacoffee",
+      "repo": "grant/javacoffee",
+      "git": "https://github.com/grant/javacoffee.git",
+      "description": "☕ Coffeescript-like syntax for writing Java code",
+      "status": "catalog"
+    },
+    {
+      "name": "jitter",
+      "repo": "TrevorBurnham/Jitter",
+      "git": "https://github.com/TrevorBurnham/Jitter.git",
+      "description": "A simple CoffeeScript compilation utility",
+      "status": "catalog"
+    },
+    {
+      "name": "joosy",
+      "repo": "joosy/joosy",
+      "git": "https://github.com/joosy/joosy.git",
+      "description": "Joosy is a browser applications framework. That is based on Rails, CoffeeScript and love.",
+      "status": "catalog"
+    },
+    {
+      "name": "jquery-csswatch",
+      "repo": "leifcr/jquery-csswatch",
+      "git": "https://github.com/leifcr/jquery-csswatch.git",
+      "description": "A CSS Watcher plugin for jquery (Written in CoffeeScript)",
+      "status": "catalog"
+    },
+    {
+      "name": "jquery.ean13",
+      "repo": "joushx/jQuery.EAN13",
+      "git": "https://github.com/joushx/jQuery.EAN13.git",
+      "description": "A jQuery & plain JavaScript library for generating EAN13-barcodes",
+      "status": "catalog"
+    },
+    {
+      "name": "jquery.markdown",
+      "repo": "bih/jquery.markdown.js",
+      "git": "https://github.com/bih/jquery.markdown.js.git",
+      "description": "A WYSIWYG Markdown editor built as a jQuery plugin (written in CoffeeScript + SASS).",
+      "status": "catalog"
+    },
+    {
+      "name": "js-console-sublime-snippets",
+      "repo": "caiogondim/js-console-sublime-snippets",
+      "git": "https://github.com/caiogondim/js-console-sublime-snippets.git",
+      "description": ":computer: JavaScript and CoffeeScript Console snippets",
+      "status": "catalog"
+    },
+    {
+      "name": "js2coffee",
+      "repo": "js2coffee/js2coffee",
+      "git": "https://github.com/js2coffee/js2coffee.git",
+      "description": "Compile JavaScript to CoffeeScript",
+      "status": "catalog"
+    },
+    {
+      "name": "js2cpp",
+      "repo": "fabiosantoscode/js2cpp",
+      "git": "https://github.com/fabiosantoscode/js2cpp.git",
+      "description": "A toy js -> c++ compiler written in coffeescript. Uses escodegen to write c++ and tern to figure out types.",
+      "status": "catalog"
+    },
+    {
+      "name": "jscpd",
+      "repo": "kucherenko/jscpd",
+      "git": "https://github.com/kucherenko/jscpd.git",
+      "description": "Copy/paste detector for programming source code.",
+      "status": "catalog"
+    },
+    {
+      "name": "just-fine-fine.sh-cli",
+      "repo": "just-fine/fine.sh-cli",
+      "git": "https://github.com/just-fine/fine.sh-cli.git",
+      "description": "generate your static website in 3 seconds",
+      "status": "catalog"
+    },
+    {
+      "name": "katas",
+      "repo": "bfontaine/Katas",
+      "git": "https://github.com/bfontaine/Katas.git",
+      "description": ":coffee: 27 katas in 27 languages (not only CoffeeScript, GitHub!)",
+      "status": "catalog"
+    },
+    {
+      "name": "katy",
+      "repo": "raganwald/Katy",
+      "git": "https://github.com/raganwald/Katy.git",
+      "description": "CoffeeScript and JavaScript Combinators",
+      "status": "catalog"
+    },
+    {
+      "name": "kd",
+      "repo": "koding/kd",
+      "git": "https://github.com/koding/kd.git",
+      "description": "UI Framework for web applications.",
+      "status": "catalog"
+    },
+    {
+      "name": "kel",
+      "repo": "koostudios/kel",
+      "git": "https://github.com/koostudios/kel.git",
+      "description": "A ridiculously simple markdown file-based website system built on Express, CoffeeScript and NodeJS",
+      "status": "catalog"
+    },
+    {
+      "name": "kleks",
+      "repo": "markuso/kleks",
+      "git": "https://github.com/markuso/kleks.git",
+      "description": "Kleks - Pure CouchDB based CMS as a Couch App using Kanso with CoffeeScript and Stylus. Supports multi-site setup and Markdown authoring.",
+      "status": "catalog"
+    },
+    {
+      "name": "language-coffee-script",
+      "repo": "atom/language-coffee-script",
+      "git": "https://github.com/atom/language-coffee-script.git",
+      "description": "CoffeeScript support in Atom",
+      "status": "catalog"
+    },
+    {
+      "name": "language-diff",
+      "repo": "miketheman/language-diff",
+      "git": "https://github.com/miketheman/language-diff.git",
+      "description": "ARCHIVED - Atom editor itself is archived",
+      "status": "catalog"
+    },
+    {
+      "name": "language-nunjucks",
+      "repo": "alohaas/language-nunjucks",
+      "git": "https://github.com/alohaas/language-nunjucks.git",
+      "description": "Syntax highlighting for nunjucks templates in atom.",
+      "status": "catalog"
+    },
+    {
+      "name": "leaderboard",
+      "repo": "agoragames/leaderboard-coffeescript",
+      "git": "https://github.com/agoragames/leaderboard-coffeescript.git",
+      "description": "Leaderboards backed by Redis in CoffeeScript",
+      "status": "catalog"
+    },
+    {
+      "name": "lesscoffee",
+      "repo": "duncansmart/LessCoffee",
+      "git": "https://github.com/duncansmart/LessCoffee.git",
+      "description": "LESS and CoffeeScript HTTP handlers for ASP.NET web sites",
+      "status": "catalog"
+    },
+    {
+      "name": "linear-partition",
+      "repo": "crispymtn/linear-partition",
+      "git": "https://github.com/crispymtn/linear-partition.git",
+      "description": "Linear partition in Coffeescript (Javascript)",
+      "status": "available",
+      "version": "0.1.0",
+      "path": "packages/linear-partition"
+    },
+    {
+      "name": "linter-coffeelint",
+      "repo": "AtomLinter/linter-coffeelint",
+      "git": "https://github.com/AtomLinter/linter-coffeelint.git",
+      "description": "Linter plugin for CoffeeScript, using coffeelint.",
+      "status": "catalog"
+    },
+    {
+      "name": "linter-write-good",
+      "repo": "AtomLinter/linter-write-good",
+      "git": "https://github.com/AtomLinter/linter-write-good.git",
+      "description": "An Atom linter interface for write-good.",
+      "status": "catalog"
+    },
+    {
+      "name": "lobzik",
+      "repo": "soswow/lobzik",
+      "git": "https://github.com/soswow/lobzik.git",
+      "description": "Simple application for testing employee candidate code skills and knowledge. Currently it's more suitable for testing front-end, JavaScript/CoffeeScript developers.",
+      "status": "catalog"
+    },
+    {
+      "name": "lol",
+      "repo": "replit-archive/lol-coffee",
+      "git": "https://github.com/replit-archive/lol-coffee.git",
+      "description": "A LOLCode compiler+VM in CoffeeScript",
+      "status": "catalog"
+    },
+    {
+      "name": "mabolo",
+      "repo": "jysperm/Mabolo",
+      "git": "https://github.com/jysperm/Mabolo.git",
+      "description": "Just a simple ORM of MongoDB API.",
+      "status": "catalog"
+    },
+    {
+      "name": "macaron",
+      "repo": "f/macaron",
+      "git": "https://github.com/f/macaron.git",
+      "description": "Macros for CoffeeScript",
+      "status": "catalog"
+    },
+    {
+      "name": "macros",
+      "repo": "mrluc/macros.coffee",
+      "git": "https://github.com/mrluc/macros.coffee.git",
+      "description": "Lisp-style macros for CoffeeScript",
+      "status": "catalog"
+    },
+    {
+      "name": "mahjong.horneds.com",
+      "repo": "klen/mahjong.horneds.com",
+      "git": "https://github.com/klen/mahjong.horneds.com.git",
+      "description": "Riichi Mahjong Scores Trainer",
+      "status": "catalog"
+    },
+    {
+      "name": "manager-for-upyun",
+      "repo": "layerssss/manager-for-upyun",
+      "git": "https://github.com/layerssss/manager-for-upyun.git",
+      "description": "又拍云资源管理器",
+      "status": "catalog"
+    },
+    {
+      "name": "markov-word-generator",
+      "repo": "SyntaxColoring/Markov-Word-Generator",
+      "git": "https://github.com/SyntaxColoring/Markov-Word-Generator.git",
+      "description": "A web app that uses Markov chains to generate pseudorandom words.",
+      "status": "catalog"
+    },
+    {
+      "name": "maskew",
+      "repo": "dmotz/maskew",
+      "git": "https://github.com/dmotz/maskew.git",
+      "description": "▰ Add some diagonal rhythm to your elements",
+      "status": "catalog"
+    },
+    {
+      "name": "mazery",
+      "repo": "stevejackson/mazery",
+      "git": "https://github.com/stevejackson/mazery.git",
+      "description": "Maze generation visualizer using html5 Canvas, Coffeescript, jQuery, Compass",
+      "status": "catalog"
+    },
+    {
+      "name": "md-writer",
+      "repo": "zhuochun/md-writer",
+      "git": "https://github.com/zhuochun/md-writer.git",
+      "description": "✒️ Make Atom a better Markdown/AsciiDoc editor for writers and bloggers",
+      "status": "catalog"
+    },
+    {
+      "name": "mean",
+      "repo": "thibaultlaurens/mean.coffee",
+      "git": "https://github.com/thibaultlaurens/mean.coffee.git",
+      "description": "coffeescript port of http://mean.io/",
+      "status": "catalog"
+    },
+    {
+      "name": "meteor-chat",
+      "repo": "tomblomfield-zz/meteor-chat",
+      "git": "https://github.com/tomblomfield-zz/meteor-chat.git",
+      "description": "Simple chat application using Meteor JS and Coffeescript",
+      "status": "catalog"
+    },
+    {
+      "name": "meteor-getting-started",
+      "repo": "ovcharik/meteor-getting-started",
+      "git": "https://github.com/ovcharik/meteor-getting-started.git",
+      "description": "Урок для хабры. Разработка первого метеор приложения.",
+      "status": "catalog"
+    },
+    {
+      "name": "meteor-jw-opinionated-skeleton",
+      "repo": "jamesdwilson/meteor-jw-opinionated-skeleton",
+      "git": "https://github.com/jamesdwilson/meteor-jw-opinionated-skeleton.git",
+      "description": "ABANDONED: A collection of packages and a good starting point for building my next meteor project. You might like it too. :) Coffeescript based",
+      "status": "catalog"
+    },
+    {
+      "name": "meteor-reactive-css",
+      "repo": "ccorcos/meteor-reactive-css",
+      "git": "https://github.com/ccorcos/meteor-reactive-css.git",
+      "description": "Define reactive CSS rules in Javascript or (preferably) Coffeescript.",
+      "status": "catalog"
+    },
+    {
+      "name": "meteor-todos",
+      "repo": "swombat/meteor-todos-coffeescript",
+      "git": "https://github.com/swombat/meteor-todos-coffeescript.git",
+      "description": "Todos example from Meteor JS server, converted to coffeescript, with some tidying up and tweaking",
+      "status": "catalog"
+    },
+    {
+      "name": "milk",
+      "repo": "pvande/Milk",
+      "git": "https://github.com/pvande/Milk.git",
+      "description": "Milk is Mustache in CoffeeScript -- great with your browser or NodeJS!",
+      "status": "catalog"
+    },
+    {
+      "name": "mimeograph",
+      "repo": "steelThread/mimeograph",
+      "git": "https://github.com/steelThread/mimeograph.git",
+      "description": "CoffeeScript lib for PDF OCR and text extraction",
+      "status": "catalog"
+    },
+    {
+      "name": "mixco",
+      "repo": "arximboldi/mixco",
+      "git": "https://github.com/arximboldi/mixco.git",
+      "description": "Mixco is a framework for creating hardware controller scripts for the amazing Mixxx DJ software",
+      "status": "catalog"
+    },
+    {
+      "name": "mocha-coffeescript-boilerplate",
+      "repo": "quartzmo/mocha-coffeescript-boilerplate",
+      "git": "https://github.com/quartzmo/mocha-coffeescript-boilerplate.git",
+      "description": "A minimalistic template for starting a CoffeeScript project based on visionmedia/mocha tests",
+      "status": "catalog"
+    },
+    {
+      "name": "moecube-srvpro",
+      "repo": "moecube/srvpro",
+      "git": "https://github.com/moecube/srvpro.git",
+      "description": "A server for YGOPro",
+      "status": "catalog"
+    },
+    {
+      "name": "mojang-api",
+      "repo": "Electroid/mojang-api",
+      "git": "https://github.com/Electroid/mojang-api.git",
+      "description": "Bundle multiple Minecraft APIs into a single GET request.",
+      "status": "catalog"
+    },
+    {
+      "name": "monocle",
+      "repo": "soyjavi/monocle",
+      "git": "https://github.com/soyjavi/monocle.git",
+      "description": "Build Awesome CoffeeScript MVC Applications",
+      "status": "catalog"
+    },
+    {
+      "name": "namespace-in",
+      "repo": "MaksJS/Namespace-in-CoffeeScript",
+      "git": "https://github.com/MaksJS/Namespace-in-CoffeeScript.git",
+      "description": "pattern to simulate namespace in coffeescript",
+      "status": "catalog"
+    },
+    {
+      "name": "nebula",
+      "repo": "jamesmoriarty/nebula",
+      "git": "https://github.com/jamesmoriarty/nebula.git",
+      "description": "WebGL top down space shooter.",
+      "status": "catalog"
+    },
+    {
+      "name": "nekobird-stack-up",
+      "repo": "nekobird/stack-up.js",
+      "git": "https://github.com/nekobird/stack-up.js.git",
+      "description": "Create fixed width, variable height grid layouts.",
+      "status": "catalog"
+    },
+    {
+      "name": "nesh",
+      "repo": "danielgtaylor/nesh",
+      "git": "https://github.com/danielgtaylor/nesh.git",
+      "description": "An enhanced, extensible interactive shell for Node.js and CoffeeScript",
+      "status": "catalog"
+    },
+    {
+      "name": "node-activerecord",
+      "repo": "meltingice/node-activerecord",
+      "git": "https://github.com/meltingice/node-activerecord.git",
+      "description": "A ORM written in Coffeescript that supports multiple database systems (SQL/NoSQL) and ID generation middleware.",
+      "status": "catalog"
+    },
+    {
+      "name": "node-backbone-skeleton",
+      "repo": "brikis98/node-backbone-skeleton",
+      "git": "https://github.com/brikis98/node-backbone-skeleton.git",
+      "description": "A skeleton project for creating applications that use node.js server-side, backbone.js client-side, underscore.js templates, CoffeeScript as a JS pre-processor and Compass/SASS as a CSS pre-processor..",
+      "status": "catalog"
+    },
+    {
+      "name": "node-connect-coffee-script",
+      "repo": "adaltas/node-connect-coffee-script",
+      "git": "https://github.com/adaltas/node-connect-coffee-script.git",
+      "description": "Connect middleware to serve CoffeeScript files",
+      "status": "catalog"
+    },
+    {
+      "name": "node-express",
+      "repo": "alfrednerstu/node-express-coffeescript",
+      "git": "https://github.com/alfrednerstu/node-express-coffeescript.git",
+      "description": "Node.js template /w Express, Connect & Jade written in CoffeeScript.",
+      "status": "catalog"
+    },
+    {
+      "name": "node-express-grunt-boilerplate",
+      "repo": "eunjae-lee/node-express-grunt-boilerplate",
+      "git": "https://github.com/eunjae-lee/node-express-grunt-boilerplate.git",
+      "description": "A boilerplate to start a new express project based on CoffeeScript, Grunt build system, forever runner, Jade Template Engine and bootstrap",
+      "status": "catalog"
+    },
+    {
+      "name": "node-nextflow",
+      "repo": "jprichardson/node-nextflow",
+      "git": "https://github.com/jprichardson/node-nextflow.git",
+      "description": "A simple control-flow library for Node.js targetted towards CoffeeScript developers.",
+      "status": "catalog"
+    },
+    {
+      "name": "node-prego",
+      "repo": "sergeych/node-prego",
+      "git": "https://github.com/sergeych/node-prego.git",
+      "description": "Minimalistic migrations & models for coffeescript, node.js and postgres",
+      "status": "catalog"
+    },
+    {
+      "name": "node-tail",
+      "repo": "lucagrulla/node-tail",
+      "git": "https://github.com/lucagrulla/node-tail.git",
+      "description": "The zero dependency Node.js module for tailing a file",
+      "status": "catalog"
+    },
+    {
+      "name": "node-vertica",
+      "repo": "wvanbergen/node-vertica",
+      "git": "https://github.com/wvanbergen/node-vertica.git",
+      "description": "Pure javascript Vertica database client. Except it is written in CoffeeScript.",
+      "status": "catalog"
+    },
+    {
+      "name": "node-whois",
+      "repo": "FurqanSoftware/node-whois",
+      "git": "https://github.com/FurqanSoftware/node-whois.git",
+      "description": "A simple WHOIS client for NodeJS",
+      "status": "catalog"
+    },
+    {
+      "name": "node-xml2js",
+      "repo": "Leonidas-from-XIV/node-xml2js",
+      "git": "https://github.com/Leonidas-from-XIV/node-xml2js.git",
+      "description": "XML to JavaScript object converter.",
+      "status": "catalog"
+    },
+    {
+      "name": "nodejs-mongodb-blog",
+      "repo": "jamescarr/nodejs-mongodb-blog",
+      "git": "https://github.com/jamescarr/nodejs-mongodb-blog.git",
+      "description": "Tutorial app for using node.js, coffeescript and mongodb",
+      "status": "catalog"
+    },
+    {
+      "name": "nodetuts",
+      "repo": "jaigouk/nodetuts-coffeescript",
+      "git": "https://github.com/jaigouk/nodetuts-coffeescript.git",
+      "description": "Coffeescript version of nodetuts",
+      "status": "catalog"
+    },
+    {
+      "name": "normat",
+      "repo": "rferro/normat",
+      "git": "https://github.com/rferro/normat.git",
+      "description": "Generic javascript number/string formatting (bytes, milliseconds, ...).",
+      "status": "available",
+      "version": "0.1.0",
+      "path": "packages/normat"
+    },
+    {
+      "name": "octonode",
+      "repo": "pksunkara/octonode",
+      "git": "https://github.com/pksunkara/octonode.git",
+      "description": "github api v3 in nodejs",
+      "status": "catalog"
+    },
+    {
+      "name": "olafurnielsen-form5-node-express-mongoose",
+      "repo": "olafurnielsen/form5-node-express-mongoose-coffeescript",
+      "git": "https://github.com/olafurnielsen/form5-node-express-mongoose-coffeescript.git",
+      "description": "A Node.js skeleton using Express, Mongoose and Coffeescript.",
+      "status": "catalog"
+    },
+    {
+      "name": "onedollar-unistroke",
+      "repo": "nok/onedollar-unistroke-coffee",
+      "git": "https://github.com/nok/onedollar-unistroke-coffee.git",
+      "description": "Implementation of the $1 Unistroke Recognizer, a two-dimensional template based gesture recognition, in CoffeeScript.",
+      "status": "catalog"
+    },
+    {
+      "name": "oridomi",
+      "repo": "dmotz/oriDomi",
+      "git": "https://github.com/dmotz/oriDomi.git",
+      "description": "🪭 Fold up DOM elements like paper",
+      "status": "catalog"
+    },
+    {
+      "name": "orpheus",
+      "repo": "Radagaisus/Orpheus",
+      "git": "https://github.com/Radagaisus/Orpheus.git",
+      "description": "A Small Object Model for Redis in CoffeeScript",
+      "status": "catalog"
+    },
+    {
+      "name": "parse-decimal-number",
+      "repo": "andreaspitzer/parse-decimal-number",
+      "git": "https://github.com/andreaspitzer/parse-decimal-number.git",
+      "description": "🏧 Parse a decimal number with i18n format support (localized decimal points and comma separators)",
+      "status": "available",
+      "version": "0.1.0",
+      "path": "packages/parse-decimal-number"
+    },
+    {
+      "name": "payment",
+      "repo": "jessepollak/payment",
+      "git": "https://github.com/jessepollak/payment.git",
+      "description": ":moneybag: A jQuery-free general purpose library for building credit card forms, validating inputs and formatting numbers.",
+      "status": "catalog"
+    },
+    {
+      "name": "phaser-coffee-boilerplate",
+      "repo": "f/phaser-coffee-boilerplate",
+      "git": "https://github.com/f/phaser-coffee-boilerplate.git",
+      "description": "Phaser CoffeeScript + Browserify + LiveReload Boilerplate",
+      "status": "catalog"
+    },
+    {
+      "name": "php-ide-serenata",
+      "repo": "Gert-dev/php-ide-serenata",
+      "git": "https://github.com/Gert-dev/php-ide-serenata.git",
+      "description": "Atom IDE package that integrates the Serenata server to provide PHP code assistance",
+      "status": "catalog"
+    },
+    {
+      "name": "php-minifier",
+      "repo": "cedx/php-minifier",
+      "git": "https://github.com/cedx/php-minifier.git",
+      "description": "Minify PHP source code by removing comments and whitespace.",
+      "status": "catalog"
+    },
+    {
+      "name": "pigeonsim",
+      "repo": "jawj/pigeonsim",
+      "git": "https://github.com/jawj/pigeonsim.git",
+      "description": "Fly! Courtesy of this small project linking Kinect -> OpenNI -> Processing -> WebSockets -> CoffeeScript -> Google Earth API",
+      "status": "catalog"
+    },
+    {
+      "name": "pixel-editor",
+      "repo": "STRd6/pixel-editor",
+      "git": "https://github.com/STRd6/pixel-editor.git",
+      "description": "It edits pixels",
+      "status": "catalog"
+    },
+    {
+      "name": "plasmatic-isosurface",
+      "repo": "soulwire/Plasmatic-Isosurface",
+      "git": "https://github.com/soulwire/Plasmatic-Isosurface.git",
+      "description": "A 2 dimensional plasma simulation running on the GPU, written in GLSL and CoffeeScript and rendered with WebGL.",
+      "status": "catalog"
+    },
+    {
+      "name": "pokemon-go-mitm",
+      "repo": "rastapasta/pokemon-go-mitm",
+      "git": "https://github.com/rastapasta/pokemon-go-mitm.git",
+      "description": "🎁  Pokemon Go MITM Proxy -  Intercepts the traffic between your Pokemon Go app and their servers, decodes the protocol and gives you a handy tool to enrich your own game experience on the fly.",
+      "status": "catalog"
+    },
+    {
+      "name": "pong",
+      "repo": "chrissharkey/pong",
+      "git": "https://github.com/chrissharkey/pong.git",
+      "description": "HTML5 Canvas Pong game in Coffeescript",
+      "status": "catalog"
+    },
+    {
+      "name": "prettier-plugin",
+      "repo": "helixbass/prettier-plugin-coffeescript",
+      "git": "https://github.com/helixbass/prettier-plugin-coffeescript.git",
+      "description": "Prettier Coffeescript Plugin",
+      "status": "catalog"
+    },
+    {
+      "name": "priority-queue",
+      "repo": "STRd6/priority_queue",
+      "git": "https://github.com/STRd6/priority_queue.git",
+      "description": "A JavaScript PriorityQueue",
+      "status": "available",
+      "version": "0.1.0",
+      "path": "packages/priority-queue"
+    },
+    {
+      "name": "programming-in",
+      "repo": "markbates/Programming-In-CoffeeScript",
+      "git": "https://github.com/markbates/Programming-In-CoffeeScript.git",
+      "description": "Source code for the Programming in CoffeeScript book.",
+      "status": "catalog"
+    },
+    {
+      "name": "proto",
+      "repo": "marquee/proto",
+      "git": "https://github.com/marquee/proto.git",
+      "description": "A front-end web prototyping tool, combining markup (jade), script (coffeescript/cjsx), and style (stylus), into a served single page on-the-fly.",
+      "status": "catalog"
+    },
+    {
+      "name": "puppeteer",
+      "repo": "puppeteer/puppeteer",
+      "git": "https://github.com/puppeteer/puppeteer.git",
+      "description": "Web development stack. With Backbone, Marionette, CoffeeScript, Mocha, Chai, Bower, Grunt…",
+      "status": "catalog"
+    },
+    {
+      "name": "px-to-rem",
+      "repo": "gmendonca/px-to-rem",
+      "git": "https://github.com/gmendonca/px-to-rem.git",
+      "description": "Atom package to convert pixels to rem",
+      "status": "catalog"
+    },
+    {
+      "name": "qoffeesip",
+      "repo": "Quobis/QoffeeSIP",
+      "git": "https://github.com/Quobis/QoffeeSIP.git",
+      "description": "QoffeeSIP is a complete Javascript SIP stack that can be used in a website to exploit all the multimedia capabilities of WebRTC technology. Instead of using pure Javascript, QoffeeSIP has been coded with CoffeeScript so you can easily modif",
+      "status": "catalog"
+    },
+    {
+      "name": "quadtree-lib",
+      "repo": "elbywan/quadtree-lib",
+      "git": "https://github.com/elbywan/quadtree-lib.git",
+      "description": "Efficient quadtrees library written in CoffeeScript.",
+      "status": "catalog"
+    },
+    {
+      "name": "react",
+      "repo": "elucidata/react-coffee",
+      "git": "https://github.com/elucidata/react-coffee.git",
+      "description": "Build React components using natural CoffeeScript syntax.",
+      "status": "catalog"
+    },
+    {
+      "name": "react-at-rest",
+      "repo": "PayloadDev/react-at-rest",
+      "git": "https://github.com/PayloadDev/react-at-rest.git",
+      "description": "A toolkit for building ridiculously fast web applications using React and RESTful APIs.",
+      "status": "catalog"
+    },
+    {
+      "name": "react-coffee-elements",
+      "repo": "kalasjocke/react-coffee-elements",
+      "git": "https://github.com/kalasjocke/react-coffee-elements.git",
+      "description": "Compact React element syntax when using CoffeeScript.",
+      "status": "catalog"
+    },
+    {
+      "name": "react-coffee-quickstart",
+      "repo": "SimonDegraeve/react-coffee-quickstart",
+      "git": "https://github.com/SimonDegraeve/react-coffee-quickstart.git",
+      "description": "React/CoffeeScript project",
+      "status": "catalog"
+    },
+    {
+      "name": "react-countdown-clock",
+      "repo": "pughpugh/react-countdown-clock",
+      "git": "https://github.com/pughpugh/react-countdown-clock.git",
+      "description": "HTML5 canvas countdown clock React component",
+      "status": "catalog"
+    },
+    {
+      "name": "react-express-template",
+      "repo": "khaled/react-express-template",
+      "git": "https://github.com/khaled/react-express-template.git",
+      "description": "Full stack web app starter template using React, ES6, CoffeeScript, Express, and more",
+      "status": "catalog"
+    },
+    {
+      "name": "react-kup",
+      "repo": "snd/react-kup",
+      "git": "https://github.com/snd/react-kup.git",
+      "description": "react-kup is a simple, nonintrusive alternative to JSX for coffeescript",
+      "status": "catalog"
+    },
+    {
+      "name": "react-reflux-boilerplate-with-webpack",
+      "repo": "iroy2000/react-reflux-boilerplate-with-webpack",
+      "git": "https://github.com/iroy2000/react-reflux-boilerplate-with-webpack.git",
+      "description": "React + Reflux + CoffeeScript + Stylus Boilerplate with Webpack",
+      "status": "catalog"
+    },
+    {
+      "name": "reactionary",
+      "repo": "atom/reactionary",
+      "git": "https://github.com/atom/reactionary.git",
+      "description": "Basic helpers for building React DOM nodes in CoffeeScript.",
+      "status": "catalog"
+    },
+    {
+      "name": "redditmusicplayer",
+      "repo": "musicplayer-io/redditmusicplayer",
+      "git": "https://github.com/musicplayer-io/redditmusicplayer.git",
+      "description": ":musical_note: A free and open-source streaming music web player using data from Reddit",
+      "status": "catalog"
+    },
+    {
+      "name": "replit-lol",
+      "repo": "replit/lol-coffee",
+      "git": "https://github.com/replit/lol-coffee.git",
+      "description": "A LOLCode compiler+VM in CoffeeScript",
+      "status": "catalog"
+    },
+    {
+      "name": "rubyjs-core-lib",
+      "repo": "rubyjs/core-lib",
+      "git": "https://github.com/rubyjs/core-lib.git",
+      "description": "A port of the Ruby 1.9.3 corelib to coffeescript/javascript/node that conforms to rubyspec.org.",
+      "status": "catalog"
+    },
+    {
+      "name": "s3upload-coffee-javascript",
+      "repo": "tadruj/s3upload-coffee-javascript",
+      "git": "https://github.com/tadruj/s3upload-coffee-javascript.git",
+      "description": "Client Side S3 CORS Upload for Amazon S3 - CoffeeScript and JavaScript Class",
+      "status": "catalog"
+    },
+    {
+      "name": "sake-core",
+      "repo": "sakejs/sake-core",
+      "git": "https://github.com/sakejs/sake-core.git",
+      "description": "Sake's core interface.",
+      "status": "catalog"
+    },
+    {
+      "name": "sankey",
+      "repo": "tamc/Sankey",
+      "git": "https://github.com/tamc/Sankey.git",
+      "description": "A javascript library for drawing sankey / flow diagrams",
+      "status": "catalog"
+    },
+    {
+      "name": "saucer",
+      "repo": "jbenet/saucer",
+      "git": "https://github.com/jbenet/saucer.git",
+      "description": "coffeescript boilerplate",
+      "status": "catalog"
+    },
+    {
+      "name": "scaleapp",
+      "repo": "flosse/scaleApp",
+      "git": "https://github.com/flosse/scaleApp.git",
+      "description": "scaleApp is a JavaScript framework for scalable and maintainable One-Page-Applications",
+      "status": "catalog"
+    },
+    {
+      "name": "script-runner",
+      "repo": "ioquatix/script-runner",
+      "git": "https://github.com/ioquatix/script-runner.git",
+      "description": "This package will run various script files inside of Atom. It currently supports JavaScript, CoffeeScript, Ruby, and Python. You can add more.",
+      "status": "catalog"
+    },
+    {
+      "name": "season",
+      "repo": "atom/season",
+      "git": "https://github.com/atom/season.git",
+      "description": "CSON Node Module",
+      "status": "catalog"
+    },
+    {
+      "name": "sentimood",
+      "repo": "ethel-dev/sentimood",
+      "git": "https://github.com/ethel-dev/sentimood.git",
+      "description": "A minimal sentiment analyzer based on @thinkroth's \"Sentimental\" and written in CoffeeScript",
+      "status": "available",
+      "version": "0.1.0",
+      "path": "packages/sentimood"
+    },
+    {
+      "name": "sequelize-db-export-import",
+      "repo": "boiawang/sequelize-db-export-import",
+      "git": "https://github.com/boiawang/sequelize-db-export-import.git",
+      "description": "Generater models from mysql db or import tables from models files",
+      "status": "catalog"
+    },
+    {
+      "name": "shaky",
+      "repo": "dbushong/shaky",
+      "git": "https://github.com/dbushong/shaky.git",
+      "description": "Converted dart shaky boxes demo to coffeescript",
+      "status": "catalog"
+    },
+    {
+      "name": "shampoo",
+      "repo": "thesunny/shampoo",
+      "git": "https://github.com/thesunny/shampoo.git",
+      "description": "The ultimate browserify task. Watches files for changes. Uses a cache for super speed (instant builds). CoffeeScript supported out of box. Alias mappings. Shimming. Everything in one easy to use package.",
+      "status": "catalog"
+    },
+    {
+      "name": "shellwords",
+      "repo": "jimmycuadra/shellwords",
+      "git": "https://github.com/jimmycuadra/shellwords.git",
+      "description": "Manipulate strings according to the word parsing rules of the UNIX Bourne shell.",
+      "status": "available",
+      "version": "0.1.0",
+      "path": "packages/shellwords"
+    },
+    {
+      "name": "sideline",
+      "repo": "assaf/sideline",
+      "git": "https://github.com/assaf/sideline.git",
+      "description": "Sideline, a CoffeeScript shell for your server (NO LONGER MAINTAINED)",
+      "status": "catalog"
+    },
+    {
+      "name": "singool",
+      "repo": "fahad19/singool",
+      "git": "https://github.com/fahad19/singool.git",
+      "description": "Backbone.js based framework for developing single-page web applications",
+      "status": "catalog"
+    },
+    {
+      "name": "sirius",
+      "repo": "fntz/sirius",
+      "git": "https://github.com/fntz/sirius.git",
+      "description": "Modern coffeescript/javascript framework",
+      "status": "catalog"
+    },
+    {
+      "name": "slidepad",
+      "repo": "georgeOsdDev/slidepad",
+      "git": "https://github.com/georgeOsdDev/slidepad.git",
+      "description": "HTML Slide Generator.",
+      "status": "catalog"
+    },
+    {
+      "name": "smooth",
+      "repo": "autotelicum/Smooth-CoffeeScript",
+      "git": "https://github.com/autotelicum/Smooth-CoffeeScript.git",
+      "description": "A book on functional programming in CoffeeScript",
+      "status": "catalog"
+    },
+    {
+      "name": "soops-sentimood",
+      "repo": "soops/sentimood",
+      "git": "https://github.com/soops/sentimood.git",
+      "description": "A minimal sentiment analyzer based on @thinkroth's \"Sentimental\" and written in CoffeeScript",
+      "status": "catalog"
+    },
+    {
+      "name": "soundscrape",
+      "repo": "dmotz/soundscrape",
+      "git": "https://github.com/dmotz/soundscrape.git",
+      "description": "SoundCloud command line downloader in Node.js",
+      "status": "catalog"
+    },
+    {
+      "name": "spectacular",
+      "repo": "abe33/spectacular",
+      "git": "https://github.com/abe33/spectacular.git",
+      "description": "Advanced BDD framework for CoffeeScript and JavaScript",
+      "status": "catalog"
+    },
+    {
+      "name": "spellchecker",
+      "repo": "devongovett/spellchecker.js",
+      "git": "https://github.com/devongovett/spellchecker.js.git",
+      "description": "A spellchecker in CoffeeScript/JavaScript based on Hunspell",
+      "status": "catalog"
+    },
+    {
+      "name": "srvpro",
+      "repo": "mycard/srvpro",
+      "git": "https://github.com/mycard/srvpro.git",
+      "description": "A server for YGOPro",
+      "status": "catalog"
+    },
+    {
+      "name": "stack-up",
+      "repo": "entroform/stack-up.js",
+      "git": "https://github.com/entroform/stack-up.js.git",
+      "description": "Create fixed width, variable height grid layouts.",
+      "status": "catalog"
+    },
+    {
+      "name": "stacktrace",
+      "repo": "smashwilson/stacktrace",
+      "git": "https://github.com/smashwilson/stacktrace.git",
+      "description": "Atom package to navigate stacktraces.",
+      "status": "catalog"
+    },
+    {
+      "name": "sticky-kit",
+      "repo": "leafo/sticky-kit",
+      "git": "https://github.com/leafo/sticky-kit.git",
+      "description": "A jQuery plugin for creating smart sticky elements",
+      "status": "catalog"
+    },
+    {
+      "name": "stirred",
+      "repo": "davidpadbury/stirred-coffee",
+      "git": "https://github.com/davidpadbury/stirred-coffee.git",
+      "description": "Macros in CoffeeScript prototype",
+      "status": "catalog"
+    },
+    {
+      "name": "sublimetext-coffeescript",
+      "repo": "SublimeText/CoffeeScript",
+      "git": "https://github.com/SublimeText/CoffeeScript.git",
+      "description": "Syntax highlighting and checking, commands, shortcuts, snippets, watched compilation and more.",
+      "status": "catalog"
+    },
+    {
+      "name": "swagger-dsl",
+      "repo": "intellinote/swagger-dsl",
+      "git": "https://github.com/intellinote/swagger-dsl.git",
+      "description": "A CoffeeScript-based domain-specific language for generating JSON documents for Swagger.",
+      "status": "catalog"
+    },
+    {
+      "name": "teacup",
+      "repo": "goodeggs/teacup",
+      "git": "https://github.com/goodeggs/teacup.git",
+      "description": "Teacup is templates in CoffeeScript",
+      "status": "catalog"
+    },
+    {
+      "name": "termination",
+      "repo": "bus-stop/Termination",
+      "git": "https://github.com/bus-stop/Termination.git",
+      "description": "Integrated terminal for Atom. Looks like terminal-plus, acts like your native terminal (except every other Friday). Looking for collaborators! :-)",
+      "status": "catalog"
+    },
+    {
+      "name": "theorist",
+      "repo": "atom/theorist",
+      "git": "https://github.com/atom/theorist.git",
+      "description": "A reactive model toolkit for CoffeeScript",
+      "status": "catalog"
+    },
+    {
+      "name": "timeline",
+      "repo": "imakewebthings/timeline",
+      "git": "https://github.com/imakewebthings/timeline.git",
+      "description": "A generic event timeline for node.js or the browser. Written in CoffeeScript.",
+      "status": "catalog"
+    },
+    {
+      "name": "todomvc-coffeescript-and-vue",
+      "repo": "anfelor/TodoMVC-CoffeeScript-and-Vue.js",
+      "git": "https://github.com/anfelor/TodoMVC-CoffeeScript-and-Vue.js.git",
+      "description": "A TodoMVC implementation based on the official example by Evan You - DEPRECATED based on Vue 1.0",
+      "status": "catalog"
+    },
+    {
+      "name": "toffee",
+      "repo": "malgorithms/toffee",
+      "git": "https://github.com/malgorithms/toffee.git",
+      "description": "a NodeJS and browser templating language based on coffeescript, with the slickest syntax ever",
+      "status": "catalog"
+    },
+    {
+      "name": "tomblomfield-meteor-chat",
+      "repo": "tomblomfield/meteor-chat",
+      "git": "https://github.com/tomblomfield/meteor-chat.git",
+      "description": "Simple chat application using Meteor JS and Coffeescript",
+      "status": "catalog"
+    },
+    {
+      "name": "torontojs.com",
+      "repo": "torontojs/torontojs.com",
+      "git": "https://github.com/torontojs/torontojs.com.git",
+      "description": "The Website for TorontoJS",
+      "status": "catalog"
+    },
+    {
+      "name": "trix",
+      "repo": "basecamp/trix",
+      "git": "https://github.com/basecamp/trix.git",
+      "description": "A rich text editor for everyday writing",
+      "status": "catalog"
+    },
+    {
+      "name": "try-jasmine",
+      "repo": "searls/try-jasmine",
+      "git": "https://github.com/searls/try-jasmine.git",
+      "description": "An online sandbox for playing with Jasmine, a bunch of supporting scripts, and Backbone/Underscore/CoffeeScript",
+      "status": "catalog"
+    },
+    {
+      "name": "turingtype",
+      "repo": "dmotz/TuringType",
+      "git": "https://github.com/dmotz/TuringType.git",
+      "description": "⌨️ Simple human typing effect",
+      "status": "catalog"
+    },
+    {
+      "name": "urequire",
+      "repo": "anodynos/uRequire",
+      "git": "https://github.com/anodynos/uRequire.git",
+      "description": "The Ultimate JavaScript Module Builder & Automagical Task Runner. Convert AMD & CommonJS/NodeJS modules to UMD, AMD, CommonJS or bundle them as `combined.js` (rjs & almond, AMDclean soon) & automagically run/test/watch them on nodejs, Web/A",
+      "status": "catalog"
+    },
+    {
+      "name": "uri-template",
+      "repo": "grncdr/uri-template",
+      "git": "https://github.com/grncdr/uri-template.git",
+      "description": "CoffeeScript/Javascript implementation of RFC 6570 for URI-templates",
+      "status": "catalog"
+    },
+    {
+      "name": "villain",
+      "repo": "stephank/villain",
+      "git": "https://github.com/stephank/villain.git",
+      "description": "Real-time browser games in JavaScript and CoffeeScript.",
+      "status": "catalog"
+    },
+    {
+      "name": "vim-cjsx",
+      "repo": "mtscout6/vim-cjsx",
+      "git": "https://github.com/mtscout6/vim-cjsx.git",
+      "description": "Vim plugins for CJSX files (CoffeeScript with React JSX)",
+      "status": "catalog"
+    },
+    {
+      "name": "vm",
+      "repo": "tarruda/vm.js",
+      "git": "https://github.com/tarruda/vm.js.git",
+      "description": "Javascript bytecode compiler and VM implemented in pure coffeescript",
+      "status": "catalog"
+    },
+    {
+      "name": "vue-coffee-workflow",
+      "repo": "coffee-js/vue-coffee-workflow",
+      "git": "https://github.com/coffee-js/vue-coffee-workflow.git",
+      "description": "This project demonstrates writing Vue.js 2 in plain CoffeeScript.",
+      "status": "catalog"
+    },
+    {
+      "name": "wave-pendulum",
+      "repo": "davidguttman/wave-pendulum",
+      "git": "https://github.com/davidguttman/wave-pendulum.git",
+      "description": "simple html 5 wave pendulum using coffeescript and processing.js",
+      "status": "catalog"
+    },
+    {
+      "name": "wdavidw-node-connect-coffee-script",
+      "repo": "wdavidw/node-connect-coffee-script",
+      "git": "https://github.com/wdavidw/node-connect-coffee-script.git",
+      "description": "Connect middleware to serve CoffeeScript files",
+      "status": "catalog"
+    },
+    {
+      "name": "wheels",
+      "repo": "stanfeldman/wheels",
+      "git": "https://github.com/stanfeldman/wheels.git",
+      "description": "Node.js web framework written in CoffeeScript. Simple and sexy.",
+      "status": "catalog"
+    },
+    {
+      "name": "workflowviz",
+      "repo": "NarendraYSF/WorkFlowViz",
+      "git": "https://github.com/NarendraYSF/WorkFlowViz.git",
+      "description": "Transform your task data into interactive workflow visualizations with a single line of code. WorkflowViz.js is a lightweight JavaScript library that helps you create beautiful, dynamic flowcharts to track project progress, visualize task d",
+      "status": "catalog"
+    },
+    {
+      "name": "xmlbuilder-js",
+      "repo": "oozcitak/xmlbuilder-js",
+      "git": "https://github.com/oozcitak/xmlbuilder-js.git",
+      "description": "An XML builder for node.js",
+      "status": "catalog"
+    },
+    {
+      "name": "xp",
+      "repo": "Marak/xp",
+      "git": "https://github.com/Marak/xp.git",
+      "description": "agile programming tools in Coffeescript",
+      "status": "catalog"
+    },
+    {
+      "name": "youaredachef",
+      "repo": "raganwald/YouAreDaChef",
+      "git": "https://github.com/raganwald/YouAreDaChef.git",
+      "description": "Coffeescript/Javascript method combinations for Underscore projects",
+      "status": "catalog"
+    },
+    {
+      "name": "zaikio-linear-partition",
+      "repo": "zaikio/linear-partition",
+      "git": "https://github.com/zaikio/linear-partition.git",
+      "description": "Linear partition in Coffeescript (Javascript)",
+      "status": "catalog"
+    },
+    {
+      "name": "zhenkunou-ionic-nodeclub",
+      "repo": "zhenkunou/ionic-nodeclub",
+      "git": "https://github.com/zhenkunou/ionic-nodeclub.git",
+      "description": "a simple ionic starter project, use coffeescript and sass",
+      "status": "catalog"
+    },
+    {
+      "name": "zine",
+      "repo": "STRd6/zine",
+      "git": "https://github.com/STRd6/zine.git",
+      "description": "DIY E-Zine and Operating System",
+      "status": "catalog"
+    },
+    {
+      "name": "zorium",
+      "repo": "Zorium/zorium",
+      "git": "https://github.com/Zorium/zorium.git",
+      "description": "(╯°□°)╯︵ ┻━┻ The CoffeeScript Web Framework",
+      "status": "catalog"
+    }
+  ]
+}

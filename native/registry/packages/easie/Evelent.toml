@@ -1,0 +1,10 @@
+[package]
+name = "easie"
+version = "0.1.0"
+entry = "src/lib.es"
+description = "Robert Penner easing equations (port of jimjeffers/Easie)"
+
+[lib]
+path = "src/lib.es"
+
+[dependencies]

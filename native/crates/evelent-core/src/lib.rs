@@ -26,8 +26,8 @@ pub use module::{
 };
 pub use pkg::{
     add_dependency, create_package, find_manifest, install_dependencies, load_from_cwd as load_pkg,
-    remove_dependency, resolve_package_lib, Manifest, Package, Dependency, MANIFEST_NAME,
-    MODULES_DIR,
+    registry_root, remove_dependency, resolve_package_lib, search_registry, Manifest, Package,
+    Dependency, MANIFEST_NAME, MODULES_DIR,
 };
 pub use runtime::{run_file, Vm};
 pub use value::Value;
@@ -103,3 +103,4 @@ pub fn build_project(
     }
     Ok((written, errors))
 }
+

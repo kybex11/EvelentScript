@@ -4,7 +4,7 @@ use std::process::ExitCode;
 use clap::{Parser, Subcommand};
 use evelent_core::{
     add_dependency, build_project, compile_file, compile_graph, create_package, find_config_file,
-    find_manifest, install_dependencies, load_from_cwd, load_pkg, remove_dependency,
+    find_manifest, install_dependencies, load_from_cwd, load_pkg, remove_dependency, search_registry,
     CompileOptions, NativeHost, Package, Vm, MANIFEST_NAME, MODULES_DIR,
 };
 
@@ -46,11 +46,19 @@ enum Commands {
         /// Git URL dependency
         #[arg(long)]
         git: Option<String>,
-        /// Registry version (not available yet; use --path)
+        /// Registry version (default: latest available port)
         #[arg(long)]
         version: Option<String>,
         #[arg(long, default_value = ".")]
         cwd: PathBuf,
+    },
+    /// Search the bundled awesome-coffeescript / Evelent registry catalog
+    Search {
+        /// Substring matched against name, repo, description
+        query: String,
+        /// Only show packages ported for native EvelentScript
+        #[arg(long)]
+        available: bool,
     },
     /// Remove a dependency
     Remove {
@@ -168,10 +176,14 @@ fn run() -> Result<(), Box<dyn std::error::Error>> {
             version,
             cwd,
         } => {
+            let version = if path.is_none() && git.is_none() && version.is_none() {
+                Some("*".into())
+            } else {
+                version
+            };
             if path.is_none() && git.is_none() && version.is_none() {
                 return Err(
-                    "specify --path, --git, or --version (registry versions need a registry)"
-                        .into(),
+                    "specify --path, --git, or a registry package name (esc add heap)".into(),
                 );
             }
             let pkg = load_pkg(&cwd)?;
@@ -183,6 +195,30 @@ fn run() -> Result<(), Box<dyn std::error::Error>> {
                 version.as_deref(),
             )?;
             println!("Added `{name}` → {MODULES_DIR}/{name}");
+        }
+        Commands::Search { query, available } => {
+            let results = search_registry(&query)?;
+            let results: Vec<_> = results
+                .into_iter()
+                .filter(|(_, status, _)| !available || status == "available")
+                .collect();
+            if results.is_empty() {
+                println!("(no matches)");
+            } else {
+                for (name, status, desc) in results.iter().take(40) {
+                    let mark = if status == "available" { "*" } else { " " };
+                    let short = if desc.len() > 72 {
+                        format!("{}…", &desc[..71])
+                    } else {
+                        desc.clone()
+                    };
+                    println!("{mark} {name:<28} [{status}] {short}");
+                }
+                if results.len() > 40 {
+                    println!("… {} more", results.len() - 40);
+                }
+                println!("\n* = installed via `esc add <name>` (native EvelentScript port)");
+            }
         }
         Commands::Remove { name, cwd } => {
             let pkg = load_pkg(&cwd)?;

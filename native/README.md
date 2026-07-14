@@ -54,7 +54,10 @@ console.log greet.hello 'world'
 
 Example: `examples/packages/demo-app` + `examples/packages/greeter`.
 
-Registry versions (`esc add foo --version 0.1.0`) are stubbed — use `--path` / `--git` for now.
+Registry versions (`esc add heap`) resolve from the bundled `native/registry`
+(awesome-coffeescript catalog + native `.es` ports). Use `--path` / `--git` for
+anything else.
+
 
 ## Project (`esconfig.json`)
 

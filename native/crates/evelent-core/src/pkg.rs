@@ -358,9 +358,23 @@ pub fn install_dependencies(pkg: &Package) -> Result<Vec<(String, PathBuf)>> {
                 installed.push((name.clone(), dest));
             }
             ResolvedSource::Registry { version } => {
-                return Err(Error::Other(format!(
-                    "registry packages are not wired yet (wanted {name}@{version}). Use: esc add {name} --path ../path/to/{name}"
-                )));
+                // Last-chance resolve (paths already tried above).
+                let src = resolve_registry_package(name, &version).map_err(|e| {
+                    let hint = catalog_git_url(name)
+                        .map(|g| format!("  Tip: esc add {name} --git {g}"))
+                        .unwrap_or_default();
+                    Error::Other(format!("{e}\n{hint}"))
+                })?;
+                if dest.exists() {
+                    fs::remove_dir_all(&dest)?;
+                }
+                copy_dir_recursive(&src, &dest)?;
+                lock_lines.push(format!(
+                    "{name} = {{ registry = true, version = {:?}, path = {:?} }}",
+                    version,
+                    src.display()
+                ));
+                installed.push((name.clone(), dest));
             }
         }
     }
@@ -377,9 +391,15 @@ enum ResolvedSource {
 
 fn resolve_dep_source(pkg: &Package, name: &str, dep: &Dependency) -> Result<ResolvedSource> {
     match dep {
-        Dependency::Version(v) => Ok(ResolvedSource::Registry {
-            version: v.clone(),
-        }),
+        Dependency::Version(v) => {
+            // Local registry ports only. Unported catalog entries need --git / --path.
+            if let Ok(path) = resolve_registry_package(name, v) {
+                return Ok(ResolvedSource::Path(path));
+            }
+            Ok(ResolvedSource::Registry {
+                version: v.clone(),
+            })
+        }
         Dependency::Detailed(s) => {
             if let Some(p) = &s.path {
                 let path = if Path::new(p).is_absolute() {
@@ -408,6 +428,9 @@ fn resolve_dep_source(pkg: &Package, name: &str, dep: &Dependency) -> Result<Res
                     rev,
                 })
             } else if let Some(v) = &s.version {
+                if let Ok(path) = resolve_registry_package(name, v) {
+                    return Ok(ResolvedSource::Path(path));
+                }
                 Ok(ResolvedSource::Registry {
                     version: v.clone(),
                 })
@@ -418,6 +441,139 @@ fn resolve_dep_source(pkg: &Package, name: &str, dep: &Dependency) -> Result<Res
             }
         }
     }
+}
+
+/// Locate the bundled / env registry root (`native/registry` or `EVELENT_REGISTRY`).
+pub fn registry_root() -> Option<PathBuf> {
+    if let Ok(p) = std::env::var("EVELENT_REGISTRY") {
+        let path = PathBuf::from(p);
+        if path.is_dir() {
+            return Some(path);
+        }
+    }
+    // Walk up from CWD and from the executable looking for native/registry
+    let mut candidates = Vec::new();
+    if let Ok(cwd) = std::env::current_dir() {
+        let mut dir = cwd;
+        for _ in 0..8 {
+            candidates.push(dir.join("native/registry"));
+            candidates.push(dir.join("registry"));
+            if !dir.pop() {
+                break;
+            }
+        }
+    }
+    if let Ok(exe) = std::env::current_exe() {
+        if let Some(mut dir) = exe.parent().map(|p| p.to_path_buf()) {
+            for _ in 0..8 {
+                candidates.push(dir.join("native/registry"));
+                candidates.push(dir.join("registry"));
+                candidates.push(dir.join("../registry"));
+                if !dir.pop() {
+                    break;
+                }
+            }
+        }
+    }
+    candidates.into_iter().find(|p| p.join("catalog.json").is_file())
+}
+
+fn load_catalog() -> Option<serde_json::Value> {
+    let root = registry_root()?;
+    let text = fs::read_to_string(root.join("catalog.json")).ok()?;
+    serde_json::from_str(&text).ok()
+}
+
+fn resolve_registry_package(name: &str, version: &str) -> Result<PathBuf> {
+    let root = registry_root().ok_or_else(|| {
+        Error::Other(
+            "no Evelent registry found (set EVELENT_REGISTRY or run from the repo with native/registry)"
+                .into(),
+        )
+    })?;
+    let catalog: serde_json::Value = serde_json::from_str(
+        &fs::read_to_string(root.join("catalog.json")).map_err(|e| {
+            Error::Other(format!("cannot read catalog.json: {e}"))
+        })?,
+    )
+    .map_err(|e| Error::Other(format!("invalid catalog.json: {e}")))?;
+
+    let packages = catalog
+        .get("packages")
+        .and_then(|p| p.as_array())
+        .ok_or_else(|| Error::Other("catalog.json: missing packages[]".into()))?;
+
+    let entry = packages.iter().find(|p| {
+        p.get("name").and_then(|n| n.as_str()) == Some(name)
+            && p.get("status").and_then(|s| s.as_str()) == Some("available")
+    });
+
+    let entry = entry.ok_or_else(|| {
+        Error::Other(format!(
+            "package `{name}` is not in the local registry as an available EvelentScript port. \
+             Try: esc search {name}  ·  or: esc add {name} --git <url>"
+        ))
+    })?;
+
+    if version != "*" && version != "latest" {
+        if let Some(v) = entry.get("version").and_then(|v| v.as_str()) {
+            if v != version {
+                return Err(Error::Other(format!(
+                    "registry has {name}@{v}, requested {version}"
+                )));
+            }
+        }
+    }
+
+    let rel = entry
+        .get("path")
+        .and_then(|p| p.as_str())
+        .ok_or_else(|| Error::Other(format!("registry entry {name} has no path")))?;
+    let path = root.join(rel);
+    if !path.join(MANIFEST_NAME).is_file() {
+        return Err(Error::Other(format!(
+            "registry package missing {MANIFEST_NAME}: {}",
+            path.display()
+        )));
+    }
+    path.canonicalize()
+        .map_err(|_| Error::Other(format!("registry path not found: {}", path.display())))
+}
+
+fn catalog_git_url(name: &str) -> Option<String> {
+    let catalog = load_catalog()?;
+    let packages = catalog.get("packages")?.as_array()?;
+    packages.iter().find_map(|p| {
+        if p.get("name").and_then(|n| n.as_str()) == Some(name) {
+            p.get("git").and_then(|g| g.as_str()).map(|s| s.to_string())
+        } else {
+            None
+        }
+    })
+}
+
+/// Search the awesome-coffeescript / Evelent registry catalog.
+pub fn search_registry(query: &str) -> Result<Vec<(String, String, String)>> {
+    let catalog = load_catalog().ok_or_else(|| {
+        Error::Other("no registry catalog found (native/registry/catalog.json)".into())
+    })?;
+    let q = query.to_lowercase();
+    let mut out = Vec::new();
+    if let Some(packages) = catalog.get("packages").and_then(|p| p.as_array()) {
+        for p in packages {
+            let name = p.get("name").and_then(|n| n.as_str()).unwrap_or("");
+            let desc = p.get("description").and_then(|d| d.as_str()).unwrap_or("");
+            let status = p.get("status").and_then(|s| s.as_str()).unwrap_or("catalog");
+            let repo = p.get("repo").and_then(|r| r.as_str()).unwrap_or("");
+            if name.to_lowercase().contains(&q)
+                || desc.to_lowercase().contains(&q)
+                || repo.to_lowercase().contains(&q)
+            {
+                out.push((name.to_string(), status.to_string(), desc.to_string()));
+            }
+        }
+    }
+    Ok(out)
 }
 
 fn copy_dir_recursive(src: &Path, dest: &Path) -> Result<()> {
