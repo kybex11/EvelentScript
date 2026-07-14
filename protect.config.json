@@ -1,0 +1,16 @@
+{
+  "input": "altvserver/resources",
+  "output": "dist",
+  "compile": true,
+  "preset": "max",
+  "obfuscate": {
+    "debugProtection": false,
+    "disableConsoleOutput": false
+  },
+  "vmprotect": {
+    "enabled": false,
+    "cli": "C:/Program Files/VMProtect Professional/VMProtect_con.exe",
+    "project": "",
+    "targets": []
+  }
+}
