@@ -1301,7 +1301,7 @@ ES_KEYWORDS = ES_KEYWORDS.concat ES_ALIASES
 # to avoid having a JavaScript error at runtime.
 RESERVED = [
   'case', 'function', 'var', 'void', 'with', 'const', 'let', 'enum'
-  'native', 'implements', 'package', 'private'
+  'implements', 'package', 'private'
   'protected', 'public', 'static'
 ]
 

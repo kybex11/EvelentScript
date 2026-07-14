@@ -1,0 +1,9 @@
+[package]
+name = "greeter"
+version = "0.1.0"
+entry = "src/lib.es"
+
+[lib]
+path = "src/lib.es"
+
+[dependencies]

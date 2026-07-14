@@ -1,0 +1,9 @@
+[package]
+name = "evelent-native"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "ABI for native EvelentScript host modules"
+
+[dependencies]
+serde_json = { workspace = true }

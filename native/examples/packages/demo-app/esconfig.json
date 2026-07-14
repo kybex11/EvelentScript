@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "bare": true,
+    "entry": "main.es",
+    "outDir": "./dist",
+    "rootDir": "./src"
+  }
+}

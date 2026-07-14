@@ -1,0 +1,21 @@
+[package]
+name = "evelent-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Native EvelentScript compiler core (lexer, parser, codegen, modules)"
+
+[dependencies]
+thiserror = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+evelent-native = { workspace = true }
+libloading = { workspace = true }
+walkdir = { workspace = true }
+regex = "1"
+sha2 = { workspace = true }
+md-5 = { workspace = true }
+hex = { workspace = true }
+flate2 = { workspace = true }
+ureq = { workspace = true }
+toml = { workspace = true }

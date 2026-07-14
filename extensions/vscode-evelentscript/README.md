@@ -22,4 +22,18 @@ build.bat
 
 ## IntelliSense
 
-Output → **EvelentScript**. Установка VSIX 1.3.1+, Reload Window.
+Output → **EvelentScript**. Установка VSIX 1.6.1+, Reload Window.
+
+### Ложные красные подчёркивания
+
+По умолчанию показываются только ошибки компиляции синтаксиса.  
+Семантика TS (undefined name и т.п.) часто ошибается на динамическом `.es` — выключена:
+
+- `evelentscript.diagnostics.semantic`: `false` (по умолчанию)
+- Полностью выключить squiggles: `evelentscript.diagnostics.enable`: `false`
+
+### Подсветка не срабатывает
+
+1. В статус-баре язык должен быть **EvelentScript**, не Plain Text / JavaScript.
+2. Settings → `files.associations` → `"*.es": "evelentscript"`.
+3. Reload Window после установки/обновления расширения.

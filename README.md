@@ -1,31 +1,65 @@
 # EvelentScript
 
-EvelentScript is a little language that compiles into JavaScript.
+EvelentScript is a little language that **runs natively** in a Rust VM (`esc`), and can optionally compile to JavaScript for interop.
 
-## Installation
+## Native runtime (recommended)
 
-Once you have Node.js installed:
+Build the native CLI once:
 
 ```shell
-# Install locally for a project:
-npm install --save-dev evelentscript
+npm run native:build
+# or: cd native && cargo build --release
+```
 
-# Install globally to execute .es files anywhere:
+Binary: `native/target/release/esc` (Windows: `esc.exe`).
+
+Run a `.es` file **without Node/JS**:
+
+```shell
+native\target\release\esc.exe run example_project\src\index.es
+
+# or via esconfig.json entry:
+cd example_project
+..\native\target\release\esc.exe run
+
+# npm helper from repo root:
+npm run esc -- run -p example_project/esconfig.json
+```
+
+```shell
+esc run path/to/script.es          # native VM
+esc run                            # uses esconfig.json → entry
+esc compile file.es -o out.js      # optional JS emit
+esc build                          # project → JS (interop)
+```
+
+Details: [native/README.md](native/README.md).
+
+## Full compiler package
+
+Готовый пакет с бинарником, playground и всеми builtin-либами:
+
+```shell
+cd compiler
+build.bat
+run.bat
+```
+
+См. [compiler/README.md](compiler/README.md).
+
+## JavaScript toolchain (optional)
+
+The Node-based `es` CLI compiles `.es` → `.js` (legacy / browser / npm packages):
+
+```shell
+npm install --save-dev evelentscript
 npm install --global evelentscript
 ```
 
-## Getting Started
-
-Execute a script:
-
 ```shell
-es /path/to/script.es
-```
-
-Compile a script:
-
-```shell
-es -c /path/to/script.es
+node ./bin/es path/to/script.es
+node ./bin/es -c path/to/script.es
+node ./bin/es build
 ```
 
 ## File extensions
@@ -38,16 +72,16 @@ es -c /path/to/script.es
 
 ## Editor support
 
-- [`extensions/vscode-evelentscript`](extensions/vscode-evelentscript/README.md) — VS Code: подсветка, snippets, folding, native types
+- [`extensions/vscode-evelentscript`](extensions/vscode-evelentscript/README.md) — VS Code
 - [`extensions/zed-evelentscript`](extensions/zed-evelentscript/README.md) — Zed
 
 ### Native types
 
 EvelentScript supports indentation-based `interface`, `type`, generics, unions, and function annotations. Types are stripped from JS output; use `npm run typecheck` for static checking. See [documentation/sections/native_types.md](documentation/sections/native_types.md).
 
-## Project build (`esconfig.json`)
+## Project config (`esconfig.json`)
 
-Configure a project like TypeScript's `tsconfig.json`:
+Shared by both runtimes:
 
 ```json
 {
@@ -62,79 +96,37 @@ Configure a project like TypeScript's `tsconfig.json`:
 }
 ```
 
-| Option | Description |
-|--------|-------------|
-| `rootDir` | Source root (default: `.`) |
-| `outDir` | Output folder (default: `dist`) |
-| `entry` | Entry file relative to `rootDir` (default: `index.es`) |
-| `bundle` | `true` = one JS file; `false` = mirror tree into `outDir` |
-| `outFile` | Bundle filename when `bundle` is true |
-| `bare` | Compile without top-level function wrapper |
-| `sourceMap` | Write `.js.map` files (project mode) |
-| `include` / `exclude` | Glob patterns for source files |
-
 ```shell
-# From this repo (es is not on PATH until npm install -g):
-node ./bin/es build
-npm run build:project
+# Native (no JS):
+esc run -p ./esconfig.json
 
-# After npm install -g evelentscript (or npm link in this repo):
-es build
-es build --watch
-es build --config path/to/esconfig.json
+# Emit JS (optional):
+esc build -p ./esconfig.json
+node ./bin/es build
 ```
 
-See `esconfig.example.json` in the repository root.
+See `esconfig.example.json` / `example_project/`.
 
 ## Documentation site
-
-The HTML in `documentation/site/` is a template — build it first, then open the output:
 
 ```shell
 npm run build
 npm run docs
 ```
 
-Open `docs/v1/index.html` in a browser, or serve locally:
+Open `docs/v1/index.html`, or `npx --yes serve docs/v1`.
 
-```shell
-npx --yes serve docs/v1
-```
-
-Do not open `documentation/site/index.html` directly; it is not the compiled site.
-
-## Build
-
-Install dependencies and compile the compiler from `src/` into `lib/`:
+## Build (JS compiler sources)
 
 ```shell
 npm install
 npm run build
 ```
 
-Other build targets:
-
-```shell
-npm run build:full      # build twice and run tests
-npm run build:browser   # compile + browser bundles
-npm run build:all       # full build + browser bundles
-npm run build:watch     # watch src/ and rebuild on changes
-npm run build:release   # full release pipeline
-```
-
-You can also run the script directly:
-
-```shell
-node scripts/build.js --help
-```
-
-
 ```javascript
 const EvelentScript = require('evelentscript');
 const js = EvelentScript.compile('square = (x) -> x * x');
 ```
-
-Register `.es` files with Node.js:
 
 ```javascript
 require('evelentscript/register');

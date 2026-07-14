@@ -1,0 +1,31 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/evelent-core",
+    "crates/evelent-cli",
+    "crates/evelent-native",
+    "native-modules/hello_native",
+]
+default-members = ["crates/evelent-cli"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+authors = ["Evelent"]
+
+[workspace.dependencies]
+evelent-core = { path = "crates/evelent-core" }
+evelent-native = { path = "crates/evelent-native" }
+clap = { version = "4", features = ["derive"] }
+thiserror = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+libloading = "0.8"
+walkdir = "2"
+sha2 = "0.10"
+md-5 = "0.10"
+hex = "0.4"
+flate2 = "1"
+ureq = "2"
+toml = { version = "0.8", features = ["parse"] }

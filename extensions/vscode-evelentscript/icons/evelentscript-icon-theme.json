@@ -1,0 +1,35 @@
+{
+  "iconDefinitions": {
+    "_es": { "iconPath": "./es-dark.svg" },
+    "_es_light": { "iconPath": "./es-light.svg" },
+    "_file": { "iconPath": "./theme-file.svg" },
+    "_folder": { "iconPath": "./theme-folder.svg" },
+    "_folder_open": { "iconPath": "./theme-folder-open.svg" }
+  },
+  "file": "_file",
+  "folder": "_folder",
+  "folderExpanded": "_folder_open",
+  "languageIds": {
+    "evelentscript": "_es",
+    "literate-evelentscript": "_es"
+  },
+  "fileExtensions": {
+    "es": "_es",
+    "lites": "_es"
+  },
+  "fileNames": {},
+  "light": {
+    "file": "_file",
+    "folder": "_folder",
+    "folderExpanded": "_folder_open",
+    "languageIds": {
+      "evelentscript": "_es_light",
+      "literate-evelentscript": "_es_light"
+    },
+    "fileExtensions": {
+      "es": "_es_light",
+      "lites": "_es_light"
+    }
+  },
+  "hidesExplorerArrows": false
+}
