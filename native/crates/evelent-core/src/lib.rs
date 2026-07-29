@@ -2,34 +2,48 @@
 //!
 //! Primary path is in-process interpretation via [`Vm`] / [`run_file`].
 //! JavaScript emit remains available for interop (`compile` / `build`).
+//!
+//! With `default-features = false`, only the JS codegen front-end is built
+//! (used by Evelent Engine). Enable `full` for the VM, packages, and builtins.
 
 pub mod ast;
-pub mod builtins;
 pub mod codegen;
-pub mod config;
 pub mod error;
 pub mod lexer;
 pub mod module;
 pub mod parser;
-pub mod pkg;
-pub mod runtime;
 pub mod token;
+
+#[cfg(feature = "full")]
+pub mod builtins;
+#[cfg(feature = "full")]
+pub mod config;
+#[cfg(feature = "full")]
+pub mod pkg;
+#[cfg(feature = "full")]
+pub mod runtime;
+#[cfg(feature = "full")]
 pub mod value;
 
+#[cfg(feature = "full")]
 pub use config::{
     collect_sources, find_config_file, load_config, load_from_cwd, out_path_for, ProjectConfig,
 };
 pub use error::{Error, Result};
 pub use module::{
     compile_file, compile_graph, compile_source, CompileOptions, CompiledModule, ModuleGraph,
-    NativeHost,
 };
+#[cfg(feature = "full")]
+pub use module::NativeHost;
+#[cfg(feature = "full")]
 pub use pkg::{
     add_dependency, create_package, find_manifest, install_dependencies, load_from_cwd as load_pkg,
     registry_root, remove_dependency, resolve_package_lib, search_registry, Manifest, Package,
     Dependency, MANIFEST_NAME, MODULES_DIR,
 };
+#[cfg(feature = "full")]
 pub use runtime::{run_file, Vm};
+#[cfg(feature = "full")]
 pub use value::Value;
 
 /// Compile a string of EvelentScript to JavaScript.
@@ -43,6 +57,7 @@ pub fn compile(source: &str, filename: &str, bare: bool) -> Result<String> {
 
 /// Compile every file matched by an `esconfig.json` project.
 /// Returns `(written, errors)` — continues past per-file failures (tsc-style).
+#[cfg(feature = "full")]
 pub fn build_project(
     cfg: &ProjectConfig,
 ) -> Result<(Vec<(std::path::PathBuf, std::path::PathBuf)>, Vec<(std::path::PathBuf, String)>)> {
@@ -103,4 +118,3 @@ pub fn build_project(
     }
     Ok((written, errors))
 }
-

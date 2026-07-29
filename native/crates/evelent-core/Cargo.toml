@@ -5,17 +5,36 @@ edition.workspace = true
 license.workspace = true
 description = "Native EvelentScript compiler core (lexer, parser, codegen, modules)"
 
+[features]
+default = ["full"]
+# Package manager, Rust VM, native plugins, Node-like builtins.
+# The engine links with `default-features = false` (JS codegen only).
+full = [
+    "dep:serde",
+    "dep:serde_json",
+    "dep:evelent-native",
+    "dep:libloading",
+    "dep:walkdir",
+    "dep:regex",
+    "dep:sha2",
+    "dep:md-5",
+    "dep:hex",
+    "dep:flate2",
+    "dep:ureq",
+    "dep:toml",
+]
+
 [dependencies]
 thiserror = { workspace = true }
-serde = { workspace = true }
-serde_json = { workspace = true }
-evelent-native = { workspace = true }
-libloading = { workspace = true }
-walkdir = { workspace = true }
-regex = "1"
-sha2 = { workspace = true }
-md-5 = { workspace = true }
-hex = { workspace = true }
-flate2 = { workspace = true }
-ureq = { workspace = true }
-toml = { workspace = true }
+serde = { workspace = true, optional = true }
+serde_json = { workspace = true, optional = true }
+evelent-native = { workspace = true, optional = true }
+libloading = { workspace = true, optional = true }
+walkdir = { workspace = true, optional = true }
+regex = { version = "1", optional = true }
+sha2 = { workspace = true, optional = true }
+md-5 = { workspace = true, optional = true }
+hex = { workspace = true, optional = true }
+flate2 = { workspace = true, optional = true }
+ureq = { workspace = true, optional = true }
+toml = { workspace = true, optional = true }

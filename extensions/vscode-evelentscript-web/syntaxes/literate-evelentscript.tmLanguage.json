@@ -1,0 +1,33 @@
+{
+  "name": "Literate EvelentScript",
+  "scopeName": "source.literate-evelentscript",
+  "patterns": [
+    {
+      "begin": "^(\\s*)(```)",
+      "beginCaptures": {
+        "2": { "name": "punctuation.definition.markdown.evelentscript" }
+      },
+      "end": "^(\\1)(```)\\s*$",
+      "endCaptures": {
+        "2": { "name": "punctuation.definition.markdown.evelentscript" }
+      },
+      "patterns": [{ "include": "source.evelentscript" }]
+    },
+    {
+      "match": "^(    ).*",
+      "captures": {
+        "1": { "name": "punctuation.whitespace.leading.evelentscript" }
+      },
+      "name": "meta.embedded.block.evelentscript",
+      "patterns": [{ "include": "source.evelentscript" }]
+    },
+    {
+      "name": "markup.heading.markdown.evelentscript",
+      "match": "^#{1,6}\\s+.*$"
+    },
+    {
+      "name": "markup.raw.markdown.evelentscript",
+      "match": "^(?!    |```).*"
+    }
+  ]
+}

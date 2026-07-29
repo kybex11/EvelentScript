@@ -1,7 +1,9 @@
 use std::collections::{HashMap, HashSet};
 use std::path::{Path, PathBuf};
 
+#[cfg(feature = "full")]
 use evelent_native::{evelent_native_string_free, NativeInitFn, NativeFn, ABI_VERSION};
+#[cfg(feature = "full")]
 use libloading::Library;
 
 use crate::ast::{ImportDecl, Program, Stmt};
@@ -34,12 +36,14 @@ pub struct CompiledModule {
     pub dependencies: Vec<String>,
 }
 
+#[cfg(feature = "full")]
 #[derive(Default)]
 pub struct NativeHost {
     libs: Vec<Library>,
     modules: HashMap<String, HashMap<String, NativeFn>>,
 }
 
+#[cfg(feature = "full")]
 impl NativeHost {
     pub fn new() -> Self {
         Self::default()

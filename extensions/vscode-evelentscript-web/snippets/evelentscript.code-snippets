@@ -1,0 +1,63 @@
+{
+  "Region Start": {
+    "prefix": "#region",
+    "body": ["#region"],
+    "description": "Folding region start"
+  },
+  "Region End": {
+    "prefix": "#endregion",
+    "body": ["#endregion"],
+    "description": "Folding region end"
+  },
+  "Interface": {
+    "prefix": "interface",
+    "body": [
+      "interface ${1:Name}",
+      "\t${2:property}: ${3:type}",
+      "$0"
+    ],
+    "description": "Interface declaration"
+  },
+  "Interface with generics": {
+    "prefix": "interfaceg",
+    "body": [
+      "interface ${1:Name}<${2:T}>",
+      "\t${3:property}: ${4:T}",
+      "$0"
+    ],
+    "description": "Generic interface declaration"
+  },
+  "Type alias": {
+    "prefix": "type",
+    "body": [
+      "type ${1:Name} = ${2:type}",
+      "$0"
+    ],
+    "description": "Type alias"
+  },
+  "Generic type alias": {
+    "prefix": "typeg",
+    "body": [
+      "type ${1:Name}<${2:T}> = ${3:T}",
+      "$0"
+    ],
+    "description": "Generic type alias"
+  },
+  "Typed function": {
+    "prefix": "fn",
+    "body": [
+      "${1:name} = (${2:arg}: ${3:type}): ${4:returnType} ->",
+      "\t$0"
+    ],
+    "description": "Function with parameter and return types"
+  },
+  "Class": {
+    "prefix": "class",
+    "body": [
+      "class ${1:Name}",
+      "\t${2:property}: ${3:value}",
+      "$0"
+    ],
+    "description": "Class declaration"
+  }
+}

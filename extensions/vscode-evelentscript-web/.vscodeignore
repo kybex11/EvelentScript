@@ -1,0 +1,5 @@
+**/*.vsix
+**/*.bat
+.vscode/**
+scripts/**
+!scripts/bundle-compiler.js
